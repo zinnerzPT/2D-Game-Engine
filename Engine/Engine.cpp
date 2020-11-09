@@ -49,6 +49,34 @@ int Engine::RunLogics() {
 		//currentTexture = LoadTexture("../graphics/drone.bmp", renderTarget);
 		//background = LoadTexture("../graphics/galaxy2.bmp", renderTarget);
 
+		// Game Controller API
+
+		if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0) {
+			std::cout << "Game Controller Initialization Error: " << SDL_GetError() << std::endl;
+			return 3;
+		}
+
+		SDL_GameController* controller = nullptr;
+		int i;
+
+		for (i = 0; i < SDL_NumJoysticks(); ++i) {
+			if (SDL_IsGameController(i)) {
+				char* mapping;
+				std::cout << "Index '" << i << "' is a compatible controller, named '" <<
+					SDL_GameControllerNameForIndex(i) << "'" << std::endl;
+				controller = SDL_GameControllerOpen(i);
+				//mapping = SDL_GameControllerMapping(controller);
+				//std::cout << "Controller " << i << " is mapped as \"" << mapping << std::endl;
+				//SDL_free(mapping);
+			}
+			else {
+				std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
+			}
+		}
+
+		// -------------------
+
+
 		// Isto é só para testar que está a funcionar, usar funções!!
 		{
 			SDL_Texture* droneTexture = nullptr;
@@ -134,6 +162,29 @@ int Engine::RunLogics() {
 				playerPosition.y = playerPosY;
 			}
 
+
+			// Game controller movement
+			float leftAxisX = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX);
+			if (leftAxisX > 4000)
+			{
+				playerPosition.x += moveSpeed * deltaTime * (leftAxisX / 10000.0f);
+			}
+			else if (leftAxisX < -4000)
+			{
+				playerPosition.x += moveSpeed * deltaTime * (leftAxisX / 10000.0f);
+			}
+
+			float leftAxisY = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTY);
+			if (leftAxisY > 4000)
+			{
+				playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
+			}
+			else if (leftAxisY < -4000)
+			{
+				playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
+			}
+			// ------------------------
+
 			frameTime += deltaTime;
 
 			if (frameTime >= 0.1f)
@@ -156,6 +207,10 @@ int Engine::RunLogics() {
 			SDL_RenderPresent(renderTarget);
 
 		}
+
+		// Close the game controller
+		if (controller != NULL)
+			SDL_GameControllerClose(controller);
 
 		SDL_DestroyWindow(window);
 		SDL_DestroyTexture(currentTexture);
