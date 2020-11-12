@@ -21,9 +21,21 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Loner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rusher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Loner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rusher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,6 +24,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
