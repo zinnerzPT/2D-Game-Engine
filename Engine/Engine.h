@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <string>
 
 class Engine
 {
@@ -8,6 +8,22 @@ private:
 	int RunLogics(); // VERY PLACEHOLDER
 	//SDL_Texture* LoadTexture(std::string filePath, SDL_Renderer* renderTarget);
 public:
-	void Start();
+
+	void init(std::string windowTitle, int windowWidth, int windowHeight);
+
+	//handle events
+	//update
+	//render
+	//clean
+	//bool running() { return isRunning; }
+
+	void start();
+
+	~Engine();
+private:
+	bool isRunning;
+	class SDLWrapper* sdl;
+	class Window* window;
+	class Renderer* renderer;
 };
 
