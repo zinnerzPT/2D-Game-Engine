@@ -1,5 +1,16 @@
 #include "Level.h"
 
+#include "ContactListener.h"
+
+Level::Level()
+{
+	*gravity = b2Vec2(0.0f, 0.0f);
+	world = new b2World(*gravity);
+
+	ContactListener* contactListener = new ContactListener();
+	world->SetContactListener(contactListener);
+}
+
 void Level::add(Actor* actor)
 {
 	this->actors.push_back(actor);
@@ -18,6 +29,11 @@ void Level::update(float deltaTime)
 	//actors to add
 
 	//actors to add.clear
+}
+
+class b2World* Level::getWorld()
+{
+	return world;
 }
 
 Level::~Level()
