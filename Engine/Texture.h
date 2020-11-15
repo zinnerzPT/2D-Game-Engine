@@ -9,6 +9,7 @@ public:
 
 	SDL_Texture* GetTexture() { return texture; }
 
+	/* Queries the width and height of the texture. */
 	void query(int* w, int* h);
 
 	~Texture();

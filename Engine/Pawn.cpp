@@ -1,8 +1,14 @@
 #include "Pawn.h"
+#include <iostream>
 
-Pawn::Pawn(std::string filePath, Renderer* renderer) {
+Pawn::Pawn(std::string filePath, Renderer* renderer, int x, int y) : Actor(x,y) {
+
 	this->renderer = renderer;
 	texture = new Texture(filePath, renderer);
+
+	xpos = x;
+	ypos = y;
+
 	texture->query(&textureWidth, &textureHeight);
 
 	frameWidth = textureWidth / 8;
@@ -20,8 +26,8 @@ Pawn::~Pawn()
 
 void Pawn::update(float deltaTime)
 {
-	xpos = 0;
-	ypos = 0;
+	moveRight(1.0f);
+	moveUp(-1.0f);
 
 	/*srcRect.h = 32;
 	srcRect.w = 32;
@@ -32,6 +38,14 @@ void Pawn::update(float deltaTime)
 	destRect.y = ypos;
 	destRect.w = srcRect.w;
 	destRect.h = srcRect.h;
+}
+
+void Pawn::moveRight(float x) {
+	xpos += x;
+}
+
+void Pawn::moveUp(float y) {
+	ypos -= y;
 }
 
 void Pawn::render()

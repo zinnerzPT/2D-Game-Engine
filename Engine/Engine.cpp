@@ -26,13 +26,9 @@ void Engine::start()
 	const float frameDelay = 1000.0f / FPS;
 	//int frameTime;
 
-	player = new Pawn("../graphics/drone.bmp", renderer);
+	player = new Pawn("../graphics/drone.bmp", renderer, 1, 1);
 	Texture* background = new Texture("../graphics/galaxy2.bmp", renderer);
 
-	//float frameTime = 0;
-	//int prevTime = 0;
-	//int currentTime = 0;
-	//float deltaTime = 0;
 	float fixedDeltaTime = 0;
 
 	float desiredFramerate = 60;
@@ -40,12 +36,6 @@ void Engine::start()
 
 	desiredFramerate = 1 / desiredFramerate;
 
-	SDL_Rect playerRect;
-	SDL_Rect playerPosition;
-	playerPosition.x = playerPosition.y = 0;
-	playerPosition.w = playerPosition.h = 32;
-	//int frameWidth, frameHeight;
-	int textureWidth, textureHeight;
 	float frameTime = 0;
 	int prevTime = 0;
 	int currentTime = 0;
@@ -69,15 +59,6 @@ void Engine::start()
 		}
 	}
 
-	//currentTexture->query(&textureWidth, &textureHeight);
-
-	
-
-	//playerRect.x = playerRect.y = 0;
-	//playerRect.w = frameWidth;
-	//playerRect.h = frameHeight;
-
-
 	float playerPosX, playerPosY;
 	playerPosX = playerPosY = 0.0f;
 
@@ -92,27 +73,24 @@ void Engine::start()
 		deltaTime = (currentTime - prevTime) / 1000.0f;
 
 		//FixedUpdate(physics)
-		/*while(deltaTime < desiredFramerate){ //deltaTime < a single frame
 
-			//FixedUpdate() (physics)
-
-			//OnTriggerXXX()
-			//OnCollisionXXX()
-
-			currentTime = SDL_GetTicks();
-			deltaTime = (currentTime - prevTime) / 1000.0f;
-			if (deltaTime < desiredFramerate) {
-				SDL_Delay(fixedUpdateDelay-fixedDeltaTime);
+		/*if (frameTime >= 0.1f)
+		{
+			frameTime = 0;
+			playerRect.x += frameWidth;
+			if (playerRect.x >= textureWidth) {
+				playerRect.x = 0;
+				playerRect.y += frameHeight;
+				if (playerRect.y >= textureHeight) {
+					playerRect.y = 0;
+				}
 			}
-			std::cout << fixedDeltaTime << std::endl;
-			//wait for next FixedUpdate
-
 		}*/
 
 		/* Event handling */
 		HandleEvents();
 
-		keyState = SDL_GetKeyboardState(NULL);
+		/*keyState = SDL_GetKeyboardState(NULL);
 		if (keyState[SDL_SCANCODE_RIGHT]) {
 			playerPosX += moveSpeed * deltaTime;
 			playerPosition.x = playerPosX;
@@ -149,26 +127,16 @@ void Engine::start()
 		else if (leftAxisY < -4000)
 		{
 			playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
-		}
+		}*/
 
 		//frameTime += deltaTime;
 
-		/*if (frameTime >= 0.1f)
-		{
-			frameTime = 0;
-			playerRect.x += frameWidth;
-			if (playerRect.x >= textureWidth) {
-				playerRect.x = 0;
-				playerRect.y += frameHeight;
-				if (playerRect.y >= textureHeight) {
-					playerRect.y = 0;
-				}
-			}
-		}*/
+		
 
 
 		//Update();
 
+		player->update(deltaTime);
 
 		renderer->clear();
 		//Render level
@@ -198,6 +166,7 @@ void Engine::HandleEvents()
 	while (SDL_PollEvent(&ev) != 0)
 	{
 		switch (ev.type) {
+		/* Quit event */
 		case SDL_QUIT:
 			isRunning = false;
 			break;
@@ -205,9 +174,6 @@ void Engine::HandleEvents()
 		default:
 			break;
 		}
-		/* Quit event */
-		if (ev.type == SDL_QUIT)
-			isRunning = false;
 	}
 }
 

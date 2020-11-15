@@ -7,7 +7,7 @@
 class Actor
 {
 public:
-	//Actor(std::string textureFilePath, Renderer renderer);
+	Actor(int x, int y);
 	//~Actor();
 
 	virtual void update(float deltaTime) = 0;

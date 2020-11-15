@@ -17,8 +17,6 @@ Texture::Texture(std::string filePath, Renderer* renderer)
 	}
 
 	SDL_FreeSurface(surface);
-
-	//return texture;
 }
 
 void Texture::query(int* w, int* h)
