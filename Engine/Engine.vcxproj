@@ -29,7 +29,6 @@
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tilemap.h" />
-    <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +42,6 @@
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tilemap.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

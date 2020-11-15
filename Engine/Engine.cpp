@@ -5,9 +5,11 @@
 #include "Window.h"
 #include "Texture.h"
 #include "Renderer.h"
+#include "Pawn.h"
 
 #include "Level.h"
 
+Pawn* player;
 
 //Level level;
 
@@ -20,7 +22,11 @@ void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
 
 void Engine::start()
 {
-	Texture* currentTexture = new Texture("../graphics/drone.bmp", renderer);
+	const int FPS = 60;
+	const float frameDelay = 1000.0f / FPS;
+	//int frameTime;
+
+	player = new Pawn("../graphics/drone.bmp", renderer);
 	Texture* background = new Texture("../graphics/galaxy2.bmp", renderer);
 
 	//float frameTime = 0;
@@ -38,7 +44,7 @@ void Engine::start()
 	SDL_Rect playerPosition;
 	playerPosition.x = playerPosition.y = 0;
 	playerPosition.w = playerPosition.h = 32;
-	int frameWidth, frameHeight;
+	//int frameWidth, frameHeight;
 	int textureWidth, textureHeight;
 	float frameTime = 0;
 	int prevTime = 0;
@@ -63,21 +69,20 @@ void Engine::start()
 		}
 	}
 
-	currentTexture->query(&textureWidth, &textureHeight);
+	//currentTexture->query(&textureWidth, &textureHeight);
 
-	frameWidth = textureWidth / 8;
-	frameHeight = textureHeight / 2;
+	
 
-	playerRect.x = playerRect.y = 0;
-	playerRect.w = frameWidth;
-	playerRect.h = frameHeight;
+	//playerRect.x = playerRect.y = 0;
+	//playerRect.w = frameWidth;
+	//playerRect.h = frameHeight;
 
 
 	float playerPosX, playerPosY;
 	playerPosX = playerPosY = 0.0f;
 
-	bool isRunning = true;
-	SDL_Event ev;
+	isRunning = true;
+
 
 	// Game Loop
 	while (isRunning)
@@ -105,12 +110,8 @@ void Engine::start()
 		}*/
 
 		/* Event handling */
-		while (SDL_PollEvent(&ev) != 0)
-		{
-			/* Quit event */
-			if (ev.type == SDL_QUIT)
-				isRunning = false;
-		}
+		HandleEvents();
+
 		keyState = SDL_GetKeyboardState(NULL);
 		if (keyState[SDL_SCANCODE_RIGHT]) {
 			playerPosX += moveSpeed * deltaTime;
@@ -150,9 +151,9 @@ void Engine::start()
 			playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
 		}
 
-		frameTime += deltaTime;
+		//frameTime += deltaTime;
 
-		if (frameTime >= 0.1f)
+		/*if (frameTime >= 0.1f)
 		{
 			frameTime = 0;
 			playerRect.x += frameWidth;
@@ -163,25 +164,51 @@ void Engine::start()
 					playerRect.y = 0;
 				}
 			}
-		}
-
+		}*/
 
 
 		//Update();
 
 
-		//Render level
 		renderer->clear();
+		//Render level
+
 		renderer->copy(background, NULL, NULL);
-		renderer->copy(currentTexture, &playerRect, &playerPosition);
+		//renderer->copy(currentTexture, &playerRect, &playerPosition);
+		player->render();
+
 		renderer->present();
 
 		window->updateSurface();
+
+		//Fixed framerate
+		if (frameDelay > deltaTime) {
+			SDL_Delay(frameDelay - deltaTime);
+		}
 	}
 
 	// Close the game controller
 	if (controller != NULL)
 		SDL_GameControllerClose(controller);
+}
+
+void Engine::HandleEvents()
+{
+	SDL_Event ev;
+	while (SDL_PollEvent(&ev) != 0)
+	{
+		switch (ev.type) {
+		case SDL_QUIT:
+			isRunning = false;
+			break;
+
+		default:
+			break;
+		}
+		/* Quit event */
+		if (ev.type == SDL_QUIT)
+			isRunning = false;
+	}
 }
 
 Engine::~Engine()

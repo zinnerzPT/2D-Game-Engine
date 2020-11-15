@@ -10,14 +10,13 @@ private:
 public:
 
 	void init(std::string windowTitle, int windowWidth, int windowHeight);
+	void start();
 
-	//handle events
+	void HandleEvents();
 	//update
 	//render
 	//clean
 	//bool running() { return isRunning; }
-
-	void start();
 
 	~Engine();
 private:
