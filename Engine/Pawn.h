@@ -4,7 +4,7 @@ class Pawn :
     public Actor
 {
 public:
-	Pawn(std::string filePath, float x, float y);
+	Pawn(float x, float y);
 	//Pawn(std::string textureFilePath, Renderer renderer);
 
 	~Pawn();

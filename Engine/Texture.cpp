@@ -21,6 +21,12 @@ Texture::Texture(std::string filePath)
 
 	SDL_FreeSurface(surface);
 
+	int w, h;
+	query(&w, &h);
+	dstRect = new SDL_Rect();
+	dstRect->w = w;
+	dstRect->h = h;
+
 	std::cout << "Created Texture" << std::endl;
 }
 
@@ -36,7 +42,7 @@ SDL_Rect* Texture::getDstRect()
 
 void Texture::setSrcRect(SDL_Rect newRect)
 {
-	if (srcRect == NULL)
+	if (srcRect == NULL || &newRect == NULL)
 	{
 		srcRect = new SDL_Rect();
 		srcRect->x = srcRect->y = srcRect->w = srcRect->h = 0;
@@ -44,14 +50,30 @@ void Texture::setSrcRect(SDL_Rect newRect)
 	*srcRect = newRect;
 }
 
+void Texture::setSrcRect(int x, int y, int w, int h)
+{
+	srcRect->x = x;
+	srcRect->y = y;
+	srcRect->w = w;
+	srcRect->h = h;
+}
+
 void Texture::setDstRect(SDL_Rect newRect)
 {
-	if (dstRect == NULL)
+	if (dstRect == NULL || &newRect == NULL)
 	{
 		dstRect = new SDL_Rect();
 		dstRect->x = dstRect->y = dstRect->w = dstRect->h = 0;
 	}
 	*dstRect = newRect;
+}
+
+void Texture::setDstRect(int x, int y, int w, int h)
+{
+	srcRect->x = x;
+	srcRect->y = y;
+	srcRect->w = w;
+	srcRect->h = h;
 }
 
 void Texture::query(int* w, int* h)

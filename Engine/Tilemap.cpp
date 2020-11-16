@@ -23,14 +23,14 @@ Tilemap::Tilemap(Texture* tex, int r, int c)
 
 void Tilemap::ChangeFrame(int frameNumber)
 {
-	if (frameNumber <= 0 || frameNumber > rows * columns)
+	if (frameNumber < 0 || frameNumber >= rows * columns)
 	{
 		std::cout << "Error: Invalid frame number" << std::endl;
 	}
 	else
 	{
-		currentFrame.x = tileWidth * ((frameNumber - 1) % columns);
-		currentFrame.y = tileHeight * ((frameNumber - 1) / columns);
+		currentFrame.x = tileWidth * ((frameNumber) % columns);
+		currentFrame.y = tileHeight * ((frameNumber) / columns);
 		texture->setSrcRect(currentFrame);
 
 		// std::cout << "X: " << currentFrame.x << " Y: " << currentFrame.y << std::endl;

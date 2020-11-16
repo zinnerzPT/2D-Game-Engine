@@ -16,7 +16,7 @@ Animation::Animation(Tilemap* tilemap, std::vector<int> frames, bool loop)
 void Animation::update()
 {
 	animationTilemap->ChangeFrame(animationFrames[currentFrame - 1]);
-	currentFrame++;
+	++currentFrame;
 	if (currentFrame > numberOfFrames)
 	{
 		if (isLooping)

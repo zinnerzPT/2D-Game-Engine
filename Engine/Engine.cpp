@@ -9,13 +9,8 @@
 #include "Level.h"
 #include <box2d/box2d.h>
 
-Pawn* player;
-
 Renderer* Engine::renderer = nullptr;
-
 Level* Engine::level = nullptr;
-
-//Level level;
 
 void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
 {
@@ -31,8 +26,6 @@ void Engine::start()
 	const float frameDelay = 1000.0f / FPS;
 	//int frameTime;
 
-	//player = new Pawn("../graphics/drone.bmp", 1, 1);
-	
 
 	float frameTime = 0;
 	int prevTime = 0;
@@ -121,8 +114,6 @@ void Engine::start()
 		renderer->clear();
 		//Render level
 
-		//renderer->copy(background, NULL, NULL);
-		//renderer->copy(currentTexture, &playerRect, &playerPosition);
 		frameTime += deltaTime;
 		if (frameTime >= 0.1f)
 		{

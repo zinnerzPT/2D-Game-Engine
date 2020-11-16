@@ -13,7 +13,9 @@ public:
 	SDL_Rect* getDstRect();
 
 	void setSrcRect(SDL_Rect newRect);
+	void setSrcRect(int x, int y, int w, int h);
 	void setDstRect(SDL_Rect newRect);
+	void setDstRect(int x, int y, int w, int h);
 
 	/* Queries the width and height of the texture. */
 	void query(int* w, int* h);
