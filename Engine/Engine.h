@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "Level.h"
+
 class Engine
 {
 public:
@@ -15,11 +17,14 @@ public:
 	//clean
 	//bool running() { return isRunning; }
 
+	static Level* getLevel();
+
 	~Engine();
 private:
 	bool isRunning;
 	class SDLWrapper* sdl;
 	class Window* window;
+	static Level* level;
 
 public:
 	static class Renderer* renderer;

@@ -28,6 +28,7 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tilemap.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tilemap.cpp" />

@@ -20,6 +20,7 @@ void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
 	sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 	window = new Window(windowTitle, windowWidth, windowHeight);
 	renderer = new Renderer(window);
+	level = new Level();
 }
 
 void Engine::start()
@@ -179,9 +180,15 @@ void Engine::HandleEvents()
 	}
 }
 
+Level* Engine::getLevel()
+{
+	return level;
+}
+
 Engine::~Engine()
 {
 	delete renderer;
 	delete window;
 	delete sdl;
+	delete level;
 }
