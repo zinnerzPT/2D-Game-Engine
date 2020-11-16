@@ -8,9 +8,11 @@
 
 RigidBody::RigidBody()
 {
-	bodyDef = nullptr;
 	body = nullptr;
-	fixtureDef = nullptr;
+	fixture = nullptr;
+
+	bodyDef = new b2BodyDef;
+	fixtureDef = new b2FixtureDef;
 }
 
 void RigidBody::makeDynamic(float density)
@@ -35,12 +37,14 @@ void RigidBody::createBody(float position[2], float halfSize[2])
 	{
 		fixtureDef->shape = &boxShape;
 		fixtureDef->density = bodyDensity;
-		body->CreateFixture(fixtureDef);
+		fixture = body->CreateFixture(fixtureDef);
 	}
 	else
 	{
-		body->CreateFixture(&boxShape, 0.0f);
+		fixture = body->CreateFixture(&boxShape, 0.0f);
 	}
+	delete bodyDef;
+	delete fixtureDef;
 }
 
 void RigidBody::setVelocity(float linearVelocity[2])

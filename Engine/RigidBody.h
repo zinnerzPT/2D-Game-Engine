@@ -26,6 +26,7 @@ private:
 	float bodyDensity = 0.0f;
 
 	class b2Body* body;
+	class b2Fixture* fixture;
 	struct b2BodyDef* bodyDef;
 	struct b2FixtureDef* fixtureDef;
 };

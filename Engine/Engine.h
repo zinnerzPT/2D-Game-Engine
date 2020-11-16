@@ -22,7 +22,7 @@ private:
 	bool isRunning;
 	class SDLWrapper* sdl;
 	class Window* window;
-	static Level* level;
+	static class Level* level;
 
 public:
 	static class Renderer* renderer;

@@ -8,10 +8,12 @@
 #include "Pawn.h"
 
 #include "Level.h"
+#include <box2d/box2d.h>
 
 Pawn* player;
 
 Renderer* Engine::renderer = nullptr;
+
 Level* Engine::level = nullptr;
 
 //Level level;
@@ -68,6 +70,10 @@ void Engine::start()
 
 	isRunning = true;
 
+	// Physics variables
+	float timeStep = 1.0f / 60.0f;
+	int velocityIterations = 6;
+	int positionIterations = 2;
 
 	// Game Loop
 	while (isRunning)
@@ -77,6 +83,9 @@ void Engine::start()
 		deltaTime = (currentTime - prevTime) / 1000.0f;
 
 		//FixedUpdate(physics)
+
+		//Update the physics
+		level->getWorld()->Step(timeStep, velocityIterations, positionIterations);
 
 		/*if (frameTime >= 0.1f)
 		{

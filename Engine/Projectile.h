@@ -7,10 +7,8 @@ class Projectile :
 	public ContactSensor
 {
 public:
-	Projectile(float position[2], float halfSize[2], float linearVelocity[2]);
+	Projectile(float position[2], float halfSize[2], float density, float linearVelocity[2]);
 
 	virtual void onContact() override = 0;
-
-	~Projectile();
 };
 
