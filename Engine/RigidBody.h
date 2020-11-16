@@ -15,8 +15,8 @@ public:
 
 	float* getPosition();
 	class b2Body* getBody();
-	class b2BodyDef* getBodyDef();
-	class b2FixtureDef* getFixtureDef();
+	struct b2BodyDef* getBodyDef();
+	struct b2FixtureDef* getFixtureDef();
 
 	~RigidBody();
 
@@ -26,6 +26,6 @@ private:
 	float bodyDensity = 0.0f;
 
 	class b2Body* body;
-	class b2BodyDef* bodyDef;
-	class b2FixtureDef* fixtureDef;
+	struct b2BodyDef* bodyDef;
+	struct b2FixtureDef* fixtureDef;
 };

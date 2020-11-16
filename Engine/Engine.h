@@ -2,8 +2,6 @@
 
 #include <string>
 
-#include "Level.h"
-
 class Engine
 {
 public:
@@ -17,7 +15,7 @@ public:
 	//clean
 	//bool running() { return isRunning; }
 
-	static Level* getLevel();
+	static class Level* getLevel() { return level; };
 
 	~Engine();
 private:

@@ -3,6 +3,7 @@
 #include <box2d/box2d.h>
 
 #include "Engine.h"
+#include "Level.h"
 
 
 RigidBody::RigidBody()
@@ -60,12 +61,12 @@ b2Body* RigidBody::getBody()
 	return body;
 }
 
-class b2BodyDef* RigidBody::getBodyDef()
+struct b2BodyDef* RigidBody::getBodyDef()
 {
 	return bodyDef;
 }
 
-class b2FixtureDef* RigidBody::getFixtureDef()
+struct b2FixtureDef* RigidBody::getFixtureDef()
 {
 	return fixtureDef;
 }

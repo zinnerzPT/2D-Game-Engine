@@ -12,6 +12,7 @@
 Pawn* player;
 
 Renderer* Engine::renderer = nullptr;
+Level* Engine::level = nullptr;
 
 //Level level;
 
@@ -178,11 +179,6 @@ void Engine::HandleEvents()
 			break;
 		}
 	}
-}
-
-Level* Engine::getLevel()
-{
-	return level;
 }
 
 Engine::~Engine()

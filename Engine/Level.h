@@ -10,11 +10,11 @@ public:
 	Level();
 	void add(Actor* actor);
 	void update(float deltaTime);
-	class b2World* getWorld();
+	class b2World* getWorld() { return world; };
 	~Level();
 
 private:
-	class b2Vec2* gravity;
+	struct b2Vec2* gravity;
 	class b2World* world;
 };
 
