@@ -33,7 +33,7 @@ void Engine::start()
 	//int frameTime;
 
 	player = new Pawn("../graphics/drone.bmp", 1, 1);
-	Texture* background = new Texture("../graphics/galaxy2.bmp");
+	
 
 	float frameTime = 0;
 	int prevTime = 0;

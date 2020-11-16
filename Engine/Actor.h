@@ -10,7 +10,7 @@ public:
 	//~Actor();
 
 	virtual void update(float deltaTime) = 0;
-	virtual void render() = 0;
+	void render();
 
 protected:
 	float xpos;

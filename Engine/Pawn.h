@@ -12,7 +12,6 @@ public:
 	void update(float deltaTime);
 	void moveRight(float x);
 	void moveUp(float y);
-	void render();
 protected:
 	float moveSpeed;
 };
