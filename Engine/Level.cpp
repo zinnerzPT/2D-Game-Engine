@@ -2,13 +2,15 @@
 
 #include "ContactListener.h"
 
+
+
 Level::Level()
 {
-	//gravity = new b2Vec2(0.0f, 0.0f);
-	//world = new b2World(*gravity);
+	gravity = new b2Vec2(0.0f, 0.0f);
+	world = new b2World(*gravity);
 
-	//ContactListener* contactListener = new ContactListener();
-	//world->SetContactListener(contactListener);
+	ContactListener* contactListener = new ContactListener();
+	world->SetContactListener(contactListener);
 }
 
 void Level::add(Actor* actor)
@@ -36,6 +38,6 @@ Level::~Level()
 	for (Actor* a : actors) {
 		delete(a);
 	}
-	//delete gravity;
-	//delete world;
+	delete gravity;
+	delete world;
 }

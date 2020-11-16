@@ -5,7 +5,6 @@
 
 class Level
 {
-	std::vector<Actor*> actors;
 public:
 	Level();
 	void add(Actor* actor);
@@ -14,6 +13,7 @@ public:
 	~Level();
 
 private:
+	std::vector<Actor*> actors;
 	struct b2Vec2* gravity;
 	class b2World* world;
 };
