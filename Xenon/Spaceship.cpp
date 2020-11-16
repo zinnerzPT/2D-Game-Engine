@@ -27,6 +27,10 @@ void Spaceship::update(float deltaTime) {
 		moveUp(100 * deltaTime);
 	}
 
+	std::cout << "x = " << xpos << std::endl;
+	std::cout << "y = " << ypos << std::endl;
+
+	Pawn::update(deltaTime);
 	
 }
 

@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     engine.init("Xenon Clone!", 640, 480);
 
     Background* background = new Background();
-    Spaceship* ship = new Spaceship(200, 200);
+    Spaceship* ship = new Spaceship(0, 0);
     //Enemy* enemy = new Enemy();
 
     //engine.getLevel()->addActor(background);

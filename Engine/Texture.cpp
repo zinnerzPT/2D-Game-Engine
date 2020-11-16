@@ -70,10 +70,10 @@ void Texture::setDstRect(SDL_Rect newRect)
 
 void Texture::setDstRect(int x, int y, int w, int h)
 {
-	srcRect->x = x;
-	srcRect->y = y;
-	srcRect->w = w;
-	srcRect->h = h;
+	dstRect->x = x;
+	dstRect->y = y;
+	dstRect->w = w;
+	dstRect->h = h;
 }
 
 void Texture::query(int* w, int* h)
