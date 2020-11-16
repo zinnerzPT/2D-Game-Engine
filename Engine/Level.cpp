@@ -4,7 +4,7 @@
 
 Level::Level()
 {
-	*gravity = b2Vec2(0.0f, 0.0f);
+	gravity = new b2Vec2(0.0f, 0.0f);
 	world = new b2World(*gravity);
 
 	ContactListener* contactListener = new ContactListener();
@@ -41,4 +41,6 @@ Level::~Level()
 	for (Actor* a : actors) {
 		delete(a);
 	}
+	delete gravity;
+	delete world;
 }
