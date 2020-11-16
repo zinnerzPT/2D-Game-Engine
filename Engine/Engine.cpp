@@ -116,21 +116,15 @@ void Engine::start()
 			playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
 		}*/
 
-		//frameTime += deltaTime;
-
-		
-
-
 		//Update();
-
-		player->update(deltaTime);
+		level->update(deltaTime);
 
 		renderer->clear();
 		//Render level
 
-		renderer->copy(background, NULL, NULL);
+		//renderer->copy(background, NULL, NULL);
 		//renderer->copy(currentTexture, &playerRect, &playerPosition);
-		player->render();
+		level->render();
 
 		renderer->present();
 

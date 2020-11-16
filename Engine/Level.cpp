@@ -2,8 +2,6 @@
 
 #include "ContactListener.h"
 
-
-
 Level::Level()
 {
 	gravity = new b2Vec2(0.0f, 0.0f);
@@ -31,6 +29,13 @@ void Level::update(float deltaTime)
 	//actors to add
 
 	//actors to add.clear
+}
+
+void Level::render()
+{
+	for (Actor* a : actors) {
+		a->render();
+	}
 }
 
 Level::~Level()

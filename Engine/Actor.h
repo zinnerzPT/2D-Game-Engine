@@ -6,7 +6,7 @@
 class Actor
 {
 public:
-	Actor(int x, int y);
+	Actor();
 	//~Actor();
 
 	virtual void update(float deltaTime) = 0;
@@ -19,4 +19,7 @@ protected:
 	Texture* texture;
 
 	SDL_Rect srcRect, destRect;
+
+	int textureWidth, textureHeight;
+	int frameWidth, frameHeight;
 };

@@ -3,7 +3,7 @@
 #include "Renderer.h"
 #include <iostream>
 
-Pawn::Pawn(std::string filePath, int x, int y) : Actor(x,y) {
+Pawn::Pawn(std::string filePath, float x, float y) : Actor() {
 
 	texture = new Texture(filePath);
 

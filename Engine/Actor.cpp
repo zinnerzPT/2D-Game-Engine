@@ -1,7 +1,9 @@
 #include "Actor.h"
 #include <iostream>
+#include "Engine.h"
+#include "Level.h"
 
-Actor::Actor(int x, int y)
+Actor::Actor()
 {
-	std::cout << x << y << std::endl;
+	Engine::getLevel()->add(this);
 }

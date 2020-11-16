@@ -5,7 +5,7 @@
 class Spaceship : public Pawn
 {
 public:
-	Spaceship(std::string filePath, int x, int y);
+	Spaceship(std::string filePath, float x, float y);
 	void update(float deltaTime);
 };
 

@@ -9,6 +9,7 @@ public:
 	Level();
 	void add(Actor* actor);
 	void update(float deltaTime);
+	void render();
 	class b2World* getWorld() { return world; };
 	~Level();
 
