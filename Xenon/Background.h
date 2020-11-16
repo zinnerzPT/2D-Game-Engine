@@ -1,5 +1,5 @@
 #pragma once
-#include "C:\Users\zinne\source\repos\AGPT_Proj1\Engine\Actor.h"
+#include "Actor.h"
 class Background :
     public Actor
 {

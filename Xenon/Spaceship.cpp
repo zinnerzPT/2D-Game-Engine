@@ -5,7 +5,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y) {
 	texture = new Texture("../graphics/Ship1.bmp");
 	tilemap = new Tilemap(texture, 1, 7);
 	tilemap->ChangeFrame(3);
-	//animation = new Animation(tilemap, {0,1 }, true);
+	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,5,4,3,2,1 }, true);
 	xpos = x;
 	ypos = y;
 }
@@ -27,11 +27,7 @@ void Spaceship::update(float deltaTime) {
 		moveUp(100 * deltaTime);
 	}
 
-	std::cout << "x = " << xpos << std::endl;
-	std::cout << "y = " << ypos << std::endl;
-
 	Pawn::update(deltaTime);
-	
 }
 
 void Spaceship::fire() {

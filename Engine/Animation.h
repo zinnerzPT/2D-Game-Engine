@@ -12,7 +12,7 @@ public:
 
 private:
 	int numberOfFrames = 0;
-	int currentFrame = 1;
+	int currentFrame = 0;
 
 	bool isLooping = true;
 
