@@ -35,20 +35,10 @@ void Engine::start()
 	player = new Pawn("../graphics/drone.bmp", 1, 1);
 	Texture* background = new Texture("../graphics/galaxy2.bmp");
 
-	float fixedDeltaTime = 0;
-
-	float desiredFramerate = 60;
-	float fixedUpdateDelay = 20;
-
-	desiredFramerate = 1 / desiredFramerate;
-
 	float frameTime = 0;
 	int prevTime = 0;
 	int currentTime = 0;
 	float deltaTime = 0;
-
-	float moveSpeed = 200.0f;
-	const Uint8* keyState;
 
 	SDL_GameController* controller = nullptr; // fazer class para game controller?
 	int i;
@@ -103,23 +93,7 @@ void Engine::start()
 		/* Event handling */
 		HandleEvents();
 
-		/*keyState = SDL_GetKeyboardState(NULL);
-		if (keyState[SDL_SCANCODE_RIGHT]) {
-			playerPosX += moveSpeed * deltaTime;
-			playerPosition.x = playerPosX;
-		}
-		else if (keyState[SDL_SCANCODE_LEFT]) {
-			playerPosX -= moveSpeed * deltaTime;
-			playerPosition.x = playerPosX;
-		}
-		if (keyState[SDL_SCANCODE_DOWN]) {
-			playerPosY += moveSpeed * deltaTime;
-			playerPosition.y = playerPosY;
-		}
-		else if (keyState[SDL_SCANCODE_UP]) {
-			playerPosY -= moveSpeed * deltaTime;
-			playerPosition.y = playerPosY;
-		}
+		/*
 
 		// Game controller movement
 		float leftAxisX = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX);
