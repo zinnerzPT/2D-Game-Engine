@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Texture.h"
-#include "Renderer.h"
 #include <string>
 
 class Actor
@@ -20,5 +19,4 @@ protected:
 	Texture* texture;
 
 	SDL_Rect srcRect, destRect;
-	Renderer* renderer;
 };

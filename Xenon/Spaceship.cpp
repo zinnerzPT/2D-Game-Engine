@@ -1,6 +1,6 @@
 #include "Spaceship.h"
 
-Spaceship::Spaceship(std::string filePath, Renderer* renderer, int x, int y) :Pawn(filePath, renderer, x, y) {
+Spaceship::Spaceship(std::string filePath, int x, int y) :Pawn(filePath, x, y) {
 
 }
 

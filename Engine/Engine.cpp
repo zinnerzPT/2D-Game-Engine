@@ -11,6 +11,8 @@
 
 Pawn* player;
 
+Renderer* Engine::renderer = nullptr;
+
 //Level level;
 
 void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
@@ -26,8 +28,8 @@ void Engine::start()
 	const float frameDelay = 1000.0f / FPS;
 	//int frameTime;
 
-	player = new Pawn("../graphics/drone.bmp", renderer, 1, 1);
-	Texture* background = new Texture("../graphics/galaxy2.bmp", renderer);
+	player = new Pawn("../graphics/drone.bmp", 1, 1);
+	Texture* background = new Texture("../graphics/galaxy2.bmp");
 
 	float fixedDeltaTime = 0;
 

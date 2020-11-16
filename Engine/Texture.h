@@ -5,7 +5,7 @@
 class Texture
 {
 public:
-	Texture(std::string filePath, class Renderer* renderer);
+	Texture(std::string filePath);
 
 	SDL_Texture* GetTexture() { return texture; }
 

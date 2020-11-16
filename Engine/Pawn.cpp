@@ -1,10 +1,11 @@
 #include "Pawn.h"
+#include "Engine.h"
+#include "Renderer.h"
 #include <iostream>
 
-Pawn::Pawn(std::string filePath, Renderer* renderer, int x, int y) : Actor(x,y) {
+Pawn::Pawn(std::string filePath, int x, int y) : Actor(x,y) {
 
-	this->renderer = renderer;
-	texture = new Texture(filePath, renderer);
+	texture = new Texture(filePath);
 
 	xpos = x;
 	ypos = y;
@@ -50,5 +51,5 @@ void Pawn::moveUp(float y) {
 
 void Pawn::render()
 {
-	renderer->copy(texture, &srcRect, &destRect);
+	Engine::renderer->copy(texture, &srcRect, &destRect);
 }
