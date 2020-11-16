@@ -6,10 +6,10 @@
 
 Actor::Actor()
 {
-	Engine::getLevel()->add(this);
+	Engine::getLevel()->addActor(this);
 }
 
 void Actor::render() 
 {
-	Engine::renderer->copy(texture, &srcRect, &destRect);
+	Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
 }

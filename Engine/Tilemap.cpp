@@ -1,45 +1,24 @@
 #include "Tilemap.h"
 
-Tilemap::Tilemap(std::string filepath, int r, int c, SDL_Renderer* renderTarget)
+Tilemap::Tilemap(Texture* tex, int r, int c)
 {
-
-	SDL_Surface* surface = SDL_LoadBMP(filepath.c_str());
-	if (surface == NULL)
-		std::cout << "Error creating surface" << std::endl;
-	else
-	{
-		SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 255, 0, 255));
-		texture = SDL_CreateTextureFromSurface(renderTarget, surface);
-		if (texture == NULL)
-			std::cout << "Error creating texture" << std::endl;
-	}
-	SDL_FreeSurface(surface);
-
-	// get the width and height of the tilemap
-	SDL_QueryTexture(texture, NULL, NULL, &textureWidth, &textureHeight);
-
+	texture = tex;
+	texture->query(&textureWidth, &textureHeight);
+	
 	rows = r;
 	columns = c;
 
-	frameWidth = textureWidth / columns;
-	frameHeight = textureHeight / rows;
+	tileWidth = textureWidth / columns;
+	tileHeight = textureHeight / rows;
 
-	currentFrame.w = frameWidth;
-	currentFrame.h = frameHeight;
+	currentFrame.w = tileWidth;
+	currentFrame.h = tileHeight;
 
-	frameSize.w = frameWidth;
-	frameSize.h = frameHeight;
-}
+	tileSize.w = tileWidth;
+	tileSize.h = tileHeight;
 
-Tilemap::~Tilemap()
-{
-	SDL_DestroyTexture(texture);
-	texture = nullptr;
-}
-
-void Tilemap::Draw(SDL_Renderer* renderTarget)
-{
-	SDL_RenderCopy(renderTarget, texture, &currentFrame, &frameSize);
+	texture->setSrcRect(currentFrame);
+	texture->setDstRect(tileSize);
 }
 
 void Tilemap::ChangeFrame(int frameNumber)
@@ -50,9 +29,21 @@ void Tilemap::ChangeFrame(int frameNumber)
 	}
 	else
 	{
-		currentFrame.x = frameWidth * ((frameNumber - 1) % columns);
-		currentFrame.y = frameHeight * ((frameNumber - 1) / columns);
+		currentFrame.x = tileWidth * ((frameNumber - 1) % columns);
+		currentFrame.y = tileHeight * ((frameNumber - 1) / columns);
+		texture->setSrcRect(currentFrame);
 
 		// std::cout << "X: " << currentFrame.x << " Y: " << currentFrame.y << std::endl;
 	}
 }
+
+int Tilemap::getTileWidth()
+{
+	return tileWidth;
+}
+
+int Tilemap::getTileHeight()
+{
+	return tileHeight;
+}
+

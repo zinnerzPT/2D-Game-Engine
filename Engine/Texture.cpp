@@ -3,9 +3,11 @@
 #include "Renderer.h"
 #include "Engine.h"
 
+// REMOVE THIS
+#include <iostream>
+
 Texture::Texture(std::string filePath)
 {
-	texture = nullptr;
 	SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
 	if (surface == NULL)
 		throw InitError();
@@ -18,6 +20,38 @@ Texture::Texture(std::string filePath)
 	}
 
 	SDL_FreeSurface(surface);
+
+	std::cout << "Created Texture" << std::endl;
+}
+
+SDL_Rect* Texture::getSrcRect()
+{
+	return srcRect;
+}
+
+SDL_Rect* Texture::getDstRect()
+{
+	return dstRect;
+}
+
+void Texture::setSrcRect(SDL_Rect newRect)
+{
+	if (srcRect == NULL)
+	{
+		srcRect = new SDL_Rect();
+		srcRect->x = srcRect->y = srcRect->w = srcRect->h = 0;
+	}
+	*srcRect = newRect;
+}
+
+void Texture::setDstRect(SDL_Rect newRect)
+{
+	if (dstRect == NULL)
+	{
+		dstRect = new SDL_Rect();
+		dstRect->x = dstRect->y = dstRect->w = dstRect->h = 0;
+	}
+	*dstRect = newRect;
 }
 
 void Texture::query(int* w, int* h)
@@ -27,5 +61,7 @@ void Texture::query(int* w, int* h)
 
 Texture::~Texture()
 {
+	delete srcRect;
+	delete dstRect;
 	SDL_DestroyTexture(texture);
 }

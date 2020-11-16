@@ -9,14 +9,11 @@ Pawn::Pawn(std::string filePath, float x, float y) {
 	xpos = x;
 	ypos = y;
 
-	texture->query(&textureWidth, &textureHeight);
-
-	frameWidth = textureWidth / 8;
-	frameHeight = textureHeight / 2;
-
-	srcRect.x = srcRect.y = 0;
-	srcRect.w = frameWidth;
-	srcRect.h = frameHeight;
+	if (texture->getDstRect())
+	{
+		int frameWidth = texture->getDstRect()->w;
+		int frameHeight = texture->getDstRect()->h;
+	}
 }
 
 Pawn::~Pawn()
@@ -51,10 +48,10 @@ void Pawn::update(float deltaTime)
 		moveUp(100 * deltaTime);
 	}
 
-	destRect.x = xpos;
-	destRect.y = ypos;
-	destRect.w = srcRect.w;
-	destRect.h = srcRect.h;
+	//texture->getDstRect()->x = xpos;
+	//texture->getDstRect()->y = ypos;
+	//texture->getDstRect()->w = texture->getSrcRect()->w;
+	//texture->getDstRect()->h = texture->getSrcRect()->h;
 }
 
 void Pawn::moveRight(float x) {

@@ -1,14 +1,19 @@
 #include "Animation.h"
 #include <iostream>
+#include "Engine.h"
+#include "Level.h"
 
-Animation::Animation(Tilemap* tilemap, std::vector<int> frames)
+Animation::Animation(Tilemap* tilemap, std::vector<int> frames, bool loop)
 {
+	isLooping = loop;
 	animationTilemap = tilemap;
 	numberOfFrames = frames.size();
 	animationFrames = frames;
+
+	Engine::getLevel()->addAnimation(this);
 }
 
-void Animation::Draw()
+void Animation::update()
 {
 	animationTilemap->ChangeFrame(animationFrames[currentFrame - 1]);
 	currentFrame++;
@@ -26,7 +31,3 @@ void Animation::Draw()
 	// std::cout << "Current animation frame: " << currentFrame << std::endl;
 }
 
-void Animation::SetLoop(bool value)
-{
-	isLooping = value;
-}

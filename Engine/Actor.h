@@ -13,13 +13,7 @@ public:
 	void render();
 
 protected:
-	float xpos;
-	float ypos;
-
-	Texture* texture;
-
-	SDL_Rect srcRect, destRect;
-
-	int textureWidth, textureHeight;
-	int frameWidth, frameHeight;
+	float xpos = 0.0f;
+	float ypos = 0.0f;
+	Texture* texture = nullptr;
 };

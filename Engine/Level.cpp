@@ -11,10 +11,15 @@ Level::Level()
 	world->SetContactListener(contactListener);
 }
 
-void Level::add(Actor* actor)
+void Level::addActor(Actor* actor)
 {
 	this->actors.push_back(actor);
 	//actor.setLevel(this);
+}
+
+void Level::addAnimation(Animation* animation)
+{
+	this->animations.push_back(animation);
 }
 
 void Level::update(float deltaTime)
@@ -35,6 +40,13 @@ void Level::render()
 {
 	for (Actor* a : actors) {
 		a->render();
+	}
+}
+
+void Level::animate()
+{
+	for (Animation* an : animations) {
+		an->update();
 	}
 }
 

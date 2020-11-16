@@ -7,9 +7,8 @@
 class Animation
 {
 public:
-	Animation(Tilemap* tilemap, std::vector<int> frames);
-	void Draw();
-	void SetLoop(bool value);
+	Animation(Tilemap* tilemap, std::vector<int> frames, bool loop);
+	void update();
 
 private:
 	int numberOfFrames = 0;

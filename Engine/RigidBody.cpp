@@ -56,7 +56,8 @@ void RigidBody::setVelocity(float linearVelocity[2])
 float* RigidBody::getPosition()
 {
 	b2Vec2 bodyPos = body->GetPosition();
-	float position[2] = { bodyPos.x, bodyPos.y };
+	position[0] = bodyPos.x;
+	position[1] = bodyPos.y;
 	return position;
 }
 

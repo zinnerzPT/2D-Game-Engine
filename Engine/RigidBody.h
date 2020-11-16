@@ -24,7 +24,7 @@ private:
 	bool isDynamic = false;
 
 	float bodyDensity = 0.0f;
-
+	float position[2]{0.0f, 0.0f};
 	class b2Body* body;
 	class b2Fixture* fixture;
 	struct b2BodyDef* bodyDef;

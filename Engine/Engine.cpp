@@ -3,7 +3,6 @@
 
 #include "SDLWrapper.h"
 #include "Window.h"
-#include "Texture.h"
 #include "Renderer.h"
 #include "Pawn.h"
 
@@ -32,7 +31,7 @@ void Engine::start()
 	const float frameDelay = 1000.0f / FPS;
 	//int frameTime;
 
-	player = new Pawn("../graphics/drone.bmp", 1, 1);
+	//player = new Pawn("../graphics/drone.bmp", 1, 1);
 	
 
 	float frameTime = 0;
@@ -124,6 +123,13 @@ void Engine::start()
 
 		//renderer->copy(background, NULL, NULL);
 		//renderer->copy(currentTexture, &playerRect, &playerPosition);
+		frameTime += deltaTime;
+		if (frameTime >= 0.1f)
+		{
+			frameTime = 0;
+			level->animate();
+		}
+
 		level->render();
 
 		renderer->present();
