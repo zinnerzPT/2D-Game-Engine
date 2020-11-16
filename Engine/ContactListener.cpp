@@ -1,5 +1,5 @@
 #include "ContactListener.h"
-#include "Projectile.h"
+#include "ContactSensor.h"
 
 void ContactListener::BeginContact(b2Contact* contact)
 {
@@ -9,15 +9,15 @@ void ContactListener::BeginContact(b2Contact* contact)
 	uintptr_t userData = contact->GetFixtureA()->GetBody()->GetUserData().pointer;
 	if (userData)
 	{
-		Projectile* p = (Projectile*)userData;
-		p->onCollision();
+		ContactSensor* cs = (ContactSensor*)userData;
+		cs->onContact();
 		contact->GetFixtureA()->GetBody()->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
 	}
 	userData = contact->GetFixtureB()->GetBody()->GetUserData().pointer;
 	if (userData)
 	{
-		Projectile* p = (Projectile*)userData;
-		p->onCollision();
+		ContactSensor* cs = (ContactSensor*)userData;
+		cs->onContact();
 		contact->GetFixtureB()->GetBody()->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
 	}
 }

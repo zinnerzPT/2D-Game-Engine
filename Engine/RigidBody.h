@@ -11,8 +11,9 @@ public:
 
 	void createBody(float position[2], float halfSize[2]);
 
-	float* getPosition();
+	void setVelocity(float linearVelocity[2]);
 
+	float* getPosition();
 	class b2Body* getBody();
 	class b2BodyDef* getBodyDef();
 	class b2FixtureDef* getFixtureDef();

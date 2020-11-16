@@ -9,6 +9,7 @@ RigidBody::RigidBody()
 {
 	bodyDef = nullptr;
 	body = nullptr;
+	fixtureDef = nullptr;
 }
 
 void RigidBody::makeDynamic(float density)
@@ -40,6 +41,12 @@ void RigidBody::createBody(float position[2], float halfSize[2])
 		body->CreateFixture(&boxShape, 0.0f);
 	}
 }
+
+void RigidBody::setVelocity(float linearVelocity[2])
+{
+	body->SetLinearVelocity(b2Vec2(linearVelocity[0], linearVelocity[1]));
+}
+
 
 float* RigidBody::getPosition()
 {

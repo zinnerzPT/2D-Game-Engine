@@ -1,17 +1,16 @@
 #pragma once
 
 #include "RigidBody.h"
+#include "ContactSensor.h"
 
-class Projectile
+class Projectile :
+	public ContactSensor
 {
 public:
 	Projectile(float position[2], float halfSize[2], float linearVelocity[2]);
 
-	virtual void onCollision() = 0;
+	virtual void onContact() override = 0;
 
 	~Projectile();
-
-private:
-	RigidBody rigidBody;
 };
 
