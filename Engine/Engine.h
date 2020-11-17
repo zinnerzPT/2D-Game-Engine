@@ -10,10 +10,6 @@ public:
 	void start();
 
 	void HandleEvents();
-	//update
-	//render
-	//clean
-	//bool running() { return isRunning; }
 
 	static class Level* getLevel() { return level; };
 
@@ -26,6 +22,6 @@ private:
 
 public:
 	static class Renderer* renderer;
-	
+
 };
 

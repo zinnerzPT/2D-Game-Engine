@@ -1,8 +1,10 @@
 #include "GameController.h"
 
+#define MAX_AXIS 32767.0f
+
 GameController::GameController()
 {
-	controller = nullptr; 
+	controller = nullptr;
 	int i;
 
 	for (i = 0; i < SDL_NumJoysticks(); ++i) {
@@ -21,11 +23,11 @@ GameController::GameController()
 
 // Game controller movement
 float GameController::getXAxis() {
-	return SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX);
+	return SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX) / MAX_AXIS;
 }
 
 float GameController::getYAxis() {
-	return SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTY);
+	return SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTY) / MAX_AXIS;
 }
 
 GameController::~GameController() {

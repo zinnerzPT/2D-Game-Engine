@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-
 #include "Tilemap.h"
 
 class Animation

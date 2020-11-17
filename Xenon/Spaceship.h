@@ -1,6 +1,6 @@
 #pragma once
+
 #include "Pawn.h"
-#include <string>
 
 class Spaceship : public Pawn
 {

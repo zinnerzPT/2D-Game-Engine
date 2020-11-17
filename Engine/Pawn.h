@@ -1,8 +1,9 @@
 #pragma once
+
 #include "Actor.h"
 #include "GameController.h"
-class Pawn :
-    public Actor
+
+class Pawn : public Actor
 {
 public:
 	Pawn(float x, float y);

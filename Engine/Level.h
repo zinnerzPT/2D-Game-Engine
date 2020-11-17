@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 
+#include <vector>
 #include "Actor.h"
 #include "Animation.h"
 

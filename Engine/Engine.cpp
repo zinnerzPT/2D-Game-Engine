@@ -4,7 +4,6 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Pawn.h"
-
 #include "Level.h"
 #include <box2d/box2d.h>
 
@@ -84,7 +83,7 @@ void Engine::HandleEvents()
 	while (SDL_PollEvent(&ev) != 0)
 	{
 		switch (ev.type) {
-		/* Quit event */
+			/* Quit event */
 		case SDL_QUIT:
 			isRunning = false;
 			break;

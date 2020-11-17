@@ -14,18 +14,12 @@ Level::Level()
 void Level::addActor(Actor* actor)
 {
 	this->actors.push_back(actor);
-	//actor.setLevel(this);
 }
 
 void Level::addAnimation(Animation* animation)
 {
 	this->animations.push_back(animation);
 }
-
-/*void Level::addToRemove(Actor* actor) 
-{
-
-}*/
 
 void Level::update(float deltaTime)
 {

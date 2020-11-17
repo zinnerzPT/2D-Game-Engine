@@ -28,20 +28,17 @@ void Spaceship::update(float deltaTime) {
 		moveUp(moveSpeed * deltaTime);
 	}
 
-	//moveRight(controller->getXAxis()*deltaTime);
-	//moveUp(-controller->getYAxis() * deltaTime);
-
 	// Game controller movement
 	float leftAxisX = controller->getXAxis();
-	if (leftAxisX > 4000|| leftAxisX <-4000)
+	if (leftAxisX > 0.3f || leftAxisX < -0.3f)
 	{
-		moveRight( moveSpeed * deltaTime * (leftAxisX / 32767.0f));
+		moveRight(moveSpeed * deltaTime * leftAxisX);
 	}
 
 	float leftAxisY = controller->getYAxis();
-	if (leftAxisY > 4000 || leftAxisY < -4000)
+	if (leftAxisY > 0.3f || leftAxisY < -0.3f)
 	{
-		moveUp(moveSpeed * deltaTime * -(leftAxisY / 32767.0f));
+		moveUp(moveSpeed * deltaTime * -leftAxisY);
 	}
 
 	//std::cout << "x= "<< xpos << "y=" << ypos << std::endl;

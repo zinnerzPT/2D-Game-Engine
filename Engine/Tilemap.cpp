@@ -4,7 +4,7 @@ Tilemap::Tilemap(Texture* tex, int r, int c)
 {
 	texture = tex;
 	texture->query(&textureWidth, &textureHeight);
-	
+
 	rows = r;
 	columns = c;
 

@@ -5,7 +5,6 @@
 #include "Engine.h"
 #include "Level.h"
 
-
 RigidBody::RigidBody()
 {
 	body = nullptr;

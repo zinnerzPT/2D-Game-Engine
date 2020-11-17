@@ -8,7 +8,7 @@ Actor::Actor()
 	Engine::getLevel()->addActor(this);
 }
 
-void Actor::render() 
+void Actor::render()
 {
 	Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
 }
