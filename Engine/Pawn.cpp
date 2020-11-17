@@ -1,16 +1,18 @@
 #include "Pawn.h"
 #include "Engine.h"
-#include <iostream>
+
 
 Pawn::Pawn(float x, float y) {
 	xpos = x;
 	ypos = y;
 	moveSpeed = 100.0f;
+	controller = new GameController();
 }
 
 Pawn::~Pawn()
 {
 	delete texture;
+	delete controller;
 }
 
 void Pawn::update(float deltaTime)

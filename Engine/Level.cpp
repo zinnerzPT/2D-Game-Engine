@@ -22,6 +22,11 @@ void Level::addAnimation(Animation* animation)
 	this->animations.push_back(animation);
 }
 
+/*void Level::addToRemove(Actor* actor) 
+{
+
+}*/
+
 void Level::update(float deltaTime)
 {
 	for (Actor* a : actors) {

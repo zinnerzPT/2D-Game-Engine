@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "GameController.h"
 class Pawn :
     public Actor
 {
@@ -12,7 +13,9 @@ public:
 	void update(float deltaTime);
 	void moveRight(float x);
 	void moveUp(float y);
+
 protected:
 	float moveSpeed;
+	class GameController* controller;
 };
 

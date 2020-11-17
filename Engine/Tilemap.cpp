@@ -25,7 +25,7 @@ void Tilemap::ChangeFrame(int frameNumber)
 {
 	if (frameNumber < 0 || frameNumber >= rows * columns)
 	{
-		std::cout << "Error: Invalid frame number" << std::endl;
+		//std::cout << "Error: Invalid frame number" << std::endl;
 	}
 	else
 	{

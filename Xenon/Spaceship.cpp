@@ -1,5 +1,4 @@
 #include "Spaceship.h"
-#include <iostream>
 
 Spaceship::Spaceship(float x, float y) :Pawn(x, y) {
 	texture = new Texture("../graphics/Ship1.bmp");
@@ -8,6 +7,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y) {
 	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,5,4,3,2,1 }, true);
 	xpos = x;
 	ypos = y;
+	controller = new GameController();
 }
 
 void Spaceship::update(float deltaTime) {
@@ -27,6 +27,10 @@ void Spaceship::update(float deltaTime) {
 		moveUp(100 * deltaTime);
 	}
 
+	//moveRight(controller->getXAxis()*deltaTime);
+	//moveUp(-controller->getYAxis() * deltaTime);
+
+	//std::cout << "x= "<< xpos << "y=" << ypos << std::endl;
 	Pawn::update(deltaTime);
 }
 

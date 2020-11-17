@@ -3,9 +3,6 @@
 #include "Renderer.h"
 #include "Engine.h"
 
-// REMOVE THIS
-#include <iostream>
-
 Texture::Texture(std::string filePath)
 {
 	SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
@@ -26,8 +23,6 @@ Texture::Texture(std::string filePath)
 	dstRect = new SDL_Rect();
 	dstRect->w = w;
 	dstRect->h = h;
-
-	std::cout << "Created Texture" << std::endl;
 }
 
 SDL_Rect* Texture::getSrcRect()

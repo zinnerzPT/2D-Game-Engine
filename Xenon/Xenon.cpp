@@ -5,6 +5,8 @@
 #include "Level.h"
 #include "Spaceship.h"
 #include "Background.h"
+#include "Loner.h"
+#include "Rusher.h"
 #include "Enemy.h"
 
 int main(int argc, char* argv[])
@@ -14,6 +16,7 @@ int main(int argc, char* argv[])
 
     Background* background = new Background();
     Spaceship* ship = new Spaceship(304, 400);
+    Loner* loner = new Loner(200, 0);
     //Enemy* enemy = new Enemy();
 
     engine.start();

@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include <iostream>
 
 #include "SDLWrapper.h"
 #include "Window.h"
@@ -32,24 +31,6 @@ void Engine::start()
 	int currentTime = 0;
 	float deltaTime = 0;
 
-	SDL_GameController* controller = nullptr; // fazer class para game controller?
-	int i;
-
-	for (i = 0; i < SDL_NumJoysticks(); ++i) {
-		if (SDL_IsGameController(i)) {
-
-			std::cout << "Index '" << i << "' is a compatible controller, named '" << SDL_GameControllerNameForIndex(i) << "'" << std::endl;
-			controller = SDL_GameControllerOpen(i);
-
-		}
-		else {
-			std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
-		}
-	}
-
-	float playerPosX, playerPosY;
-	playerPosX = playerPosY = 0.0f;
-
 	isRunning = true;
 
 	// Physics variables
@@ -64,49 +45,12 @@ void Engine::start()
 		currentTime = SDL_GetTicks();
 		deltaTime = (currentTime - prevTime) / 1000.0f;
 
-		//FixedUpdate(physics)
-
 		//Update the physics
 		level->getWorld()->Step(timeStep, velocityIterations, positionIterations);
-
-		/*if (frameTime >= 0.1f)
-		{
-			frameTime = 0;
-			playerRect.x += frameWidth;
-			if (playerRect.x >= textureWidth) {
-				playerRect.x = 0;
-				playerRect.y += frameHeight;
-				if (playerRect.y >= textureHeight) {
-					playerRect.y = 0;
-				}
-			}
-		}*/
 
 		/* Event handling */
 		HandleEvents();
 
-		/*
-
-		// Game controller movement
-		float leftAxisX = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX);
-		if (leftAxisX > 4000)
-		{
-			playerPosition.x += moveSpeed * deltaTime * (leftAxisX / 10000.0f);
-		}
-		else if (leftAxisX < -4000)
-		{
-			playerPosition.x += moveSpeed * deltaTime * (leftAxisX / 10000.0f);
-		}
-
-		float leftAxisY = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTY);
-		if (leftAxisY > 4000)
-		{
-			playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
-		}
-		else if (leftAxisY < -4000)
-		{
-			playerPosition.y += moveSpeed * deltaTime * (leftAxisY / 10000.0f);
-		}*/
 
 		//Update();
 		level->update(deltaTime);
@@ -132,10 +76,6 @@ void Engine::start()
 			SDL_Delay(frameDelay - deltaTime);
 		}
 	}
-
-	// Close the game controller
-	if (controller != NULL)
-		SDL_GameControllerClose(controller);
 }
 
 void Engine::HandleEvents()

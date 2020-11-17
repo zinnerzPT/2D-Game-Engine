@@ -3,8 +3,8 @@
 class Loner : public Enemy
 {
 public:
-	Loner();
-	virtual void update(float deltaTime) override;
+	Loner(float x, float y);
+	void update(float deltaTime);
 	~Loner();
 };
 
