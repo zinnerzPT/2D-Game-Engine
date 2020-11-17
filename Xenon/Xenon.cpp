@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
     Background* background = new Background();
     Spaceship* ship = new Spaceship(304, 400);
     Loner* loner = new Loner(200, 0);
-    Rusher* rusher = new Rusher(400, 400);
+    Rusher* rusher = new Rusher(400, 450);
 
-	float position[2]{ 200.0f, 250.0f };
+	float position[2]{ 400.0f, 250.0f };
 	float halfSize[2]{ 4.0f, 4.0f };
 	float velocity[2]{ 0.0f, -80.0f };
 	Missile* missile = new Missile(position, halfSize, 1.0f, velocity);
