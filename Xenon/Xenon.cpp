@@ -9,6 +9,7 @@
 #include "Rusher.h"
 #include "Enemy.h"
 #include "Missile.h"
+#include "Rusher.h"
 
 int main(int argc, char* argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
     Background* background = new Background();
     Spaceship* ship = new Spaceship(304, 400);
     Loner* loner = new Loner(200, 0);
+    Rusher* rusher = new Rusher(400, 400);
 
 	float position[2]{ 200.0f, 250.0f };
 	float halfSize[2]{ 4.0f, 4.0f };
