@@ -7,7 +7,8 @@ class ContactSensor
 public:
 	ContactSensor();
 	virtual void onContact() = 0;
+	~ContactSensor();
 
 protected:
-	RigidBody rigidBody;
+	RigidBody* rigidBody;
 };

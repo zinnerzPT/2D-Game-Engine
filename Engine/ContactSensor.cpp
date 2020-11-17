@@ -4,6 +4,12 @@
 
 ContactSensor::ContactSensor()
 {
-	rigidBody.getBodyDef()->userData.pointer = reinterpret_cast<uintptr_t>(this);
-	rigidBody.getFixtureDef()->isSensor = true;
+	rigidBody = new RigidBody();
+	rigidBody->getBodyDef()->userData.pointer = reinterpret_cast<uintptr_t>(this);
+	rigidBody->getFixtureDef()->isSensor = true;
+}
+
+ContactSensor::~ContactSensor()
+{
+	delete rigidBody;
 }
