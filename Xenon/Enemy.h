@@ -3,15 +3,15 @@
 
 #include "Tilemap.h"
 #include "Animation.h"
+#include "RigidBody.h"
 
 class Enemy : public Actor
 {
 public:
-	Enemy();
-	void update(float deltaTime);
+	virtual void update(float deltaTime) = 0;
 
-private:
-	Tilemap* tilemap;
-	Animation* animation;
-
+protected:
+	Tilemap* tilemap = nullptr;
+	Animation* animation = nullptr;
+	RigidBody* rigidBody = nullptr;
 };
