@@ -4,6 +4,10 @@
 
 class Engine
 {
+
+private:
+	Engine() {};
+
 public:
 
 	void init(std::string windowTitle, int windowWidth, int windowHeight);
@@ -12,6 +16,7 @@ public:
 	void HandleEvents();
 
 	static class Level* getLevel() { return level; };
+	static Engine* getInstance();
 
 	~Engine();
 private:
@@ -19,6 +24,8 @@ private:
 	class SDLWrapper* sdl;
 	class Window* window;
 	static class Level* level;
+
+	static Engine* instance;
 
 public:
 	static class Renderer* renderer;

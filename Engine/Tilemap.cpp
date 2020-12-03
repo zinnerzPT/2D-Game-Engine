@@ -1,5 +1,7 @@
 #include "Tilemap.h"
 
+#include <SDL2/SDL.h>
+
 Tilemap::Tilemap(Texture* tex, int r, int c)
 {
 	texture = tex;

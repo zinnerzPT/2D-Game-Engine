@@ -1,4 +1,7 @@
 #include "Texture.h"
+
+#include <SDL2/SDL.h>
+
 #include "InitError.h"
 #include "Renderer.h"
 #include "Engine.h"
@@ -20,26 +23,26 @@ Texture::Texture(std::string filePath)
 
 	int w, h;
 	query(&w, &h);
-	dstRect = new SDL_Rect();
+	dstRect = new Rect();
 	dstRect->w = w;
 	dstRect->h = h;
 }
 
-SDL_Rect* Texture::getSrcRect()
+Rect* Texture::getSrcRect()
 {
 	return srcRect;
 }
 
-SDL_Rect* Texture::getDstRect()
+Rect* Texture::getDstRect()
 {
 	return dstRect;
 }
 
-void Texture::setSrcRect(SDL_Rect newRect)
+void Texture::setSrcRect(Rect newRect)
 {
 	if (srcRect == NULL || &newRect == NULL)
 	{
-		srcRect = new SDL_Rect();
+		srcRect = new Rect();
 		srcRect->x = srcRect->y = srcRect->w = srcRect->h = 0;
 	}
 	*srcRect = newRect;
@@ -53,11 +56,11 @@ void Texture::setSrcRect(int x, int y, int w, int h)
 	srcRect->h = h;
 }
 
-void Texture::setDstRect(SDL_Rect newRect)
+void Texture::setDstRect(Rect newRect)
 {
 	if (dstRect == NULL || &newRect == NULL)
 	{
-		dstRect = new SDL_Rect();
+		dstRect = new Rect();
 		dstRect->x = dstRect->y = dstRect->w = dstRect->h = 0;
 	}
 	*dstRect = newRect;

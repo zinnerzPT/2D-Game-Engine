@@ -29,6 +29,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SDLWrapper.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL2/SDL.h>
+#include "Rect.h"
 #include <string>
 
 class Texture
@@ -8,14 +8,14 @@ class Texture
 public:
 	Texture(std::string filePath);
 
-	SDL_Texture* GetTexture() { return texture; }
+	struct SDL_Texture* GetTexture() { return texture; }
 
-	SDL_Rect* getSrcRect();
-	SDL_Rect* getDstRect();
+	Rect* getSrcRect();
+	Rect* getDstRect();
 
-	void setSrcRect(SDL_Rect newRect);
+	void setSrcRect(Rect newRect);
 	void setSrcRect(int x, int y, int w, int h);
-	void setDstRect(SDL_Rect newRect);
+	void setDstRect(Rect newRect);
 	void setDstRect(int x, int y, int w, int h);
 
 	/* Queries the width and height of the texture. */
@@ -24,7 +24,7 @@ public:
 	~Texture();
 
 private:
-	SDL_Texture* texture = nullptr;
-	SDL_Rect* srcRect = NULL;
-	SDL_Rect* dstRect = NULL;
+	struct SDL_Texture* texture = nullptr;
+	Rect* srcRect = NULL;
+	Rect* dstRect = NULL;
 };

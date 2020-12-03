@@ -7,6 +7,8 @@
 #include "Level.h"
 #include <box2d/box2d.h>
 
+Engine* Engine::instance = nullptr;
+
 Renderer* Engine::renderer = nullptr;
 Level* Engine::level = nullptr;
 
@@ -92,6 +94,14 @@ void Engine::HandleEvents()
 			break;
 		}
 	}
+}
+
+Engine* Engine::getInstance()
+{
+	if (instance == nullptr) {
+		instance = new Engine();
+	}
+	return instance;
 }
 
 Engine::~Engine()

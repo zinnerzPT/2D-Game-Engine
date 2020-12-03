@@ -13,8 +13,9 @@
 
 int main(int argc, char* argv[])
 {
-	Engine engine;
-	engine.init("Xenon Clone!", 640, 480);
+	Engine* engine = Engine::getInstance();
+
+	engine->init("Xenon Clone!", 640, 480);
 
 	Background* background = new Background();
 	Spaceship* ship = new Spaceship(304, 400);
@@ -26,7 +27,9 @@ int main(int argc, char* argv[])
 	float velocity[2]{ 0.0f, -80.0f };
 	Missile* missile = new Missile(position, halfSize, 1.0f, velocity);
 
-	engine.start();
+	engine->start();
+
+	delete engine;
 
 	return 0;
 }

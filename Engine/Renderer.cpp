@@ -11,9 +11,9 @@ void Renderer::clear()
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::copy(Texture* texture, SDL_Rect* rect, SDL_Rect* pos)
+void Renderer::copy(Texture* texture, Rect* rect, Rect* pos)
 {
-	SDL_RenderCopy(renderer, texture->GetTexture(), rect, pos);
+	SDL_RenderCopy(renderer, texture->GetTexture(), rect->toSDL_Rect(), pos->toSDL_Rect());
 }
 
 void Renderer::present()

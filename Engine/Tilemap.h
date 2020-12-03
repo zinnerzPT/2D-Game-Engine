@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SDL2/SDL.h>
 #include "Texture.h"
 
 class Tilemap
@@ -20,8 +19,8 @@ private:
 	int tileWidth = 0;
 	int tileHeight = 0;
 
-	SDL_Rect currentFrame;
-	SDL_Rect tileSize;
+	Rect currentFrame;
+	Rect tileSize;
 
 	Texture* texture;
 };
