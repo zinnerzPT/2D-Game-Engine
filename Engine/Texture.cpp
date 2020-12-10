@@ -23,6 +23,9 @@ Texture::Texture(std::string filePath)
 
 	int w, h;
 	query(&w, &h);
+	srcRect = new Rect();
+	srcRect->w = w;
+	srcRect->h = h;
 	dstRect = new Rect();
 	dstRect->w = w;
 	dstRect->h = h;
