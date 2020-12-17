@@ -1,21 +1,19 @@
 #include "Input.h"
 #include <SDL2/SDL.h>
-#include <string>
+
 #include <iostream>
+#include <vector>
 #include "Engine.h"
 
 Input* Input::instance = nullptr;
 
-enum Key
-{
+struct Key {
+	std::string keyName;
+	bool isKeyDown;
+	bool isKey;
+	bool isKeyUp;
 
-};
-
-struct Button {
-	Key key;
-	bool isButtonDown;
-	bool isButton;
-	bool isButtonUp;
+	Key(std::string name) : keyName(name), isKeyDown(false), isKey(false), isKeyUp(false) { }
 };
 
 struct Axis {
@@ -23,18 +21,37 @@ struct Axis {
 	float axis;
 };
 
+//List of Keys
+std::vector<Key*> keys;
+Key right("Right");
+Key left("Left");
+
+std::vector<Key> keysUp;
 
 Input* Input::getInstance()
 {
 	if (instance == nullptr) {
 		instance = new Input();
+		instance->init();
 	}
 	return instance;
 }
 
-bool Input::handleInput(){
+void Input::init() {
+	// Init each key by adding them to vector keys
+	keys.push_back(&right);
+	keys.push_back(&left);
+}
+
+bool Input::handleInput() {
+	for (Key k : keysUp) {
+		k.isKeyUp = false;
+	}
+
+	keysUp.clear();
+
 	const Uint8* keyState;
-	
+
 	SDL_Event ev;
 	while (SDL_PollEvent(&ev) != 0)
 	{
@@ -44,7 +61,7 @@ bool Input::handleInput(){
 		case SDL_QUIT:
 			return false;
 			break;
-			
+
 		case SDL_KEYDOWN:
 			handleKeyDown(ev.key.keysym, ev.key.repeat);
 			break;
@@ -59,48 +76,32 @@ bool Input::handleInput(){
 		}
 	}
 	return true;
-
-	/*keyState = SDL_GetKeyboardState(NULL);
-	if (keyState[SDL_SCANCODE_RIGHT]) {
-		
-		//moveRight(moveSpeed * deltaTime);
-	}
-	else if (keyState[SDL_SCANCODE_LEFT]) {
-		//moveRight(-moveSpeed * deltaTime);
-	}
-	if (keyState[SDL_SCANCODE_DOWN]) {
-		//moveUp(-moveSpeed * deltaTime);
-	}
-	else if (keyState[SDL_SCANCODE_UP]) {
-		//moveUp(moveSpeed * deltaTime);
-	}
-
-	// Game controller movement
-	//float leftAxisX = controller->getXAxis();
-	//if (leftAxisX > 0.3f || leftAxisX < -0.3f)
-	{
-		//moveRight(moveSpeed * deltaTime * leftAxisX);
-	}
-
-	//float leftAxisY = controller->getYAxis();
-	//if (leftAxisY > 0.3f || leftAxisY < -0.3f)
-	{
-		//moveUp(moveSpeed * deltaTime * -leftAxisY);
-	}*/
-
 }
 
 void Input::handleKeyDown(SDL_Keysym key, int repeat)
 {
 	switch (key.scancode) {
 	case SDL_SCANCODE_RIGHT:
-		if(repeat == 0)
-			std::cout << "Right Pressed" << std::endl;
+		if (repeat == 0) {
+			right.isKeyDown = true;
+			std::cout << "Right" << std::endl;
+		}
+		else {
+			right.isKeyDown = false;
+		}
+		right.isKey = true;
+
 		break;
 
 	case SDL_SCANCODE_LEFT:
-		if (repeat == 0)
-		std::cout << "Left Pressed" << std::endl;
+		if (repeat == 0) {
+			left.isKeyDown = true;
+			std::cout << "Left" << std::endl;
+		}
+		else {
+			left.isKeyDown = false;
+		}
+		left.isKey = true;
 		break;
 	}
 }
@@ -109,13 +110,40 @@ void Input::handleKeyUp(SDL_Keysym key, int repeat)
 {
 	switch (key.scancode) {
 	case SDL_SCANCODE_RIGHT:
-		if (repeat == 0)
-			std::cout << "Right Released" << std::endl;
+		right.isKey = false;
+		right.isKeyUp = true;
+		keysUp.push_back(right);
 		break;
 
 	case SDL_SCANCODE_LEFT:
-		if (repeat == 0)
-			std::cout << "Left Released" << std::endl;
+		left.isKey = false;
+		left.isKeyUp = true;
+		keysUp.push_back(left);
 		break;
 	}
+}
+
+
+bool Input::getKey(std::string keyName) {
+	for (Key *k : keys) {
+		if (k->keyName == keyName)
+			return k->isKey;
+	}
+	return false;
+}
+
+bool Input::getKeyDown(std::string keyName) {
+	for (Key *k : keys) {
+		if (k->keyName == keyName)
+			return k->isKeyDown;
+	}
+	return false;
+}
+
+bool Input::getKeyUp(std::string keyName) {
+	for (Key *k : keys) {
+		if (k->keyName == keyName)
+			return k->isKeyUp;
+	}
+	return false;
 }
