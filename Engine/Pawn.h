@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Actor.h"
-#include "GameController.h"
 
 class Pawn : public Actor
 {

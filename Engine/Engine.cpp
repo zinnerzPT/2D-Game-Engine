@@ -7,6 +7,8 @@
 #include "Level.h"
 #include <box2d/box2d.h>
 
+#include "Input.h"
+
 Engine* Engine::instance = nullptr;
 
 Renderer* Engine::renderer = nullptr;
@@ -50,7 +52,7 @@ void Engine::start()
 		level->getWorld()->Step(timeStep, velocityIterations, positionIterations);
 
 		/* Event handling */
-		HandleEvents();
+		isRunning = Input::getInstance()->handleInput();
 
 
 		//Update();
@@ -75,23 +77,6 @@ void Engine::start()
 		//Fixed framerate
 		if (frameDelay > deltaTime) {
 			SDL_Delay(frameDelay - deltaTime);
-		}
-	}
-}
-
-void Engine::HandleEvents()
-{
-	SDL_Event ev;
-	while (SDL_PollEvent(&ev) != 0)
-	{
-		switch (ev.type) {
-			/* Quit event */
-		case SDL_QUIT:
-			isRunning = false;
-			break;
-
-		default:
-			break;
 		}
 	}
 }

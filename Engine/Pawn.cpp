@@ -1,5 +1,6 @@
 #include "Pawn.h"
 #include "Engine.h"
+#include "GameController.h"
 
 Pawn::Pawn(float x, float y) {
 	xpos = x;
