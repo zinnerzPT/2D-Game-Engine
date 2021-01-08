@@ -8,21 +8,72 @@ Input* Input::instance = nullptr;
 
 struct Key {
 	const std::string keyName;
-	const SDL_Scancode scancode;
+	const SDL_Keycode keycode;
 	bool isKeyDown = false;
 	bool isKey = false;
 	bool isKeyUp = false;
 
-	//Key(std::string name, SDL_Scancode code) : keyName(name), scancode(code) {}
+	//Key(std::string name, SDL_Keycode code) : keyName(name), keycode(code) {}
 };
 
 //List of Keys
-Key right{ "Right", SDL_SCANCODE_RIGHT };
-Key left{ "Left", SDL_SCANCODE_LEFT };
+#pragma region KeyList
+// Letters
+Key letterA{ "A", SDLK_a };
+Key letterB{ "B", SDLK_b };
+Key letterC{ "C", SDLK_c };
+Key letterD{ "D", SDLK_d };
+Key letterE{ "E", SDLK_e };
+Key letterF{ "F", SDLK_f };
+Key letterG{ "G", SDLK_g };
+Key letterH{ "H", SDLK_h };
+Key letterI{ "I", SDLK_i };
+Key letterJ{ "J", SDLK_j };
+Key letterK{ "K", SDLK_k };
+Key letterL{ "L", SDLK_l };
+Key letterM{ "M", SDLK_m };
+Key letterN{ "N", SDLK_n };
+Key letterO{ "O", SDLK_o };
+Key letterP{ "P", SDLK_p };
+Key letterQ{ "Q", SDLK_q };
+Key letterR{ "R", SDLK_r };
+Key letterS{ "S", SDLK_s };
+Key letterT{ "T", SDLK_t };
+Key letterU{ "U", SDLK_u };
+Key letterV{ "V", SDLK_v };
+Key letterW{ "W", SDLK_w };
+Key letterX{ "X", SDLK_x };
+Key letterY{ "Y", SDLK_y };
+Key letterZ{ "Z", SDLK_z };
+
+// Numbers
+Key number1{ "1", SDLK_1 };
+Key number2{ "2", SDLK_2 };
+Key number3{ "3", SDLK_3 };
+Key number4{ "4", SDLK_4 };
+Key number5{ "5", SDLK_5 };
+Key number6{ "6", SDLK_6 };
+Key number7{ "7", SDLK_7 };
+Key number8{ "8", SDLK_8 };
+Key number9{ "9", SDLK_9 };
+Key number0{ "0", SDLK_0 };
+// Arrows
+Key arrowUp{ "Up", SDLK_UP };
+Key arrowDown{ "Down", SDLK_DOWN };
+Key arrowLeft{ "Left", SDLK_LEFT };
+Key arrowRight{ "Right", SDLK_RIGHT };
 
 std::vector<Key*> keys = {
-	&right, &left
+	// Letters
+	&letterA, &letterB, &letterC, &letterD, &letterE, &letterF, &letterG, &letterH, &letterI, &letterJ, &letterK, &letterL, &letterM, &letterN, &letterO, &letterP, &letterQ, &letterR, &letterS, &letterT, &letterU, &letterV, &letterW, &letterX, &letterY, &letterZ, 
+
+	// Numbers
+	&number1, &number2, &number3, &number4, &number5, &number6, &number7, &number8, &number9, &number0,
+
+	// Arrows
+	&arrowUp, &arrowDown, &arrowLeft, &arrowRight
 };
+#pragma endregion
 
 //Keys to release
 std::vector<Key> keysUp;
@@ -74,7 +125,7 @@ void Input::handleKeyDown(SDL_Keysym keyDown, int repeat)
 {
 	for (Key* key : keys)
 	{
-		if (key->scancode == keyDown.scancode)
+		if (key->keycode == keyDown.sym)
 		{
 			if (repeat == 0) {
 				key->isKeyDown = true;
@@ -94,7 +145,7 @@ void Input::handleKeyUp(SDL_Keysym keyUp, int repeat)
 
 	for (Key* key : keys)
 	{
-		if (key->scancode == keyUp.scancode)
+		if (key->keycode == keyUp.sym)
 		{
 			key->isKey = false;
 			key->isKeyUp = true;
