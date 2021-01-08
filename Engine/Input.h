@@ -5,7 +5,6 @@ class Input
 {
 private:
 	Input() {};
-	void init();
 
 	void handleKeyDown(struct SDL_Keysym key, int repeat);
 	void handleKeyUp(struct SDL_Keysym key, int repeat);

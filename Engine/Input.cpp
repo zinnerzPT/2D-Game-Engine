@@ -1,56 +1,48 @@
 #include "Input.h"
 #include <SDL2/SDL.h>
 
-#include <iostream>
 #include <vector>
 #include "Engine.h"
 
 Input* Input::instance = nullptr;
 
 struct Key {
-	std::string keyName;
-	bool isKeyDown;
-	bool isKey;
-	bool isKeyUp;
+	const std::string keyName;
+	const SDL_Scancode scancode;
+	bool isKeyDown = false;
+	bool isKey = false;
+	bool isKeyUp = false;
 
-	Key(std::string name) : keyName(name), isKeyDown(false), isKey(false), isKeyUp(false) { }
-};
-
-struct Axis {
-	Key key;
-	float axis;
+	//Key(std::string name, SDL_Scancode code) : keyName(name), scancode(code) {}
 };
 
 //List of Keys
-std::vector<Key*> keys;
-Key right("Right");
-Key left("Left");
+Key right{ "Right", SDL_SCANCODE_RIGHT };
+Key left{ "Left", SDL_SCANCODE_LEFT };
 
+std::vector<Key*> keys = {
+	&right, &left
+};
+
+//Keys to release
 std::vector<Key> keysUp;
 
 Input* Input::getInstance()
 {
 	if (instance == nullptr) {
 		instance = new Input();
-		instance->init();
 	}
 	return instance;
 }
 
-void Input::init() {
-	// Init each key by adding them to vector keys
-	keys.push_back(&right);
-	keys.push_back(&left);
-}
-
 bool Input::handleInput() {
+	// releases the key released on the previous frame
 	for (Key k : keysUp) {
 		k.isKeyUp = false;
+		//std::cout << k.keyName << " cleared." << std::endl;
 	}
 
 	keysUp.clear();
-
-	const Uint8* keyState;
 
 	SDL_Event ev;
 	while (SDL_PollEvent(&ev) != 0)
@@ -71,61 +63,51 @@ bool Input::handleInput() {
 			break;
 
 		default:
-			//std::cout << "some key was pressed but idk which one" << std::endl;
+			//std::cout << "something happened but I don't know what" << std::endl;
 			break;
 		}
 	}
 	return true;
 }
 
-void Input::handleKeyDown(SDL_Keysym key, int repeat)
+void Input::handleKeyDown(SDL_Keysym keyDown, int repeat)
 {
-	switch (key.scancode) {
-	case SDL_SCANCODE_RIGHT:
-		if (repeat == 0) {
-			right.isKeyDown = true;
-			std::cout << "Right" << std::endl;
+	for (Key* key : keys)
+	{
+		if (key->scancode == keyDown.scancode)
+		{
+			if (repeat == 0) {
+				key->isKeyDown = true;
+				//std::cout << key->keyName << " pressed." << std::endl;
+			}
+			else {
+				key->isKeyDown = false;
+			}
+			key->isKey = true;
+			return;
 		}
-		else {
-			right.isKeyDown = false;
-		}
-		right.isKey = true;
-
-		break;
-
-	case SDL_SCANCODE_LEFT:
-		if (repeat == 0) {
-			left.isKeyDown = true;
-			std::cout << "Left" << std::endl;
-		}
-		else {
-			left.isKeyDown = false;
-		}
-		left.isKey = true;
-		break;
 	}
 }
 
-void Input::handleKeyUp(SDL_Keysym key, int repeat)
+void Input::handleKeyUp(SDL_Keysym keyUp, int repeat)
 {
-	switch (key.scancode) {
-	case SDL_SCANCODE_RIGHT:
-		right.isKey = false;
-		right.isKeyUp = true;
-		keysUp.push_back(right);
-		break;
 
-	case SDL_SCANCODE_LEFT:
-		left.isKey = false;
-		left.isKeyUp = true;
-		keysUp.push_back(left);
-		break;
+	for (Key* key : keys)
+	{
+		if (key->scancode == keyUp.scancode)
+		{
+			key->isKey = false;
+			key->isKeyUp = true;
+			keysUp.push_back(*key);
+			//std::cout << key->keyName << " released." << std::endl;
+			return;
+		}
 	}
 }
 
 
 bool Input::getKey(std::string keyName) {
-	for (Key *k : keys) {
+	for (Key* k : keys) {
 		if (k->keyName == keyName)
 			return k->isKey;
 	}
@@ -133,7 +115,7 @@ bool Input::getKey(std::string keyName) {
 }
 
 bool Input::getKeyDown(std::string keyName) {
-	for (Key *k : keys) {
+	for (Key* k : keys) {
 		if (k->keyName == keyName)
 			return k->isKeyDown;
 	}
@@ -141,7 +123,7 @@ bool Input::getKeyDown(std::string keyName) {
 }
 
 bool Input::getKeyUp(std::string keyName) {
-	for (Key *k : keys) {
+	for (Key* k : keys) {
 		if (k->keyName == keyName)
 			return k->isKeyUp;
 	}
