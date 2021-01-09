@@ -57,21 +57,38 @@ Key number7{ "7", SDLK_7 };
 Key number8{ "8", SDLK_8 };
 Key number9{ "9", SDLK_9 };
 Key number0{ "0", SDLK_0 };
+
 // Arrows
 Key arrowUp{ "Up", SDLK_UP };
 Key arrowDown{ "Down", SDLK_DOWN };
 Key arrowLeft{ "Left", SDLK_LEFT };
 Key arrowRight{ "Right", SDLK_RIGHT };
 
+// Other Keys
+Key leftShift{ "Left Shift", SDLK_LSHIFT };
+Key rightShift{ "Right Shift", SDLK_RSHIFT };
+Key leftCtrl{ "Left Ctrl", SDLK_LCTRL };
+Key rightCtrl{ "Right Ctrl", SDLK_RCTRL };
+Key leftAlt{ "Left Alt", SDLK_LALT };
+Key rightAlt{ "Right Alt", SDLK_RALT };
+Key space{ "Space", SDLK_SPACE };
+Key tab{ "Tab", SDLK_TAB };
+Key capsLock{ "Caps Lock", SDLK_CAPSLOCK };
+Key returnKey{ "Return", SDLK_RETURN };
+Key backspace{ "Backspace", SDLK_BACKSPACE };
+
 std::vector<Key*> keys = {
 	// Letters
-	&letterA, &letterB, &letterC, &letterD, &letterE, &letterF, &letterG, &letterH, &letterI, &letterJ, &letterK, &letterL, &letterM, &letterN, &letterO, &letterP, &letterQ, &letterR, &letterS, &letterT, &letterU, &letterV, &letterW, &letterX, &letterY, &letterZ, 
+	&letterA, &letterB, &letterC, &letterD, &letterE, &letterF, &letterG, &letterH, &letterI, &letterJ, &letterK, &letterL, &letterM, &letterN, &letterO, &letterP, &letterQ, &letterR, &letterS, &letterT, &letterU, &letterV, &letterW, &letterX, &letterY, &letterZ,
 
 	// Numbers
 	&number1, &number2, &number3, &number4, &number5, &number6, &number7, &number8, &number9, &number0,
 
 	// Arrows
-	&arrowUp, &arrowDown, &arrowLeft, &arrowRight
+	&arrowUp, &arrowDown, &arrowLeft, &arrowRight,
+
+	// Other Keys
+	&leftShift, &rightShift, &leftCtrl, &rightCtrl, &leftAlt, &rightAlt, &space, &tab, &capsLock, &returnKey, &backspace
 };
 #pragma endregion
 
