@@ -13,12 +13,12 @@ Level::Level()
 
 void Level::addActor(Actor* actor)
 {
-	this->actors.push_back(actor);
+	this->actorsToAdd.push_back(actor);
 }
 
 void Level::addAnimation(Animation* animation)
 {
-	this->animations.push_back(animation);
+	this->animationsToAdd.push_back(animation);
 }
 
 // Box2D
@@ -50,17 +50,15 @@ void Level::addAnimationToRemove(Animation* animation)
 
 void Level::update(float deltaTime)
 {
+	//actors to add/remove
+	updateActors();
+	//animations to add/remove
+	updateAnimations();
+
+	//update actors
 	for (Actor* a : actors) {
 		a->update(deltaTime);
 	}
-	//actors to remove
-	removeActors();
-	//animations to remove
-	removeAnimations();
-
-	//actors to add
-
-	//actors to add.clear
 }
 
 void Level::render()
@@ -101,22 +99,34 @@ void Level::updateBodies()
 	bodiesToDisable.clear();
 }
 
-void Level::removeActors()
+void Level::updateActors()
 {
 	for (Actor* a : actorsToRemove)
 	{
 		this->actors.erase(std::remove(this->actors.begin(), this->actors.end(), a), this->actors.end());
 	}
 	actorsToRemove.clear();
+
+	for (Actor* a : actorsToAdd)
+	{
+		this->actors.push_back(a);
+	}
+	actorsToAdd.clear();
 }
 
-void Level::removeAnimations()
+void Level::updateAnimations()
 {
 	for (Animation* an : animationsToRemove)
 	{
 		this->animations.erase(std::remove(this->animations.begin(), this->animations.end(), an), this->animations.end());
 	}
 	animationsToRemove.clear();
+
+	for (Animation* an : animationsToAdd)
+	{
+		this->animations.push_back(an);
+	}
+	animationsToAdd.clear();
 }
 
 Level::~Level()

@@ -17,10 +17,10 @@ public:
 	virtual void onContact() override;
 
 	~Missile();
+
 private:
-
-	Tilemap* tilemap = nullptr;
-	Animation* animation = nullptr;
-
+	Texture* explosionTex = nullptr;
+	Tilemap* explosionTilemap = nullptr;
+	Animation* explosionAnim = nullptr;
 };
 

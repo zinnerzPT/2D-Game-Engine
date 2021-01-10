@@ -23,8 +23,8 @@ public:
 	void animate();
 
 	void updateBodies();
-	void removeActors();
-	void removeAnimations();
+	void updateActors();
+	void updateAnimations();
 
 	class b2World* getWorld() { return world; };
 	~Level();
@@ -39,6 +39,8 @@ private:
 	class std::vector<b2Body*> bodiesToEnable;
 	class std::vector<b2Body*> bodiesToDisable;
 
+	std::vector<Actor*> actorsToAdd;
+	std::vector<Animation*> animationsToAdd;
 	std::vector<Actor*> actorsToRemove;
 	std::vector<Animation*> animationsToRemove;
 };

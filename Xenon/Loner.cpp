@@ -14,7 +14,6 @@ Loner::Loner(float x, float y) {
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
 	rigidBody->createBody(position, halfSize);
 
-	float velocity[2]{ 3.75f, 0.0f };
 	rigidBody->setVelocity(velocity);
 }
 
@@ -26,6 +25,18 @@ void Loner::update(float deltaTime)
 	float* position;
 	position = rigidBody->getPosition();
 	position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
+	if (position[0] > 580 && !movementReversed)
+	{
+		movementReversed = true;
+		velocity[0] *= -1;
+		rigidBody->setVelocity(velocity);
+	}
+	if (position[0] < 10 && movementReversed)
+	{
+		movementReversed = false;
+		velocity[0] *= -1;
+		rigidBody->setVelocity(velocity);
+	}
 	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 }
