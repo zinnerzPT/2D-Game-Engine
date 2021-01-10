@@ -77,6 +77,8 @@ Key capsLock{ "Caps Lock", SDLK_CAPSLOCK };
 Key returnKey{ "Return", SDLK_RETURN };
 Key backspace{ "Backspace", SDLK_BACKSPACE };
 
+// Function Keys
+
 std::vector<Key*> keys = {
 	// Letters
 	&letterA, &letterB, &letterC, &letterD, &letterE, &letterF, &letterG, &letterH, &letterI, &letterJ, &letterK, &letterL, &letterM, &letterN, &letterO, &letterP, &letterQ, &letterR, &letterS, &letterT, &letterU, &letterV, &letterW, &letterX, &letterY, &letterZ,
@@ -93,7 +95,8 @@ std::vector<Key*> keys = {
 #pragma endregion
 
 //Keys to release
-std::vector<Key> keysUp;
+std::vector<Key*> keysUp;
+std::vector<Key*> keysDown;
 
 Input* Input::getInstance()
 {
@@ -105,8 +108,13 @@ Input* Input::getInstance()
 
 bool Input::handleInput() {
 	// releases the key released on the previous frame
-	for (Key k : keysUp) {
-		k.isKeyUp = false;
+	for (Key *k : keysUp) {
+		k->isKeyUp = false;
+		//std::cout << k.keyName << " cleared." << std::endl;
+	}
+
+	for (Key* k : keysDown) {
+		k->isKeyDown = false;
 		//std::cout << k.keyName << " cleared." << std::endl;
 	}
 
@@ -146,10 +154,8 @@ void Input::handleKeyDown(SDL_Keysym keyDown, int repeat)
 		{
 			if (repeat == 0) {
 				key->isKeyDown = true;
+				keysDown.push_back(key);
 				//std::cout << key->keyName << " pressed." << std::endl;
-			}
-			else {
-				key->isKeyDown = false;
 			}
 			key->isKey = true;
 			return;
@@ -166,7 +172,7 @@ void Input::handleKeyUp(SDL_Keysym keyUp, int repeat)
 		{
 			key->isKey = false;
 			key->isKeyUp = true;
-			keysUp.push_back(*key);
+			keysUp.push_back(key);
 			//std::cout << key->keyName << " released." << std::endl;
 			return;
 		}
