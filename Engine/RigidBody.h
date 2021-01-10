@@ -8,10 +8,10 @@ public:
 	RigidBody();
 
 	void makeDynamic(float density);
-
 	void createBody(float position[2], float halfSize[2]);
 
 	void setVelocity(float linearVelocity[2]);
+	void setEnabled(bool value);
 
 	float* getPosition();
 	class b2Body* getBody();

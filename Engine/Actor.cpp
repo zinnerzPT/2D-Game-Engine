@@ -10,5 +10,13 @@ Actor::Actor()
 
 void Actor::render()
 {
-	Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
+	for (Texture* t : textures)
+	{
+		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect());
+	}
+}
+
+Actor::~Actor()
+{
+	Engine::getLevel()->addActorToRemove(this);
 }

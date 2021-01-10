@@ -2,22 +2,26 @@
 
 #include "Texture.h"
 #include "Tilemap.h"
-#include "Animation.h"
+
 #include <string>
+#include <vector>
+
+class Animation;
 
 class Actor
 {
 public:
 	Actor();
-	//~Actor();
 
 	virtual void update(float deltaTime) = 0;
 	void render();
 
+	virtual ~Actor();
+
 protected:
 	float xpos = 0.0f;
 	float ypos = 0.0f;
-	Texture* texture = nullptr;
+	std::vector<Texture*> textures;
 	Tilemap* tilemap = nullptr;
 	Animation* animation = nullptr;
 };

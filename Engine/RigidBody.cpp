@@ -52,6 +52,18 @@ void RigidBody::setVelocity(float linearVelocity[2])
 }
 
 
+void RigidBody::setEnabled(bool value)
+{
+	if (value)
+	{
+		Engine::getLevel()->addBodyToEnable(body);
+	}
+	else
+	{
+		Engine::getLevel()->addBodyToDisable(body);
+	}
+}
+
 float* RigidBody::getPosition()
 {
 	b2Vec2 bodyPos = body->GetPosition();

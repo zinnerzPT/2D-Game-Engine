@@ -11,14 +11,14 @@ Pawn::Pawn(float x, float y) {
 
 Pawn::~Pawn()
 {
-	delete texture;
+	delete textures[0];
 	delete controller;
 }
 
 void Pawn::update(float deltaTime)
 {
 	/* Update position */
-	texture->setDstRect(xpos, ypos, texture->getSrcRect()->w, texture->getSrcRect()->h);
+	textures[0]->setDstRect(xpos, ypos, textures[0]->getSrcRect()->w, textures[0]->getSrcRect()->h);
 }
 
 void Pawn::moveRight(float x) {

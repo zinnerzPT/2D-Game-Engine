@@ -14,19 +14,56 @@ Animation::Animation(Tilemap* tilemap, std::vector<int> frames, bool loop)
 
 void Animation::update()
 {
-	animationTilemap->ChangeFrame(animationFrames[currentFrame]);
-	++currentFrame;
-	if (currentFrame >= numberOfFrames)
+	if (isActive)
 	{
-		if (isLooping)
+		animationTilemap->ChangeFrame(animationFrames[currentFrame]);
+		++currentFrame;
+		if (currentFrame >= numberOfFrames)
 		{
-			currentFrame = 0;
-		}
-		else
-		{
-			currentFrame--;
+			if (isLooping)
+			{
+				currentFrame = 0;
+			}
+			else
+			{
+				currentFrame = 0;
+				isActive = false;
+			}
+
+			if (actorToDestroy != nullptr)
+			{
+				delete actorToDestroy;
+				actorToDestroy = nullptr;
+			}
 		}
 	}
-	// std::cout << "Current animation frame: " << currentFrame << std::endl;
+}
+
+void Animation::play()
+{
+	isActive = true;
+}
+
+void Animation::playFromStart()
+{
+	currentFrame = 0;
+	isActive = true;
+}
+
+void Animation::stop()
+{
+	isActive = false;
+}
+
+void Animation::destroyAfterEnd(Actor* actor)
+{
+	actorToDestroy = actor;
+}
+
+Animation::~Animation()
+{
+	isActive = false;
+	Engine::getLevel()->addAnimationToRemove(this);
+	delete animationTilemap;
 }
 

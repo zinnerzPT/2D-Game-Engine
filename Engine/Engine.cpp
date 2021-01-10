@@ -51,6 +51,9 @@ void Engine::start()
 		//Update the physics
 		level->getWorld()->Step(timeStep, velocityIterations, positionIterations);
 
+		//Destroy bodies and update enabled/disabled status
+		level->updateBodies();
+
 		/* Event handling */
 		isRunning = Input::getInstance()->handleInput();
 
