@@ -6,13 +6,35 @@
 
 Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 {
+	// Spaceship tilemap
 	Texture* texture = new Texture("../graphics/Ship1.bmp");
 	textures.push_back(texture);
 
 	tilemap = new Tilemap(texture, 1, 7);
 	tilemap->ChangeFrame(3);
-	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,5,4,3,2,1 }, true);
-	animation->play();
+
+	// Spaceship burners
+	burnerTexRight = new Texture("../graphics/Burner1.bmp");
+	textures.push_back(burnerTexRight);
+	burnerTexRight->setTexOffset( 32, 64);
+	burnerTilemapRight = new Tilemap(burnerTexRight, 1, 2);
+	burnerAnimRight = new Animation(burnerTilemapRight, { 0,1 }, true);
+	burnerAnimRight->play();
+
+	burnerTexLeft = new Texture("../graphics/Burner1.bmp");
+	textures.push_back(burnerTexLeft);
+	burnerTexLeft->setTexOffset( 18, 64);
+	burnerTilemapLeft = new Tilemap(burnerTexLeft, 1, 2);
+	burnerAnimLeft = new Animation(burnerTilemapLeft, { 0,1 }, true);
+	burnerAnimLeft->play();
+
+	// Turning animations
+	moveRightAnim = new Animation(tilemap, { 3,4,5,6 }, false);
+	returnRightAnim = new Animation(tilemap, { 6,5,4,3 }, false);
+	moveLeftAnim = new Animation(tilemap, { 3,2,1,0 }, false);
+	returnLeftAnim = new Animation(tilemap, { 0,1,2,3 }, false);
+
+
 	xpos = x;
 	ypos = y;
 	moveSpeed = 200.0f;
@@ -29,10 +51,54 @@ void Spaceship::update(float deltaTime)
 	if (Input::getInstance()->getKey("Right"))
 	{
 		moveRight(moveSpeed * deltaTime);
+
+		// Moving right animation
+		if (!isMovingRight)
+		{
+			isMovingRight = true;
+			isMovingLeft = false;
+			stopTurningAnims();
+			moveRightAnim->playFromStart();
+		}
 	}
 	else if (Input::getInstance()->getKey("Left"))
 	{
 		moveRight(-moveSpeed * deltaTime);
+
+		// Moving left animation
+		if (!isMovingLeft)
+		{
+			isMovingLeft = true;
+			isMovingRight = false;
+			stopTurningAnims();
+			moveLeftAnim->playFromStart();
+		}
+	}
+	else
+	{
+		// Return right animation
+		if (isMovingRight)
+		{
+			isMovingRight = false;
+			stopTurningAnims();
+			returnRightAnim->playFromStart();
+		}
+		// Return left animation
+		if (isMovingLeft)
+		{
+			isMovingLeft = false;
+			stopTurningAnims();
+			returnLeftAnim->playFromStart();
+		}
+	}
+
+	if (Input::getInstance()->getKey("Up"))
+	{
+		moveUp(moveSpeed * deltaTime);
+	}
+	else if (Input::getInstance()->getKey("Down"))
+	{
+		moveUp(-moveSpeed * deltaTime);
 	}
 
 	if ((Input::getInstance()->getKeyDown("Space")))
@@ -78,4 +144,12 @@ void Spaceship::fire()
 	//Fire missiles
 	float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
 	new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity);
+}
+
+void Spaceship::stopTurningAnims()
+{
+	moveRightAnim->stop();
+	moveLeftAnim->stop();
+	returnRightAnim->stop();
+	returnLeftAnim->stop();
 }

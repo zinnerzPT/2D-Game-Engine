@@ -18,7 +18,10 @@ Pawn::~Pawn()
 void Pawn::update(float deltaTime)
 {
 	/* Update position */
-	textures[0]->setDstRect(xpos, ypos, textures[0]->getSrcRect()->w, textures[0]->getSrcRect()->h);
+	for (Texture* t : textures)
+	{
+		t->setDstRect(xpos, ypos, t->getSrcRect()->w, t->getSrcRect()->h);
+	}
 }
 
 void Pawn::moveRight(float x) {

@@ -38,7 +38,13 @@ Rect* Texture::getSrcRect()
 
 Rect* Texture::getDstRect()
 {
-	return dstRect;
+	Rect* rect = new Rect();
+	rect->x = dstRect->x + texOffsetX;
+	rect->y = dstRect->y + texOffsetY;
+	rect->w = dstRect->w;
+	rect->h = dstRect->h;
+
+	return rect;
 }
 
 void Texture::setSrcRect(Rect newRect)
@@ -75,6 +81,12 @@ void Texture::setDstRect(int x, int y, int w, int h)
 	dstRect->y = y;
 	dstRect->w = w;
 	dstRect->h = h;
+}
+
+void Texture::setTexOffset(int x, int y)
+{
+	texOffsetX = x;
+	texOffsetY = y;
 }
 
 void Texture::query(int* w, int* h)
