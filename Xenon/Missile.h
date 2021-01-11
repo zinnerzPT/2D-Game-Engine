@@ -12,9 +12,8 @@ class Missile :
 public:
 	Missile(float position[2], float halfSize[2], float density, float linearVelocity[2]);
 
-	virtual void update(float deltaTime) override;
-
-	virtual void onContact() override;
+	void update(float deltaTime) override;
+	void onContact() override;
 
 	~Missile();
 

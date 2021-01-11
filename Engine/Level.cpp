@@ -104,6 +104,7 @@ void Level::updateActors()
 	for (Actor* a : actorsToRemove)
 	{
 		this->actors.erase(std::remove(this->actors.begin(), this->actors.end(), a), this->actors.end());
+		delete a;
 	}
 	actorsToRemove.clear();
 

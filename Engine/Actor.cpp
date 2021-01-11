@@ -18,5 +18,5 @@ void Actor::render()
 
 Actor::~Actor()
 {
-	Engine::getLevel()->addActorToRemove(this);
+
 }
