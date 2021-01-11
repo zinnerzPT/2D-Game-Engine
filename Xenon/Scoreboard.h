@@ -12,6 +12,7 @@ public:
 	void render();
 
 private:
-	BitmapFont* font;
+	BitmapFont* smallFont;
+	BitmapFont* largeFont;
 };
 
