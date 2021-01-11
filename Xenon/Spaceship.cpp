@@ -5,6 +5,8 @@
 #include "Missile.h"
 #include "GameController.h"
 
+#include <chrono>
+
 Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 {
 	// Spaceship tilemap
@@ -50,6 +52,9 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	missileHalfSize[0] = missileHalfSize[1] = 8.0f / 16.0f;
 	missileVelocity[0] = 0.0f;
 	missileVelocity[1] = -20.0f;
+
+	// Start thread that manages firing cooldown
+	cooldownThread = std::thread{ &Spaceship::cooldownCheck, this };
 }
 
 void Spaceship::update(float deltaTime) 
@@ -118,7 +123,7 @@ void Spaceship::update(float deltaTime)
 
 
 	// Fire input
-	if ((Input::getInstance()->getKeyDown("Space")))
+	if ((Input::getInstance()->getKey("Space")))
 	{
 		fire();
 	}
@@ -134,11 +139,45 @@ void Spaceship::update(float deltaTime)
 	Pawn::update(deltaTime);
 }
 
+
+Spaceship::~Spaceship()
+{
+	isAlive = false;
+	if (cooldownThread.joinable())
+	{
+		cooldownThread.join();
+	}
+}
+
 void Spaceship::fire() 
 {
-	//Fire missiles
-	float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
-	new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2);
+	if (canFire)
+	{
+		canFire = false;
+		//Fire missiles
+		float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
+		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2);
+
+		needsCooldown = true;
+	}
+
+}
+
+void Spaceship::cooldownCheck()
+{
+	while (isAlive)
+	{
+		if (needsCooldown)
+		{
+			needsCooldown = false;
+			std::this_thread::sleep_for(std::chrono::milliseconds{ cooldown });
+			canFire = true;
+		}
+		else
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds{ 10 });
+		}
+	}
 }
 
 void Spaceship::stopTurningAnims()
