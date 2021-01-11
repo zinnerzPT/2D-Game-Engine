@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BitmapFont.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="ContactSensor.h" />
     <ClInclude Include="Engine.h" />
@@ -41,6 +42,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="ContactSensor.cpp" />
     <ClCompile Include="Engine.cpp" />

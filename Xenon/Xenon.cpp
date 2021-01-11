@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Missile.h"
 #include "Rusher.h"
+#include "Scoreboard.h"
 
 int main(int argc, char* argv[])
 {
@@ -21,6 +22,7 @@ int main(int argc, char* argv[])
 	Spaceship* ship = new Spaceship(304, 400);
 	Loner* loner = new Loner(200, 32);
 	Rusher* rusher = new Rusher(400, 450);
+	Scoreboard* scoreboard = new Scoreboard(200, 200);
 
 	engine->start();
 

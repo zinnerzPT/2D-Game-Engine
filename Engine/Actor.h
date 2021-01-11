@@ -14,7 +14,7 @@ public:
 	Actor();
 
 	virtual void update(float deltaTime) = 0;
-	void render();
+	virtual void render();
 
 	virtual ~Actor();
 

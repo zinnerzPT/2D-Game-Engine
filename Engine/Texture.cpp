@@ -8,6 +8,7 @@
 
 Texture::Texture(std::string filePath)
 {
+	// Load image from specified path
 	SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
 	if (surface == NULL)
 		throw InitError();
