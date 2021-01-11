@@ -12,7 +12,7 @@ Pawn::Pawn(float x, float y) {
 Pawn::~Pawn()
 {
 	delete textures[0];
-	delete controller;
+	//delete controller;
 }
 
 void Pawn::update(float deltaTime)

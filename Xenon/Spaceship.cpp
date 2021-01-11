@@ -3,6 +3,7 @@
 
 #include "Animation.h"
 #include "Missile.h"
+#include "GameController.h"
 
 Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 {
@@ -57,49 +58,16 @@ void Spaceship::update(float deltaTime)
 	if (Input::getInstance()->getKey("Right"))
 	{
 		moveRight(moveSpeed * deltaTime);
-
-		// Moving right animation
-		if (!isMovingRight)
-		{
-			isMovingRight = true;
-			isMovingLeft = false;
-			stopTurningAnims();
-			moveRightAnim->playFromStart();
-		}
 	}
 	else if (Input::getInstance()->getKey("Left"))
 	{
 		moveRight(-moveSpeed * deltaTime);
-
-		// Moving left animation
-		if (!isMovingLeft)
-		{
-			isMovingLeft = true;
-			isMovingRight = false;
-			stopTurningAnims();
-			moveLeftAnim->playFromStart();
-		}
 	}
 	else
 	{
 		// Reset velocity in x
 		velocity[0] = 0.0f;
 		rigidBody->setVelocity(velocity);
-
-		// Return right animation
-		if (isMovingRight)
-		{
-			isMovingRight = false;
-			stopTurningAnims();
-			returnRightAnim->playFromStart();
-		}
-		// Return left animation
-		if (isMovingLeft)
-		{
-			isMovingLeft = false;
-			stopTurningAnims();
-			returnLeftAnim->playFromStart();
-		}
 	}
 
 	if (Input::getInstance()->getKey("Up"))
@@ -117,40 +85,51 @@ void Spaceship::update(float deltaTime)
 		rigidBody->setVelocity(velocity);
 	}
 
+	// Game controller movement
+	if (controller->getIsDetected())
+	{
+		float leftAxisX = controller->getXAxis();
+		float leftAxisY = controller->getYAxis();
+
+		if (leftAxisX > 0.3f || leftAxisX < -0.3f)
+		{
+			moveRight(moveSpeed * deltaTime * leftAxisX);
+		}
+		if (leftAxisY > 0.3f || leftAxisY < -0.3f)
+		{
+			moveUp(moveSpeed * deltaTime * -leftAxisY);
+		}
+	}
+
+	// Animation
+	if (velocity[0] > 0.0f)
+	{
+		animateMoveRight();
+	}
+	else if (velocity[0] < 0.0f)
+	{
+		animateMoveLeft();
+	}
+	else
+	{
+		animateReturnRight();
+		animateReturnLeft();
+	}
+
+
+	// Fire input
 	if ((Input::getInstance()->getKeyDown("Space")))
 	{
 		fire();
 	}
 
-	/*
-			keyState = SDL_GetKeyboardState(NULL);
-		if (keyState[SDL_SCANCODE_RIGHT]) {
-
-			//moveRight(moveSpeed * deltaTime);
-		}
-		else if (keyState[SDL_SCANCODE_LEFT]) {
-			//moveRight(-moveSpeed * deltaTime);
-		}
-		if (keyState[SDL_SCANCODE_DOWN]) {
-			//moveUp(-moveSpeed * deltaTime);
-		}
-		else if (keyState[SDL_SCANCODE_UP]) {
-			//moveUp(moveSpeed * deltaTime);
-		}
-
-		// Game controller movement
-		//float leftAxisX = controller->getXAxis();
-		//if (leftAxisX > 0.3f || leftAxisX < -0.3f)
+	if (controller->getIsDetected())
+	{
+		if (controller->getButtonA())
 		{
-			//moveRight(moveSpeed * deltaTime * leftAxisX);
+			fire();
 		}
-
-		//float leftAxisY = controller->getYAxis();
-		//if (leftAxisY > 0.3f || leftAxisY < -0.3f)
-		{
-			//moveUp(moveSpeed * deltaTime * -leftAxisY);
-		}
-	*/
+	}
 
 	Pawn::update(deltaTime);
 }
@@ -168,5 +147,47 @@ void Spaceship::stopTurningAnims()
 	moveLeftAnim->stop();
 	returnRightAnim->stop();
 	returnLeftAnim->stop();
+}
+
+void Spaceship::animateMoveRight()
+{
+	if (!isMovingRight)
+	{
+		isMovingRight = true;
+		isMovingLeft = false;
+		stopTurningAnims();
+		moveRightAnim->playFromStart();
+	}
+}
+
+void Spaceship::animateMoveLeft()
+{
+	if (!isMovingLeft)
+	{
+		isMovingLeft = true;
+		isMovingRight = false;
+		stopTurningAnims();
+		moveLeftAnim->playFromStart();
+	}
+}
+
+void Spaceship::animateReturnRight()
+{
+	if (isMovingRight)
+	{
+		isMovingRight = false;
+		stopTurningAnims();
+		returnRightAnim->playFromStart();
+	}
+}
+
+void Spaceship::animateReturnLeft()
+{
+	if (isMovingLeft)
+	{
+		isMovingLeft = false;
+		stopTurningAnims();
+		returnLeftAnim->playFromStart();
+	}
 }
 

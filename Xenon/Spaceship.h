@@ -11,7 +11,12 @@ public:
 
 private:
 	void fire();
+
 	void stopTurningAnims();
+	void animateMoveRight();
+	void animateMoveLeft();
+	void animateReturnRight();
+	void animateReturnLeft();
 
 	bool isMovingRight = false;
 	bool isMovingLeft = false;
