@@ -12,6 +12,7 @@ Loner::Loner(float x, float y) {
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
+	rigidBody->setCollisionFilter(CATEGORY_2, CATEGORY_3);
 	rigidBody->createBody(position, halfSize);
 
 	rigidBody->setVelocity(velocity);

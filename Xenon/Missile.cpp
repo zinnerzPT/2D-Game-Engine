@@ -1,7 +1,8 @@
 #include "Missile.h"
 #include "RigidBody.h"
 
-Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2]) : Projectile(position, halfSize, density, linearVelocity)
+Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits)
+	: Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
 {
 	Texture* texture = new Texture("../graphics/missile.bmp");
 	textures.push_back(texture);

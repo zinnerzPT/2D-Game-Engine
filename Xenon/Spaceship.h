@@ -2,6 +2,7 @@
 
 #include "Pawn.h"
 
+
 class Spaceship : public Pawn
 {
 public:
@@ -31,5 +32,6 @@ private:
 	Texture* burnerTexLeft = nullptr;
 	Tilemap* burnerTilemapLeft = nullptr;
 	Animation* burnerAnimLeft = nullptr;
+
 };
 

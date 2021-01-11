@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "RigidBody.h"
 
 class Pawn : public Actor
 {
@@ -17,5 +18,8 @@ public:
 protected:
 	float moveSpeed;
 	class GameController* controller;
+
+	RigidBody* rigidBody = nullptr;
+	float velocity[2]{ 0.0f, 0.0f };
 };
 

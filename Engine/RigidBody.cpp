@@ -64,6 +64,12 @@ void RigidBody::setEnabled(bool value)
 	}
 }
 
+void RigidBody::setCollisionFilter(uint16_t categoryBits, uint16_t maskBits)
+{
+	fixtureDef->filter.categoryBits = categoryBits;
+	fixtureDef->filter.maskBits = maskBits;
+}
+
 float* RigidBody::getPosition()
 {
 	b2Vec2 bodyPos = body->GetPosition();

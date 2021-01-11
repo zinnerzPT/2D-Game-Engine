@@ -34,10 +34,16 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	moveLeftAnim = new Animation(tilemap, { 3,2,1,0 }, false);
 	returnLeftAnim = new Animation(tilemap, { 0,1,2,3 }, false);
 
+	// Create rigidbody
+	rigidBody = new RigidBody();
+	rigidBody->makeDynamic(1.0f);
+	float position[2]{ x / 16.0f, y / 16.0f };
+	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
+	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_4);
+	rigidBody->createBody(position, halfSize);
 
-	xpos = x;
-	ypos = y;
-	moveSpeed = 200.0f;
+	// Initialize spaceship movement speed
+	moveSpeed = 600.0f;
 
 	// Initialize values to use when creating a missile
 	missileHalfSize[0] = missileHalfSize[1] = 8.0f / 16.0f;
@@ -76,6 +82,10 @@ void Spaceship::update(float deltaTime)
 	}
 	else
 	{
+		// Reset velocity in x
+		velocity[0] = 0.0f;
+		rigidBody->setVelocity(velocity);
+
 		// Return right animation
 		if (isMovingRight)
 		{
@@ -99,6 +109,12 @@ void Spaceship::update(float deltaTime)
 	else if (Input::getInstance()->getKey("Down"))
 	{
 		moveUp(-moveSpeed * deltaTime);
+	}
+	else
+	{
+		// Reset velocity in y
+		velocity[1] = 0.0f;
+		rigidBody->setVelocity(velocity);
 	}
 
 	if ((Input::getInstance()->getKeyDown("Space")))
@@ -143,7 +159,7 @@ void Spaceship::fire()
 {
 	//Fire missiles
 	float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
-	new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity);
+	new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2);
 }
 
 void Spaceship::stopTurningAnims()
@@ -153,3 +169,4 @@ void Spaceship::stopTurningAnims()
 	returnRightAnim->stop();
 	returnLeftAnim->stop();
 }
+
