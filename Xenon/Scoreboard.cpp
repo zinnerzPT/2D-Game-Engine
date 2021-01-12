@@ -29,7 +29,7 @@ void Scoreboard::update(float deltaTime) {
 	}
 }
 
-void Scoreboard::render() {
+void Scoreboard::render(class SceneViewer* v) {
 	smallFont->renderText(10, 10, "Player One");
 	smallFont->renderText(300, 10, " Hi Score \n0002000000");
 

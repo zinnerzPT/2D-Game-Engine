@@ -18,7 +18,7 @@ public:
 	void addAnimationToRemove(Animation* animation);
 
 	void update(float deltaTime);
-	void render();
+	void render(class SceneViewer* viewer);
 	void animate();
 
 	void updateBodies();

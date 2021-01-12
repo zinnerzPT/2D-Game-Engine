@@ -25,9 +25,9 @@ int main(int argc, char* argv[])
 		Background* scrollingBackground = new Background("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416, offset);
 		offset += 128;
 	}
-	Spaceship* ship = new Spaceship(304, 400);
-	Loner* loner = new Loner(200, 180);
-	Rusher* rusher = new Rusher(400, -40);
+	//Spaceship* ship = new Spaceship(304, 400);
+	//Loner* loner = new Loner(200, 180);
+	//Rusher* rusher = new Rusher(400, -40);
 	Scoreboard* scoreboard = new Scoreboard(200, 200);
 
 	engine->start();

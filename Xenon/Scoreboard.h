@@ -9,7 +9,7 @@ public:
 	Scoreboard(float x, float y);
 	void update(float deltaTime);
 
-	void render();
+	void render(class SceneViewer* v = nullptr) override;
 
 private:
 	BitmapFont* smallFont;

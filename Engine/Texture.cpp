@@ -1,10 +1,13 @@
 #include "Texture.h"
 
 #include <SDL2/SDL.h>
+#include <glad/glad.h>
 
 #include "InitError.h"
 #include "Renderer.h"
 #include "Engine.h"
+
+GLuint tex;
 
 Texture::Texture(std::string filePath)
 {
@@ -14,10 +17,24 @@ Texture::Texture(std::string filePath)
 		throw InitError();
 	else
 	{
-		SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 255, 0, 255));
-		texture = Engine::renderer->createTextureFromSurface(surface);
-		if (texture == NULL)
-			throw InitError();
+		//SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 255, 0, 255));
+		//texture = Engine::renderer->createTextureFromSurface(surface);
+
+
+		glGenTextures(1, &tex);
+		glBindTexture(GL_TEXTURE_2D, tex);
+		// set the texture wrapping/filtering options (on the currently bound texture object)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, surface->w, surface->h, 0, GL_BGR,
+			GL_UNSIGNED_BYTE, surface->pixels);
+		//glGenerateMipmap(GL_TEXTURE_2D);
+
+
+		/*if (texture == NULL)
+			throw InitError();*/
 	}
 
 	SDL_FreeSurface(surface);
@@ -30,6 +47,16 @@ Texture::Texture(std::string filePath)
 	dstRect = new Rect();
 	dstRect->w = w;
 	dstRect->h = h;
+
+
+
+
+	SDL_Surface* image = SDL_LoadBMP("../graphics/Ship1.bmp");
+	if (image != NULL)
+	{
+		
+	}
+	SDL_FreeSurface(image);
 }
 
 Rect* Texture::getSrcRect()

@@ -14,7 +14,7 @@ public:
 	Actor();
 
 	virtual void update(float deltaTime) = 0;
-	virtual void render();
+	virtual void render(class SceneViewer* v = nullptr);
 
 	virtual ~Actor();
 

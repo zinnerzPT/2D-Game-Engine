@@ -22,13 +22,13 @@ public:
 private:
 	bool isRunning;
 	class SDLWrapper* sdl;
-	class Window* window;
+	class SceneViewer* viewer;
 	static class Level* level;
 
 	static Engine* instance;
 
 public:
-	static class Renderer* renderer;
+//	static class Renderer* renderer;
 
 };
 

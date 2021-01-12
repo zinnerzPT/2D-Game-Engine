@@ -5,20 +5,21 @@
 #include "Renderer.h"
 #include "Pawn.h"
 #include "Level.h"
+#include "SceneViewer.h"
 #include <box2d/box2d.h>
 
 #include "Input.h"
 
 Engine* Engine::instance = nullptr;
 
-Renderer* Engine::renderer = nullptr;
+//Renderer* Engine::renderer = nullptr;
 Level* Engine::level = nullptr;
 
 void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
 {
 	sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
-	window = new Window(windowTitle, windowWidth, windowHeight);
-	renderer = new Renderer(window);
+	viewer = new SceneViewer(windowTitle, windowWidth, windowHeight);
+	//renderer = new Renderer(viewer->getWindow());
 	level = new Level();
 }
 
@@ -57,7 +58,8 @@ void Engine::start()
 		//Update();
 		level->update(deltaTime);
 
-		renderer->clear();
+		viewer->clear();
+		//renderer->clear();
 		//Render level
 
 		frameTime += deltaTime;
@@ -67,11 +69,13 @@ void Engine::start()
 			level->animate();
 		}
 
-		level->render();
+		level->render(viewer);
 
-		renderer->present();
+		viewer->swapBuffers();
 
-		window->updateSurface();
+		//renderer->present();
+
+		//viewer->getWindow()->updateSurface();
 
 		//Actors to add/remove
 		level->updateActors();
@@ -99,8 +103,8 @@ Engine* Engine::getInstance()
 
 Engine::~Engine()
 {
-	delete renderer;
-	delete window;
+	//delete renderer;
+	delete viewer;
 	delete sdl;
 	delete level;
 }

@@ -42,7 +42,7 @@ void BitmapFont::renderText(int x, int y, std::string text)
 				// Render the character
 				tilemap->ChangeFrame(ascii);
 				bitmap->setDstRect(curX, curY, bitmap->getDstRect()->w, bitmap->getDstRect()->h);
-				Engine::renderer->copy(bitmap, bitmap->getSrcRect(), bitmap->getDstRect());
+				//Engine::renderer->copy(bitmap, bitmap->getSrcRect(), bitmap->getDstRect());
 
 				//Move over the width of one character + 1 for padding
 				curX += tilemap->getTileWidth() + 1;

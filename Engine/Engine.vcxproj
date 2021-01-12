@@ -34,12 +34,14 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="SceneViewer.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\external\glad.c" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
@@ -55,6 +57,7 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="SceneViewer.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tilemap.cpp" />

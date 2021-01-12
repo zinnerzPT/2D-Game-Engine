@@ -1,6 +1,8 @@
 #include "Level.h"
 
+#include <glm/ext.hpp>
 #include "ContactListener.h"
+#include "SceneViewer.h"
 
 Level::Level()
 {
@@ -51,10 +53,11 @@ void Level::update(float deltaTime)
 	}
 }
 
-void Level::render()
+void Level::render(SceneViewer* viewer)
 {
 	for (Actor* a : actors) {
-		a->render();
+		//viewer->setModelMatrix(a->transform);
+		a->render(viewer);
 	}
 }
 
