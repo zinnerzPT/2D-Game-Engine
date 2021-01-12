@@ -17,6 +17,7 @@ public:
 	void takeDamage(float damage);
 	void upgradeMissile();
 	void attachCompanion(class CompanionPowerUp* companion);
+	void removeCompanion(class CompanionPowerUp* companion);
 	float* getPosition();
 	~Spaceship();
 
@@ -47,7 +48,7 @@ private:
 	// Time it takes to fire again (in milliseconds)
 	int cooldown = 300;
 	
-	std::vector<class CompanionPowerUp*> attachedCompanions;
+	std::vector<class CompanionPowerUp*> attachedCompanions{nullptr, nullptr};
 	class CompanionPowerUp* companionToAttach = nullptr;
 
 	Animation* moveRightAnim;

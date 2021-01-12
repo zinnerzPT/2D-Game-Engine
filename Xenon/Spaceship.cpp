@@ -44,8 +44,8 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
-	// The player uses category 1 and collides with categories 2(enemy), 4(enemy missile) and 5(power up)
-	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_2 | CATEGORY_4 | CATEGORY_5);
+	// The player uses category 1 and collides with categories 2(enemy), 4(enemy missile), 5(power up) and 6(companion)
+	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_2 | CATEGORY_4 | CATEGORY_5 | CATEGORY_6);
 	rigidBody->createBody(position, halfSize);
 
 	// Initialize spaceship movement speed
@@ -143,16 +143,15 @@ void Spaceship::update(float deltaTime)
 	if (companionToAttach)
 	{
 		float offset[2]{ 0.0f, 0.0f };
-		switch (attachedCompanions.size())
+		if (companionToAttach == attachedCompanions[0])
 		{
-		case 1:
 			offset[0] = 5.0f;
 			offset[1] = -0.5f;
-			break;
-		case 2:
+		}
+		if (companionToAttach == attachedCompanions[1])
+		{
 			offset[0] = -5.0f;
 			offset[1] = -0.5f;
-			break;
 		}
 		float position[2]{ getPosition()[0] + offset[0], getPosition()[1] + offset[1] };
 		companionToAttach->setPosition(position);
@@ -161,7 +160,10 @@ void Spaceship::update(float deltaTime)
 
 	for (CompanionPowerUp* companion : attachedCompanions)
 	{
-		companion->setVelocity(velocity);
+		if (companion)
+		{
+			companion->setVelocity(velocity);
+		}
 	}
 
 	Pawn::update(deltaTime);
@@ -200,9 +202,12 @@ void Spaceship::fire()
 		// Fire additional missile for each companion
 		for (CompanionPowerUp* companion : attachedCompanions)
 		{
-			missilePosition[0] = companion->getPosition()[0];
-			missilePosition[1] = companion->getPosition()[1];
-			new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
+			if (companion)
+			{
+				missilePosition[0] = companion->getPosition()[0];
+				missilePosition[1] = companion->getPosition()[1];
+				new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, companion->getMissileType());
+			}
 		}
 		needsCooldown = true;
 	}
@@ -253,11 +258,21 @@ void Spaceship::upgradeMissile()
 
 void Spaceship::attachCompanion(CompanionPowerUp* companion)
 {
-	if (attachedCompanions.size() <= 1)
+	if (!attachedCompanions[0])
 	{
-		attachedCompanions.push_back(companion);
+		attachedCompanions[0] = companion;
 		companionToAttach = companion;
 	}
+	else if (!attachedCompanions[1])
+	{
+		attachedCompanions[1] = companion;
+		companionToAttach = companion;
+	}
+}
+
+void Spaceship::removeCompanion(class CompanionPowerUp* companion)
+{
+	this->attachedCompanions.erase(std::remove(this->attachedCompanions.begin(), this->attachedCompanions.end(), companion), this->attachedCompanions.end());
 }
 
 float* Spaceship::getPosition()

@@ -3,8 +3,6 @@
 PowerUp::PowerUp()
 {
 	rigidBody->makeDynamic(1.0f);
-	// PowerUp uses category 5 and collides with category 1(player)
-	rigidBody->setCollisionFilter(CATEGORY_5, CATEGORY_1);
 }
 
 void PowerUp::update(float deltaTime)

@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
 	WeaponPowerUp* weaponPU2 = new WeaponPowerUp(50, 200);
 	CompanionPowerUp* companionPU = new CompanionPowerUp(100, 300);
 	CompanionPowerUp* companionPU2 = new CompanionPowerUp(50, 300);
-
 	// Player
 	Spaceship* ship = new Spaceship(304, 400);
 	// Enemies
