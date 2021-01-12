@@ -11,6 +11,7 @@
 #include "Missile.h"
 #include "Rusher.h"
 #include "Scoreboard.h"
+#include "ShieldPowerUp.h"
 
 int main(int argc, char* argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
 
 	engine->init("Xenon Clone!", 640, 480);
 
+	// Background
 	Background* background = new Background("../graphics/galaxy2.bmp");
 	int offset = -512;
 	for (int i = 0; i < 9; ++i)
@@ -25,14 +27,18 @@ int main(int argc, char* argv[])
 		Background* scrollingBackground = new Background("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416, offset);
 		offset += 128;
 	}
+	// Power ups
+	ShieldPowerUp* shieldPU = new ShieldPowerUp(200, 200);
+	// Player
 	Spaceship* ship = new Spaceship(304, 400);
+	// Enemies
 	Loner* loner = new Loner(200, 180);
 	Rusher* rusher = new Rusher(400, -40);
+	// UI
 	Scoreboard* scoreboard = new Scoreboard(200, 200);
 
 	engine->start();
 
 	delete engine;
-
 	return 0;
 }

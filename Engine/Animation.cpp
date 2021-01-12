@@ -32,7 +32,7 @@ void Animation::update()
 
 			if (actorToDestroy != nullptr)
 			{
-				Engine::getLevel()->addActorToRemove(actorToDestroy);
+				actorToDestroy->destroy();
 				actorToDestroy = nullptr;
 			}
 		}

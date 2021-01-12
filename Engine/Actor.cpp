@@ -16,6 +16,11 @@ void Actor::render()
 	}
 }
 
+void Actor::destroy()
+{
+	Engine::getLevel()->addActorToRemove(this);
+}
+
 Actor::~Actor()
 {
 

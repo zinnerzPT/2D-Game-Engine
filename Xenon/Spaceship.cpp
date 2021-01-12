@@ -1,11 +1,14 @@
 #include "Spaceship.h"
 #include "Input.h"
-
 #include "Animation.h"
 #include "Missile.h"
 #include "GameController.h"
+#include "PowerUp.h"
 
 #include <chrono>
+
+// DEBUG PURPOSES ONLY
+#include <iostream>
 
 Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 {
@@ -38,11 +41,10 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	returnLeftAnim = new Animation(tilemap, { 0,1,2,3 }, false);
 
 	// Create rigidbody
-	rigidBody = new RigidBody();
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
-	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_4);
+	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_4 | CATEGORY_5);
 	rigidBody->createBody(position, halfSize);
 
 	// Initialize spaceship movement speed
@@ -51,7 +53,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	// Initialize values to use when creating a missile
 	missileHalfSize[0] = missileHalfSize[1] = 8.0f / 16.0f;
 	missileVelocity[0] = 0.0f;
-	missileVelocity[1] = -20.0f;
+	missileVelocity[1] = -40.0f;
 
 	// Start thread that manages firing cooldown
 	cooldownThread = std::thread{ &Spaceship::cooldownCheck, this };
@@ -140,6 +142,16 @@ void Spaceship::update(float deltaTime)
 }
 
 
+void Spaceship::onContact(ContactSensor* otherSensor /*= nullptr*/)
+{
+	PowerUp* powerUp = nullptr;
+	powerUp = dynamic_cast <PowerUp*> (otherSensor);
+	if (powerUp)
+	{
+		powerUp->applyPower(this);
+	}
+}
+
 Spaceship::~Spaceship()
 {
 	isAlive = false;
@@ -161,6 +173,19 @@ void Spaceship::fire()
 		needsCooldown = true;
 	}
 
+}
+
+void Spaceship::addHealth(float additionalHealth)
+{
+	if (health + additionalHealth <= maxHealth)
+	{
+		health += additionalHealth;
+	}
+	else
+	{
+		health = maxHealth;
+	}
+	std::cout << "Spaceship HP: " << health << std::endl;
 }
 
 void Spaceship::cooldownCheck()

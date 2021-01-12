@@ -1,6 +1,4 @@
 #include "Rusher.h"
-#include "Engine.h"
-#include "Level.h"
 
 Rusher::Rusher(float x, float y)
 {
@@ -30,7 +28,7 @@ void Rusher::update(float deltaTime)
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 	if (position[1] > 500)
 	{
-		Engine::getLevel()->addActorToRemove(this);
+		Actor::destroy();
 	}
 }
 

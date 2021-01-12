@@ -9,19 +9,11 @@ Pawn::Pawn(float x, float y) {
 	controller = new GameController();
 }
 
-Pawn::~Pawn()
-{
-	delete textures[0];
-	//delete controller;
-}
-
 void Pawn::update(float deltaTime)
 {
 	/* Update position */
 	for (Texture* t : textures)
 	{
-		//t->setDstRect(xpos, ypos, t->getSrcRect()->w, t->getSrcRect()->h);
-
 		float* position;
 		position = rigidBody->getPosition();
 		xpos = position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
@@ -37,7 +29,6 @@ void Pawn::moveRight(float x)
 	{
 		rigidBody->setVelocity(velocity);
 	}
-	//xpos += x;
 }
 
 void Pawn::moveUp(float y)
@@ -47,5 +38,10 @@ void Pawn::moveUp(float y)
 	{
 		rigidBody->setVelocity(velocity);
 	}
-	//ypos -= y;
+}
+
+Pawn::~Pawn()
+{
+	delete textures[0];
+	//delete controller;
 }

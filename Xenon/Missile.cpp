@@ -1,7 +1,6 @@
 #include "Missile.h"
 #include "RigidBody.h"
-#include "Loner.h"
-#include "Rusher.h"
+#include "Enemy.h"
 
 Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits)
 	: Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
@@ -26,6 +25,10 @@ void Missile::update(float deltaTime)
 	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 	explosionTex->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
+	if (position[1] < -10)
+	{
+		Actor::destroy();
+	}
 }
 
 void Missile::onContact(ContactSensor* otherSensor /*= nullptr*/)

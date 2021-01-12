@@ -16,9 +16,6 @@ Loner::Loner(float x, float y) {
 	rigidBody->setVelocity(velocity);
 }
 
-
-
-
 void Loner::update(float deltaTime)
 {
 	float* position;

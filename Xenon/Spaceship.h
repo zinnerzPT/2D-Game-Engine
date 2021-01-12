@@ -4,16 +4,19 @@
 
 #include <thread>
 
-class Spaceship : public Pawn
+class Spaceship : 
+	public Pawn
 {
 public:
 	Spaceship(float x, float y);
 	void update(float deltaTime);
+	void onContact(ContactSensor* otherSensor = nullptr) override;
+
+	void addHealth(float additionalHealth);
 	~Spaceship();
 
 private:
 	void fire();
-
 	void cooldownCheck();
 
 	void stopTurningAnims();
@@ -32,6 +35,9 @@ private:
 
 	float missileHalfSize[2];
 	float missileVelocity[2];
+
+	float health = 10.0f;
+	float maxHealth = 100.0f;
 
 	// Time it takes to fire again (in milliseconds)
 	int cooldown = 200;

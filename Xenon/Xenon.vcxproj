@@ -146,12 +146,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="CompanionPowerUp.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Rusher.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
+    <ClCompile Include="ShieldPowerUp.cpp" />
     <ClCompile Include="Spaceship.cpp" />
+    <ClCompile Include="WeaponPowerUp.cpp" />
     <ClCompile Include="Xenon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +165,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="CompanionPowerUp.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Rusher.h" />
     <ClInclude Include="Scoreboard.h" />
+    <ClInclude Include="ShieldPowerUp.h" />
     <ClInclude Include="Spaceship.h" />
+    <ClInclude Include="WeaponPowerUp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
