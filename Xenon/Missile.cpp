@@ -2,14 +2,30 @@
 #include "RigidBody.h"
 #include "Enemy.h"
 
-Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits)
+Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits, MissileType type)
 	: Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
 {
 	Texture* texture = new Texture("../graphics/missile.bmp");
 	textures.push_back(texture);
 
 	tilemap = new Tilemap(texture, 3, 2);
-	animation = new Animation(tilemap, { 0,1 }, true);
+	switch (type)
+	{
+	case MissileType::light:
+		animation = new Animation(tilemap, { 0,1 }, true);
+		missileDamage = lightDamage;
+		break;
+	case MissileType::medium:
+		tilemap->ChangeFrame(2);
+		animation = new Animation(tilemap, { 2,3 }, true);
+		missileDamage = mediumDamage;
+		break;
+	case MissileType::heavy:
+		tilemap->ChangeFrame(4);
+		animation = new Animation(tilemap, { 4,5 }, true);
+		missileDamage = heavyDamage;
+		break;
+	}
 	animation->play();
 
 	explosionTex = new Texture("../graphics/explode16.bmp");
@@ -45,7 +61,7 @@ void Missile::onContact(ContactSensor* otherSensor /*= nullptr*/)
 	enemy = dynamic_cast <Enemy*> (otherSensor);
 	if (enemy)
 	{
-        enemy->takeDamage(20.0f);
+        enemy->takeDamage(missileDamage);
 	}
 }
 

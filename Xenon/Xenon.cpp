@@ -12,6 +12,7 @@
 #include "Rusher.h"
 #include "Scoreboard.h"
 #include "ShieldPowerUp.h"
+#include "WeaponPowerUp.h"
 
 int main(int argc, char* argv[])
 {
@@ -28,7 +29,10 @@ int main(int argc, char* argv[])
 		offset += 128;
 	}
 	// Power ups
-	ShieldPowerUp* shieldPU = new ShieldPowerUp(200, 200);
+	ShieldPowerUp* shieldPU = new ShieldPowerUp(200, 100);
+	WeaponPowerUp* weaponPU = new WeaponPowerUp(100, 200);
+	WeaponPowerUp* weaponPU2 = new WeaponPowerUp(50, 200);
+
 	// Player
 	Spaceship* ship = new Spaceship(304, 400);
 	// Enemies

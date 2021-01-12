@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Pawn.h"
+#include "Missile.h"
 
 #include <thread>
 
@@ -13,6 +14,7 @@ public:
 	void onContact(ContactSensor* otherSensor = nullptr) override;
 
 	void addHealth(float additionalHealth);
+	void upgradeMissile();
 	~Spaceship();
 
 private:
@@ -57,6 +59,6 @@ private:
 	Animation* burnerAnimLeft = nullptr;
 
 	std::thread cooldownThread;
-
+	MissileType missileType = MissileType::light;
 };
 

@@ -1,7 +1,6 @@
 #include "Spaceship.h"
 #include "Input.h"
 #include "Animation.h"
-#include "Missile.h"
 #include "GameController.h"
 #include "PowerUp.h"
 
@@ -168,7 +167,7 @@ void Spaceship::fire()
 		canFire = false;
 		//Fire missiles
 		float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
-		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2);
+		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
 
 		needsCooldown = true;
 	}
@@ -186,6 +185,22 @@ void Spaceship::addHealth(float additionalHealth)
 		health = maxHealth;
 	}
 	std::cout << "Spaceship HP: " << health << std::endl;
+}
+
+
+void Spaceship::upgradeMissile()
+{
+	switch (missileType)
+	{
+	case MissileType::light:
+		missileType = MissileType::medium;
+		break;
+	case MissileType::medium:
+		missileType = MissileType::heavy;
+		break;
+	case MissileType::heavy:
+		break;
+	}
 }
 
 void Spaceship::cooldownCheck()
