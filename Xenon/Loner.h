@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "EnemyProjectile.h"
 
 class Loner : public Enemy
 {
@@ -10,6 +11,15 @@ public:
 	~Loner();
 
 private:
+	void attack();
+
+private:
 	bool movementReversed = false;
+
+	float attackDelay = 2.0f;
+	float chargingAttack = 0.0f;
+
+	float projectileHalfSize[2];
+	float projectileVelocity[2];
 };
 

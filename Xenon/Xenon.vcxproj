@@ -148,6 +148,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="CompanionPowerUp.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="PowerUp.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="CompanionPowerUp.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="PowerUp.h" />

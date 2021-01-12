@@ -1,6 +1,6 @@
 #include "Loner.h"
 
-Loner::Loner(float x, float y) 
+Loner::Loner(float x, float y)
 {
 	Texture* texture = new Texture("../graphics/LonerA.bmp");
 	textures.push_back(texture);
@@ -18,6 +18,11 @@ Loner::Loner(float x, float y)
 
 	// Initialize attack damage
 	attackDamage = 20.0f;
+
+	// Initialize values to use when creating a projectile
+	projectileHalfSize[0] = projectileHalfSize[1] = 8.0f / 16.0f;
+	projectileVelocity[0] = 0.0f;
+	projectileVelocity[1] = 10.0f;
 }
 
 void Loner::update(float deltaTime)
@@ -25,7 +30,9 @@ void Loner::update(float deltaTime)
 	float* position;
 	position = rigidBody->getPosition();
 	position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
+	xpos = position[0];
 	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
+	ypos = position[1];
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 
 	// For testing
@@ -41,6 +48,12 @@ void Loner::update(float deltaTime)
 		velocity[0] *= -1;
 		rigidBody->setVelocity(velocity);
 	}
+
+	chargingAttack += deltaTime;
+	if (chargingAttack >= attackDelay) {
+		chargingAttack = 0.0f;
+		attack();
+	}
 }
 
 void Loner::onContact(ContactSensor* otherSensor /*= nullptr*/)
@@ -51,4 +64,11 @@ void Loner::onContact(ContactSensor* otherSensor /*= nullptr*/)
 Loner::~Loner()
 {
 
+}
+
+void Loner::attack()
+{
+	//Fire missiles
+	float missilePosition[2]{ (xpos + 32) / 16.0f, (ypos + 64) / 16.0f };
+	new EnemyProjectile(missilePosition, projectileHalfSize, 1.0f, projectileVelocity, CATEGORY_4, CATEGORY_1, attackDamage);
 }
