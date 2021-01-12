@@ -46,11 +46,20 @@ void RigidBody::createBody(float position[2], float halfSize[2])
 	delete fixtureDef;
 }
 
+void RigidBody::setPosition(float position[2])
+{
+	body->SetTransform(b2Vec2(position[0], position[1]), body->GetAngle());
+}
+
+void RigidBody::setTransform(float position[2], float angle)
+{
+	body->SetTransform(b2Vec2(position[0], position[1]), angle);
+}
+
 void RigidBody::setVelocity(float linearVelocity[2])
 {
 	body->SetLinearVelocity(b2Vec2(linearVelocity[0], linearVelocity[1]));
 }
-
 
 void RigidBody::setEnabled(bool value)
 {

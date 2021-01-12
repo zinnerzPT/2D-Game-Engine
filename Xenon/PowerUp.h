@@ -8,12 +8,13 @@ class PowerUp :
 	public ContactSensor
 {
 public:
-	virtual void update(float deltaTime) override = 0;
+	PowerUp();
+	virtual void update(float deltaTime) override;
 	virtual void onContact(ContactSensor* otherSensor = nullptr) override = 0;
 	virtual void applyPower(Spaceship* spaceship = nullptr) = 0;
 	virtual ~PowerUp();
 
 protected:
-
+	float velocity[2]{ 0.0f, 2.0f };
 };
 

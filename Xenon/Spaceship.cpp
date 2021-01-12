@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "GameController.h"
 #include "PowerUp.h"
+#include "CompanionPowerUp.h"
 
 #include <chrono>
 
@@ -43,7 +44,8 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
-	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_4 | CATEGORY_5);
+	// The player uses category 1 and collides with categories 2(enemy), 4(enemy missile) and 5(power up)
+	rigidBody->setCollisionFilter(CATEGORY_1, CATEGORY_2 | CATEGORY_4 | CATEGORY_5);
 	rigidBody->createBody(position, halfSize);
 
 	// Initialize spaceship movement speed
@@ -137,6 +139,31 @@ void Spaceship::update(float deltaTime)
 		}
 	}
 
+	// Update companions
+	if (companionToAttach)
+	{
+		float offset[2]{ 0.0f, 0.0f };
+		switch (attachedCompanions.size())
+		{
+		case 1:
+			offset[0] = 5.0f;
+			offset[1] = -0.5f;
+			break;
+		case 2:
+			offset[0] = -5.0f;
+			offset[1] = -0.5f;
+			break;
+		}
+		float position[2]{ getPosition()[0] + offset[0], getPosition()[1] + offset[1] };
+		companionToAttach->setPosition(position);
+		companionToAttach = nullptr;
+	}
+
+	for (CompanionPowerUp* companion : attachedCompanions)
+	{
+		companion->setVelocity(velocity);
+	}
+
 	Pawn::update(deltaTime);
 }
 
@@ -165,13 +192,20 @@ void Spaceship::fire()
 	if (canFire)
 	{
 		canFire = false;
-		//Fire missiles
+		// Fire missiles
 		float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
+		// Missile uses category 3 and collides with category 2(enemy)
 		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
 
+		// Fire additional missile for each companion
+		for (CompanionPowerUp* companion : attachedCompanions)
+		{
+			missilePosition[0] = companion->getPosition()[0];
+			missilePosition[1] = companion->getPosition()[1];
+			new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
+		}
 		needsCooldown = true;
 	}
-
 }
 
 void Spaceship::addHealth(float additionalHealth)
@@ -188,6 +222,20 @@ void Spaceship::addHealth(float additionalHealth)
 }
 
 
+void Spaceship::takeDamage(float damage)
+{
+	if (health - damage > 0)
+	{
+		health -= damage;
+	}
+	else
+	{
+		health = 0;
+		Actor::destroy();
+	}
+	std::cout << "Spaceship HP: " << health << std::endl;
+}
+
 void Spaceship::upgradeMissile()
 {
 	switch (missileType)
@@ -201,6 +249,20 @@ void Spaceship::upgradeMissile()
 	case MissileType::heavy:
 		break;
 	}
+}
+
+void Spaceship::attachCompanion(CompanionPowerUp* companion)
+{
+	if (attachedCompanions.size() <= 1)
+	{
+		attachedCompanions.push_back(companion);
+		companionToAttach = companion;
+	}
+}
+
+float* Spaceship::getPosition()
+{
+	return 	rigidBody->getPosition();
 }
 
 void Spaceship::cooldownCheck()

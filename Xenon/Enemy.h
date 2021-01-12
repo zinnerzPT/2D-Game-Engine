@@ -10,13 +10,14 @@ class Enemy :
 	public ContactSensor
 {
 public:
+	Enemy();
 	virtual void update(float deltaTime) override = 0;
-	virtual void onContact(ContactSensor* otherSensor = nullptr) override = 0;
+	virtual void onContact(ContactSensor* otherSensor = nullptr) override;
 	virtual void takeDamage(float damage);
 	virtual ~Enemy();
 
 protected:
 	float health = 100.0f;
-	Tilemap* tilemap = nullptr;
-	Animation* animation = nullptr;
+	float attackDamage = 0.0f;
+	float velocity[2]{ 0.0f, 0.0f };
 };

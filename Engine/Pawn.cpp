@@ -42,6 +42,6 @@ void Pawn::moveUp(float y)
 
 Pawn::~Pawn()
 {
-	delete textures[0];
+	//delete textures[0];
 	//delete controller;
 }

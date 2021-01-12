@@ -9,7 +9,6 @@ public:
 	void onContact(ContactSensor* otherSensor = nullptr) override;
 	void applyPower(Spaceship* spaceship = nullptr) override;
 	~ShieldPowerUp();
-private:
-	float velocity[2]{ 0.0f, 2.0f };
+
 };
 

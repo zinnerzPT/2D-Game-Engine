@@ -21,7 +21,6 @@ static const uint16_t CATEGORY_14 = 0x4000;
 static const uint16_t CATEGORY_15 = 0x8000;
 
 
-
 class RigidBody
 {
 public:
@@ -30,6 +29,8 @@ public:
 	void makeDynamic(float density);
 	void createBody(float position[2], float halfSize[2]);
 
+	void setPosition(float position[2]);
+	void setTransform(float position[2], float angle);
 	void setVelocity(float linearVelocity[2]);
 	void setEnabled(bool value);
 	void setCollisionFilter(uint16_t categoryBits, uint16_t maskBits);

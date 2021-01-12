@@ -11,6 +11,5 @@ public:
 
 private:
 	bool movementReversed = false;
-	float velocity[2]{ 5.0f, 0.0f };
 };
 

@@ -14,7 +14,10 @@ public:
 	void onContact(ContactSensor* otherSensor = nullptr) override;
 
 	void addHealth(float additionalHealth);
+	void takeDamage(float damage);
 	void upgradeMissile();
+	void attachCompanion(class CompanionPowerUp* companion);
+	float* getPosition();
 	~Spaceship();
 
 private:
@@ -38,11 +41,14 @@ private:
 	float missileHalfSize[2];
 	float missileVelocity[2];
 
-	float health = 10.0f;
+	float health = 100.0f;
 	float maxHealth = 100.0f;
 
 	// Time it takes to fire again (in milliseconds)
-	int cooldown = 200;
+	int cooldown = 300;
+	
+	std::vector<class CompanionPowerUp*> attachedCompanions;
+	class CompanionPowerUp* companionToAttach = nullptr;
 
 	Animation* moveRightAnim;
 	Animation* moveLeftAnim;
@@ -50,7 +56,7 @@ private:
 	Animation* returnRightAnim;
 	Animation* returnLeftAnim;
 
-	Texture* burnerTexRight = nullptr;
+	Texture* burnerTexRight = nullptr; 
 	Tilemap* burnerTilemapRight = nullptr;
 	Animation* burnerAnimRight = nullptr;
 
