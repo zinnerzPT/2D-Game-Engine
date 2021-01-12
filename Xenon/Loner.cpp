@@ -36,15 +36,9 @@ void Loner::update(float deltaTime)
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 
 	// For testing
-	if (position[0] > 580 && !movementReversed)
+	if ((position[0] > 580 && !movementReversed) || (position[0] < 0 && movementReversed))
 	{
-		movementReversed = true;
-		velocity[0] *= -1;
-		rigidBody->setVelocity(velocity);
-	}
-	if (position[0] < 0 && movementReversed)
-	{
-		movementReversed = false;
+		movementReversed = !movementReversed;
 		velocity[0] *= -1;
 		rigidBody->setVelocity(velocity);
 	}
