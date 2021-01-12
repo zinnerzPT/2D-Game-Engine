@@ -13,7 +13,7 @@ public:
 	Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits);
 
 	void update(float deltaTime) override;
-	void onContact() override;
+	void onContact(ContactSensor* otherSensor = nullptr) override;
 
 	~Missile();
 

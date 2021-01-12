@@ -1,5 +1,7 @@
 #include "Missile.h"
 #include "RigidBody.h"
+#include "Loner.h"
+#include "Rusher.h"
 
 Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits)
 	: Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
@@ -26,7 +28,7 @@ void Missile::update(float deltaTime)
 	explosionTex->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 }
 
-void Missile::onContact()
+void Missile::onContact(ContactSensor* otherSensor /*= nullptr*/)
 {
 	float velocityZero[2]{ 0.0f, 0.0f };
 	rigidBody->setVelocity(velocityZero);
@@ -36,6 +38,12 @@ void Missile::onContact()
 	explosionAnim->destroyAfterEnd(this);
 	rigidBody->setEnabled(false);
 
+    Enemy* enemy = nullptr;
+	enemy = dynamic_cast <Enemy*> (otherSensor);
+	if (enemy)
+	{
+        enemy->takeDamage(20.0f);
+	}
 }
 
 Missile::~Missile()

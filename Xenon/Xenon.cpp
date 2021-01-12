@@ -18,10 +18,16 @@ int main(int argc, char* argv[])
 
 	engine->init("Xenon Clone!", 640, 480);
 
-	Background* background = new Background();
+	Background* background = new Background("../graphics/galaxy2.bmp");
+	int offset = -512;
+	for (int i = 0; i < 9; ++i)
+	{
+		Background* scrollingBackground = new Background("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416, offset);
+		offset += 128;
+	}
 	Spaceship* ship = new Spaceship(304, 400);
-	Loner* loner = new Loner(200, 32);
-	Rusher* rusher = new Rusher(400, 450);
+	Loner* loner = new Loner(200, 180);
+	Rusher* rusher = new Rusher(400, -40);
 	Scoreboard* scoreboard = new Scoreboard(200, 200);
 
 	engine->start();

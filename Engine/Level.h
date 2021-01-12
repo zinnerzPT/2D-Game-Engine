@@ -11,7 +11,6 @@ public:
 	void addActor(Actor* actor);
 	void addAnimation(Animation* animation);
 
-	void addBodyToDestroy(class b2Body* b);
 	void addBodyToEnable(class b2Body* b);
 	void addBodyToDisable(class b2Body* b);
 
@@ -35,7 +34,6 @@ private:
 	struct b2Vec2* gravity;
 	class b2World* world;
 
-	class std::vector<b2Body*> bodiesToDestroy;
 	class std::vector<b2Body*> bodiesToEnable;
 	class std::vector<b2Body*> bodiesToDisable;
 

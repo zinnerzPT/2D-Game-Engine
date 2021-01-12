@@ -5,7 +5,7 @@
 ContactSensor::ContactSensor()
 {
 	rigidBody = new RigidBody();
-	rigidBody->getBodyDef()->userData.pointer = reinterpret_cast<uintptr_t>(this);
+	rigidBody->getBodyDef()->userData.pointer = (uintptr_t) this;
 	rigidBody->getFixtureDef()->isSensor = true;
 }
 

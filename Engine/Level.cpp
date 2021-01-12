@@ -22,11 +22,6 @@ void Level::addAnimation(Animation* animation)
 }
 
 // Box2D
-void Level::addBodyToDestroy(class b2Body* b)
-{
-	this->bodiesToDestroy.push_back(b);
-}
-
 void Level::addBodyToEnable(class b2Body* b)
 {
 	this->bodiesToEnable.push_back(b);
@@ -50,11 +45,6 @@ void Level::addAnimationToRemove(Animation* animation)
 
 void Level::update(float deltaTime)
 {
-	//actors to add/remove
-	updateActors();
-	//animations to add/remove
-	updateAnimations();
-
 	//update actors
 	for (Actor* a : actors) {
 		a->update(deltaTime);
@@ -77,13 +67,6 @@ void Level::animate()
 
 void Level::updateBodies()
 {
-	// Destroy bodies
-	for (b2Body* b : bodiesToDestroy)
-	{
-		world->DestroyBody(b);
-	}
-	bodiesToDestroy.clear();
-
 	// Enable bodies
 	for (b2Body* b : bodiesToEnable)
 	{

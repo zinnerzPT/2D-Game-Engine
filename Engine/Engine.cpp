@@ -51,12 +51,8 @@ void Engine::start()
 		//Update the physics
 		level->getWorld()->Step(timeStep, velocityIterations, positionIterations);
 
-		//Destroy bodies and update enabled/disabled status
-		level->updateBodies();
-
 		/* Event handling */
 		isRunning = Input::getInstance()->handleInput();
-
 
 		//Update();
 		level->update(deltaTime);
@@ -76,6 +72,15 @@ void Engine::start()
 		renderer->present();
 
 		window->updateSurface();
+
+		//Actors to add/remove
+		level->updateActors();
+
+		//Animations to add/remove
+		level->updateAnimations();
+
+		//Update enabled/disabled status
+		level->updateBodies();
 
 		//Fixed framerate
 		if (frameDelay > deltaTime) {

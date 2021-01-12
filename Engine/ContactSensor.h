@@ -6,7 +6,7 @@ class ContactSensor
 {
 public:
 	ContactSensor();
-	virtual void onContact() = 0;
+	virtual void onContact(ContactSensor* otherSensor = nullptr) = 0;
 	virtual ~ContactSensor();
 
 protected:

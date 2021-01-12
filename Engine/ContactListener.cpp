@@ -5,19 +5,36 @@ void ContactListener::BeginContact(b2Contact* contact)
 {
 	b2Body* bodyA = contact->GetFixtureA()->GetBody();
 	b2Body* bodyB = contact->GetFixtureB()->GetBody();
+	ContactSensor* contactSensorA = nullptr;
+	ContactSensor* contactSensorB = nullptr;
 
-	uintptr_t userData = contact->GetFixtureA()->GetBody()->GetUserData().pointer;
-	if (userData)
+	// Get the userdata and cast to contact sensor
+  	void* userDataA = (void*)contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+	if (userDataA)
 	{
-		ContactSensor* cs = (ContactSensor*)userData;
-		cs->onContact();
-		contact->GetFixtureA()->GetBody()->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
+		contactSensorA = (ContactSensor*)userDataA;
 	}
-	userData = contact->GetFixtureB()->GetBody()->GetUserData().pointer;
-	if (userData)
+	void* userDataB = (void*)contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+	if (userDataB)
 	{
-		ContactSensor* cs = (ContactSensor*)userData;
-		cs->onContact();
-		contact->GetFixtureB()->GetBody()->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
+		contactSensorB = (ContactSensor*)userDataB;
+	}
+
+	// Call onContact function on the contact sensors
+	if (contactSensorA && contactSensorB)
+	{
+		contactSensorA->onContact(contactSensorB);
+		contactSensorB->onContact(contactSensorA);
+	}
+	else
+	{
+		if (contactSensorA)
+		{
+			contactSensorA->onContact();
+		}
+		else if(contactSensorB)
+		{
+			contactSensorB->onContact();
+		}
 	}
 }

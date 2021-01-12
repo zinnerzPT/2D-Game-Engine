@@ -1,5 +1,4 @@
 #include "Loner.h"
-#include "Engine.h"
 
 Loner::Loner(float x, float y) {
 	Texture* texture = new Texture("../graphics/LonerA.bmp");
@@ -8,7 +7,6 @@ Loner::Loner(float x, float y) {
 	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
 	animation->play();
 
-	rigidBody = new RigidBody();
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
@@ -32,7 +30,7 @@ void Loner::update(float deltaTime)
 		velocity[0] *= -1;
 		rigidBody->setVelocity(velocity);
 	}
-	if (position[0] < 10 && movementReversed)
+	if (position[0] < 0 && movementReversed)
 	{
 		movementReversed = false;
 		velocity[0] *= -1;
@@ -42,7 +40,12 @@ void Loner::update(float deltaTime)
 	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
 }
 
+void Loner::onContact(ContactSensor* otherSensor /*= nullptr*/)
+{
+	
+}
+
 Loner::~Loner()
 {
-	delete rigidBody;
+
 }
