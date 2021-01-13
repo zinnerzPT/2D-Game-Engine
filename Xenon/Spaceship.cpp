@@ -236,6 +236,10 @@ void Spaceship::takeDamage(float damage)
 	else
 	{
 		health = 0;
+		for (CompanionPowerUp* companion : attachedCompanions)
+		{
+			companion->destroy();
+		}
 		Actor::destroy();
 	}
 	std::cout << "Spaceship HP: " << health << std::endl;

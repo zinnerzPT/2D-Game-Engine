@@ -22,7 +22,21 @@ CompanionPowerUp::CompanionPowerUp(int x, int y)
 
 void CompanionPowerUp::update(float deltaTime)
 {
-	PowerUp::update(deltaTime);
+	float* position;
+	position = rigidBody->getPosition();
+	position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
+	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
+	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
+	if (position[1] > 500)
+	{
+		if (spaceshipRef)
+		{
+			spaceshipRef->removeCompanion(this);
+			spaceshipRef = nullptr;
+		}
+		Actor::destroy();
+	}
+	
 }
 
 void CompanionPowerUp::onContact(ContactSensor* otherSensor /*= nullptr*/)
@@ -67,7 +81,7 @@ void CompanionPowerUp::takeDamage(float damage)
 	{
 		health -= damage;
 	}
-	else
+	else if (spaceshipRef)
 	{
 		health = 0;
 		spaceshipRef->removeCompanion(this);
