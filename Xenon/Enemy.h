@@ -11,7 +11,7 @@ class Enemy :
 {
 public:
 	Enemy();
-	virtual void update(float deltaTime) override = 0;
+	virtual void update(float deltaTime) override;
 	virtual void onContact(ContactSensor* otherSensor = nullptr) override;
 	virtual void takeDamage(float damage);
 	virtual ~Enemy();

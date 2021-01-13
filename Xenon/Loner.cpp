@@ -27,22 +27,7 @@ Loner::Loner(float x, float y)
 
 void Loner::update(float deltaTime)
 {
-	float* position;
-	position = rigidBody->getPosition();
-	position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
-	xpos = position[0];
-	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
-	ypos = position[1];
-	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
-
-	// For testing
-	if ((position[0] > 580 && !movementReversed) || (position[0] < 0 && movementReversed))
-	{
-		movementReversed = !movementReversed;
-		velocity[0] *= -1;
-		rigidBody->setVelocity(velocity);
-	}
-
+	Enemy::update(deltaTime);
 	chargingAttack += deltaTime;
 	if (chargingAttack >= attackDelay) {
 		chargingAttack = 0.0f;
@@ -53,6 +38,10 @@ void Loner::update(float deltaTime)
 void Loner::onContact(ContactSensor* otherSensor /*= nullptr*/)
 {
 	Enemy::onContact(otherSensor);
+	if (xpos > 640)
+	{
+		Actor::destroy();
+	}
 }
 
 Loner::~Loner()
