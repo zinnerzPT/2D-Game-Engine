@@ -4,11 +4,11 @@
 #include "BitmapFont.h"
 #include "UIBar.h"
 
-class Scoreboard : public Actor
+class UI : public Actor
 {
 public:
-	Scoreboard(float x, float y);
-	~Scoreboard();
+	UI(float x, float y);
+	~UI();
 	void update(float deltaTime);
 
 	void render();

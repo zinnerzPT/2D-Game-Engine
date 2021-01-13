@@ -6,8 +6,9 @@
 #include "Spaceship.h"
 #include "Background.h"
 #include "ScrollingBackground.h"
-#include "Scoreboard.h"
+#include "UI.h"
 #include "Spawner.h"
+#include "GameManager.h"
 
 int main(int argc, char* argv[])
 {
@@ -17,15 +18,15 @@ int main(int argc, char* argv[])
 
 	// Background
 	Background* background = new Background("../graphics/galaxy2.bmp");
+
+	// Scrolling backgrounds
 	int offset = -512;
-	for (int i = 0; i < 8; ++i)
-	{
+	for (int i = 0; i < 8; ++i) {
 		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416 + 20, offset);
 		offset += 128;
 	}
 	offset = -512;
-	for (int i = 0; i < 8; ++i)
-	{
+	for (int i = 0; i < 8; ++i) {
 		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 288, 1344, 64, 192, 0, 0, 64, 192, -1, offset);
 		offset += 128;
 	}
@@ -39,17 +40,19 @@ int main(int argc, char* argv[])
 		offset += 160;
 		ScrollingBackground* topLayerRight3 = new ScrollingBackground("../graphics/Blocks.bmp", 160, 320, 160, 32, 0, 0, 160, 32, 480, offset, false, false, 2.5f, 1024);
 	}
+
 	// Player
-	Spaceship* ship = new Spaceship(304, 400);
+	GameManager::getInstance()->spawnPlayer(304, 400);
 
 	// Spawner to spawn enemies and power ups
 	new Spawner();
 
 	// UI
-	Scoreboard* scoreboard = new Scoreboard(200, 200);
+	UI* ui = new UI(200, 200);
 
 	engine->start();
 
+	delete GameManager::getInstance();
 	delete engine;
 	return 0;
 }

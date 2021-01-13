@@ -4,6 +4,7 @@
 #include "GameController.h"
 #include "PowerUp.h"
 #include "CompanionPowerUp.h"
+#include "GameManager.h"
 
 #include <chrono>
 
@@ -22,14 +23,14 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	// Spaceship burners
 	burnerTexRight = new Texture("../graphics/Burner1.bmp");
 	textures.push_back(burnerTexRight);
-	burnerTexRight->setTexOffset( 32, 64);
+	burnerTexRight->setTexOffset(32, 64);
 	burnerTilemapRight = new Tilemap(burnerTexRight, 1, 2);
 	burnerAnimRight = new Animation(burnerTilemapRight, { 0,1 }, true);
 	burnerAnimRight->play();
 
 	burnerTexLeft = new Texture("../graphics/Burner1.bmp");
 	textures.push_back(burnerTexLeft);
-	burnerTexLeft->setTexOffset( 18, 64);
+	burnerTexLeft->setTexOffset(18, 64);
 	burnerTilemapLeft = new Tilemap(burnerTexLeft, 1, 2);
 	burnerAnimLeft = new Animation(burnerTilemapLeft, { 0,1 }, true);
 	burnerAnimLeft->play();
@@ -60,7 +61,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	cooldownThread = std::thread{ &Spaceship::cooldownCheck, this };
 }
 
-void Spaceship::update(float deltaTime) 
+void Spaceship::update(float deltaTime)
 {
 	// Movement input
 	if (Input::getInstance()->getKey("Right"))
@@ -187,9 +188,10 @@ Spaceship::~Spaceship()
 	{
 		cooldownThread.join();
 	}
+	GameManager::getInstance()->loseLife();
 }
 
-void Spaceship::fire() 
+void Spaceship::fire()
 {
 	if (canFire)
 	{

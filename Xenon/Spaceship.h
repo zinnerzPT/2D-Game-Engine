@@ -14,6 +14,7 @@ public:
 	void onContact(ContactSensor* otherSensor = nullptr) override;
 
 	void addHealth(float additionalHealth);
+	float getHealth() { return health; }
 	void takeDamage(float damage);
 	void upgradeMissile();
 	void attachCompanion(class CompanionPowerUp* companion);
