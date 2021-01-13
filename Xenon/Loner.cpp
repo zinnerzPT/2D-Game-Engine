@@ -64,5 +64,6 @@ void Loner::attack()
 {
 	//Fire missiles
 	float missilePosition[2]{ (xpos + 32) / 16.0f, (ypos + 64) / 16.0f };
-	new EnemyProjectile(missilePosition, projectileHalfSize, 1.0f, projectileVelocity, CATEGORY_4, CATEGORY_1, attackDamage);
+	// EnemyProjectile uses category 4 and collides with categories 1(player) and 6(companion)
+	new EnemyProjectile(missilePosition, projectileHalfSize, 1.0f, projectileVelocity, CATEGORY_4, CATEGORY_1 | CATEGORY_6, attackDamage);
 }

@@ -3,13 +3,13 @@
 #include <vector>
 
 //Categories used for collision filtering
-static const uint16_t CATEGORY_0 = 0x0001;
-static const uint16_t CATEGORY_1 = 0x0002;
-static const uint16_t CATEGORY_2 = 0x0004;
-static const uint16_t CATEGORY_3 = 0x0008;
-static const uint16_t CATEGORY_4 = 0x0010;
-static const uint16_t CATEGORY_5 = 0x0020;
-static const uint16_t CATEGORY_6 = 0x0040;
+static const uint16_t CATEGORY_0 = 0x0001; // The default collision category
+static const uint16_t CATEGORY_1 = 0x0002; // The Player collision category
+static const uint16_t CATEGORY_2 = 0x0004; // The Enemy collision category
+static const uint16_t CATEGORY_3 = 0x0008; // The Missile collision category
+static const uint16_t CATEGORY_4 = 0x0010; // The Enemy Projectile collision category
+static const uint16_t CATEGORY_5 = 0x0020; // The Power Up collision category
+static const uint16_t CATEGORY_6 = 0x0040; // The Companion collision category
 static const uint16_t CATEGORY_7 = 0x0080;
 static const uint16_t CATEGORY_8 = 0x0100;
 static const uint16_t CATEGORY_9 = 0x0200;
