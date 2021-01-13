@@ -1,15 +1,18 @@
 #include "Rect.h"
 #include <SDL2/SDL.h>
 
-Rect::Rect()
+Rect::Rect(int x, int y, int w, int h)
 {
 	sdl_Rect = new SDL_Rect();
-	x = y = w = h = 0;
+	this->x = x;
+	this->y = y;
+	this->w = w;
+	this->h = h;
+
 	sdl_Rect->x = x;
 	sdl_Rect->y = y;
 	sdl_Rect->w = w;
 	sdl_Rect->h = h;
-
 }
 
 Rect::~Rect()

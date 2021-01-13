@@ -39,23 +39,15 @@ Rect* Texture::getSrcRect()
 
 Rect* Texture::getDstRect()
 {
-	Rect* rect = new Rect();
-	rect->x = dstRect->x + texOffsetX;
-	rect->y = dstRect->y + texOffsetY;
-	rect->w = dstRect->w;
-	rect->h = dstRect->h;
-
-	return rect;
+	return dstRect;
 }
 
 void Texture::setSrcRect(Rect newRect)
 {
-	if (srcRect == NULL || &newRect == NULL)
-	{
-		srcRect = new Rect();
-		srcRect->x = srcRect->y = srcRect->w = srcRect->h = 0;
-	}
-	*srcRect = newRect;
+	srcRect->x = newRect.x;
+	srcRect->y = newRect.y;
+	srcRect->w = newRect.w;
+	srcRect->h = newRect.h;
 }
 
 void Texture::setSrcRect(int x, int y, int w, int h)
@@ -68,26 +60,36 @@ void Texture::setSrcRect(int x, int y, int w, int h)
 
 void Texture::setDstRect(Rect newRect)
 {
-	if (dstRect == NULL || &newRect == NULL)
-	{
-		dstRect = new Rect();
-		dstRect->x = dstRect->y = dstRect->w = dstRect->h = 0;
-	}
-	*dstRect = newRect;
+	// sets dstRect and keeps the texture offset
+	dstRect->x = newRect.x + texOffsetX;
+	dstRect->y = newRect.y + texOffsetY;
+	dstRect->w = newRect.w;
+	dstRect->h = newRect.h;
 }
 
 void Texture::setDstRect(int x, int y, int w, int h)
 {
-	dstRect->x = x;
-	dstRect->y = y;
+	// sets dstRect and keeps the texture offset
+	dstRect->x = x + texOffsetX;
+	dstRect->y = y + texOffsetY;
 	dstRect->w = w;
 	dstRect->h = h;
 }
 
 void Texture::setTexOffset(int x, int y)
 {
+	// remove the offset from the dstRect
+	dstRect->x -= texOffsetX;
+	dstRect->y -= texOffsetY;
+
 	texOffsetX = x;
 	texOffsetY = y;
+
+	// add it back
+	dstRect->x += texOffsetX;
+	dstRect->y += texOffsetY;
+
+	// this will make sure the offset is always applied
 }
 
 void Texture::query(int* w, int* h)
