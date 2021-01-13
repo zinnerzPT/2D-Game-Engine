@@ -12,7 +12,7 @@ void Actor::render()
 {
 	for (Texture* t : textures)
 	{
-		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect());
+		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect(), flipHorizontal,flipVertical);
 	}
 }
 

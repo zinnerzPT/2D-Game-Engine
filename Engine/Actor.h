@@ -25,4 +25,6 @@ protected:
 	std::vector<Texture*> textures;
 	Tilemap* tilemap = nullptr;
 	Animation* animation = nullptr;
+	bool flipHorizontal = false;
+	bool flipVertical = false;
 };

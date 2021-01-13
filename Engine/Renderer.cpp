@@ -11,9 +11,15 @@ void Renderer::clear()
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::copy(Texture* texture, Rect* rect, Rect* pos)
+void Renderer::copy(Texture* texture, Rect* rect, Rect* pos, bool horizontalFlip, bool verticalFlip)
 {
-	SDL_RenderCopy(renderer, texture->GetTexture(), rect->toSDL_Rect(), pos->toSDL_Rect());
+	SDL_RendererFlip flip = (SDL_RendererFlip)NULL;
+	if (horizontalFlip)
+		flip = (SDL_RendererFlip)(flip | SDL_FLIP_HORIZONTAL);
+	if(verticalFlip)
+		flip = (SDL_RendererFlip)(flip |SDL_FLIP_VERTICAL);
+	//SDL_RenderCopy(renderer, texture->GetTexture(), rect->toSDL_Rect(), pos->toSDL_Rect());
+	SDL_RenderCopyEx(renderer, texture->GetTexture(), rect->toSDL_Rect(), pos->toSDL_Rect(), 0, NULL, flip);
 }
 
 void Renderer::present()
