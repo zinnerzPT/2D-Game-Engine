@@ -64,11 +64,11 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 void Spaceship::update(float deltaTime)
 {
 	// Movement input
-	if (Input::getInstance()->getKey("Right"))
+	if (Input::getInstance()->getKey("Right") && xpos < 566)
 	{
 		moveRight(moveSpeed * deltaTime);
 	}
-	else if (Input::getInstance()->getKey("Left"))
+	else if (Input::getInstance()->getKey("Left") && xpos > 10)
 	{
 		moveRight(-moveSpeed * deltaTime);
 	}
@@ -79,11 +79,11 @@ void Spaceship::update(float deltaTime)
 		rigidBody->setVelocity(velocity);
 	}
 
-	if (Input::getInstance()->getKey("Up"))
+	if (Input::getInstance()->getKey("Up") && ypos > 10)
 	{
 		moveUp(moveSpeed * deltaTime);
 	}
-	else if (Input::getInstance()->getKey("Down"))
+	else if (Input::getInstance()->getKey("Down") && ypos < 406)
 	{
 		moveUp(-moveSpeed * deltaTime);
 	}

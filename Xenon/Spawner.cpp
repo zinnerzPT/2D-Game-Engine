@@ -69,7 +69,7 @@ bool Spawner::spawnEnemies()
 		if (lonerCooldownLeft <= 0)
 		{
 			lonerCooldownLeft = lonerCooldown;
-			new Loner(200, 180);
+			new Loner(-70, 180);
 			return true;
 		}
 		break;
@@ -77,11 +77,11 @@ bool Spawner::spawnEnemies()
 		if (droneCooldownLeft <= 0)
 		{
 			droneCooldownLeft = droneCooldown;
-			Drone* drone = new Drone(250, -40);
-			Drone* drone2 = new Drone(250, -40, .6f);
-			Drone* drone3 = new Drone(250, -40, 1.2f);
-			Drone* drone4 = new Drone(250, -40, 1.8f);
-			Drone* drone5 = new Drone(250, -40, 2.4f);
+			new Drone(250, -40);
+			new Drone(250, -40, .6f);
+			new Drone(250, -40, 1.2f);
+			new Drone(250, -40, 1.8f);
+			new Drone(250, -40, 2.4f);
 			return true;
 		}
 		break;
@@ -89,9 +89,11 @@ bool Spawner::spawnEnemies()
 		if (asteroidCooldownLeft <= 0)
 		{
 			asteroidCooldownLeft = asteroidCooldown;
-			Asteroid* asteroid = new Asteroid(280, -100);
-			Asteroid* asteroid2 = new Asteroid(350, -100, AsteroidType::metal, AsteroidSize::medium);
-			Asteroid* asteroid3 = new Asteroid(450, -100, AsteroidType::stone, AsteroidSize::large);
+			new Asteroid(80, -150, AsteroidType::stone, AsteroidSize::medium);
+			new Asteroid(560, -150, AsteroidType::stone, AsteroidSize::medium);
+			new Asteroid(160, -100, AsteroidType::metal, AsteroidSize::medium);
+			new Asteroid(480, -100, AsteroidType::metal, AsteroidSize::medium);
+			new Asteroid(320, -200, AsteroidType::stone, AsteroidSize::large);
 			return true;
 		}
 		break;
@@ -125,7 +127,7 @@ bool Spawner::spawnPowerUp()
 		if (companionCooldownLeft <= 0)
 		{
 			companionCooldownLeft = companionCooldown;
-			new CompanionPowerUp(100, -50);
+			new CompanionPowerUp(540, -50);
 			return true;
 		}
 		break;

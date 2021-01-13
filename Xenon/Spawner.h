@@ -14,7 +14,7 @@ private:
 	int randomNumber = 0;
 
 	// Seconds to wait before spawning an enemy again
-	float enemyCooldown = 1.0f;
+	float enemyCooldown = 2.0f;
 	float enemyCooldownLeft = enemyCooldown;
 	// Seconds to wait before spawning a loner again
 	float lonerCooldown = 2.5f;

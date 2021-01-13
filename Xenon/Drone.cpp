@@ -29,22 +29,14 @@ Drone::Drone(float x, float y, float offset)
 
 void Drone::update(float deltaTime)
 {
-	float* position;
-	position = rigidBody->getPosition();
-	position[0] = position[0] * 16.0f - tilemap->getTileWidth() / 2;
-	position[1] = position[1] * 16.0f - tilemap->getTileHeight() / 2;
-	textures[0]->setDstRect(position[0], position[1], tilemap->getTileWidth(), tilemap->getTileHeight());
-	if (position[1] > 500)
-	{
-		Actor::destroy();
-	}
+	Enemy::update(deltaTime);
 	if (frameTime < moveDelay)
 	{
 		frameTime += deltaTime;
 	}
 	else
 	{
-		velocity[0] = 5 * sin(position[1] * M_PI / 90);
+		velocity[0] = 5 * sin(ypos * M_PI / 90);
 		rigidBody->setVelocity(velocity);
 	}
 }
