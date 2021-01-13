@@ -39,7 +39,6 @@ Rect* Texture::getSrcRect()
 
 Rect* Texture::getDstRect()
 {
-	Rect* rect = new Rect();
 	return dstRect;
 }
 
