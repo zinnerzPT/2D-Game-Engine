@@ -35,6 +35,14 @@ void Level::addBodyToDisable(class b2Body* b)
 
 void Level::addActorToRemove(Actor* actor)
 {
+	// Check if the actor is already going to be removed
+	for (Actor* a : actorsToRemove)
+	{
+		if (a == actor)
+		{
+			return;
+		}
+	}
 	this->actorsToRemove.push_back(actor);
 }
 
