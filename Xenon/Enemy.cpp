@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Spaceship.h"
 #include "CompanionPowerUp.h"
+#include "GameManager.h"
 
 Enemy::Enemy()
 {
@@ -50,6 +51,7 @@ void Enemy::takeDamage(float damage)
 	{
 		health = 0;
 		Actor::destroy();
+		GameManager::getInstance()->addScore(points);
 	}
 }
 

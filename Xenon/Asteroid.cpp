@@ -1,4 +1,5 @@
 #include "Asteroid.h"
+#include "GameManager.h"
 
 Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/, AsteroidSize size /*= AsteroidSize::small*/)
 {
@@ -115,6 +116,7 @@ void Asteroid::takeDamage(float damage)
 		{
 			health = 0;
 			toDestroy = true;
+			GameManager::getInstance()->addScore(points);
 		}
 		break;
 	case AsteroidType::metal:

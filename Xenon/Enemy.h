@@ -20,4 +20,5 @@ protected:
 	float health = 100.0f;
 	float attackDamage = 0.0f;
 	float velocity[2]{ 0.0f, 0.0f };
+	int points = 1500;
 };
