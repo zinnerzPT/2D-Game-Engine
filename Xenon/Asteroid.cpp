@@ -95,9 +95,10 @@ void Asteroid::update(float deltaTime)
 	{
 		toDestroy = false;
 		float xOffset = -6;
+		float yOffset = 2;
 		for (int i = 0; i < asteroidsToSplit; ++i)
 		{
-			float location[2]{ rigidBody->getPosition()[0] + xOffset + i * 3, rigidBody->getPosition()[1]};
+			float location[2]{ rigidBody->getPosition()[0] + xOffset + (i + 1) * 3, rigidBody->getPosition()[1] + yOffset};
 			spawnSmallerAsteroid(location);
 		}
 		Actor::destroy();

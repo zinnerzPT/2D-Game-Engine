@@ -6,17 +6,8 @@
 #include "Spaceship.h"
 #include "Background.h"
 #include "ScrollingBackground.h"
-#include "Loner.h"
-#include "Rusher.h"
-#include "Enemy.h"
-#include "Missile.h"
-#include "Rusher.h"
 #include "Scoreboard.h"
-#include "ShieldPowerUp.h"
-#include "WeaponPowerUp.h"
-#include "CompanionPowerUp.h"
-#include "Drone.h"
-#include "Asteroid.h"
+#include "Spawner.h"
 
 int main(int argc, char* argv[])
 {
@@ -48,28 +39,11 @@ int main(int argc, char* argv[])
 		offset += 160;
 		ScrollingBackground* topLayerRight3 = new ScrollingBackground("../graphics/Blocks.bmp", 160, 320, 160, 32, 0, 0, 160, 32, 480, offset, false, false, 2.5f, 1024);
 	}
-	// Power ups
-	ShieldPowerUp* shieldPU = new ShieldPowerUp(50, 100);
-	WeaponPowerUp* weaponPU = new WeaponPowerUp(100, 200);
-	WeaponPowerUp* weaponPU2 = new WeaponPowerUp(50, 200);
-	CompanionPowerUp* companionPU = new CompanionPowerUp(100, 300);
-	CompanionPowerUp* companionPU2 = new CompanionPowerUp(50, 300);
 	// Player
 	Spaceship* ship = new Spaceship(304, 400);
 
-	// Enemies
-	Loner* loner = new Loner(200, 180);
-	Rusher* rusher = new Rusher(400, -40);
-	Drone* drone = new Drone(250, -40);
-	Drone* drone2 = new Drone(250, -40, .6f);
-	Drone* drone3 = new Drone(250, -40, 1.2f);
-	Drone* drone4 = new Drone(250, -40, 1.8f);
-	Drone* drone5 = new Drone(250, -40, 2.4f);
-
-	// Asteroids
-	Asteroid* asteroid = new Asteroid(280, -100);
-	Asteroid* asteroid2 = new Asteroid(350, -100, AsteroidType::metal, AsteroidSize::medium);
-	Asteroid* asteroid3 = new Asteroid(450, -100, AsteroidType::stone, AsteroidSize::large);
+	// Spawner to spawn enemies and power ups
+	new Spawner();
 
 	// UI
 	Scoreboard* scoreboard = new Scoreboard(200, 200);

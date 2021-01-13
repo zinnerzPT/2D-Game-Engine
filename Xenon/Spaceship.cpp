@@ -276,7 +276,14 @@ void Spaceship::attachCompanion(CompanionPowerUp* companion)
 
 void Spaceship::removeCompanion(class CompanionPowerUp* companion)
 {
-	this->attachedCompanions.erase(std::remove(this->attachedCompanions.begin(), this->attachedCompanions.end(), companion), this->attachedCompanions.end());
+	if (this->attachedCompanions[0] == companion)
+	{
+		this->attachedCompanions[0] = nullptr;
+	}
+	if (this->attachedCompanions[1] == companion)
+	{
+		this->attachedCompanions[1] = nullptr;
+	}
 }
 
 float* Spaceship::getPosition()
