@@ -7,6 +7,7 @@ int i = 0;
 int score = 0;
 
 Scoreboard::Scoreboard(float x, float y) {
+	// Create fonts for the scoreboard
 	Texture* smallTexture = new Texture("../graphics/font8x8.bmp");
 	textures.push_back(smallTexture);
 
@@ -18,12 +19,29 @@ Scoreboard::Scoreboard(float x, float y) {
 
 	largeFont = new BitmapFont();
 	largeFont->buildFont(largeTexture, 12, 8);
+
+	// Create textures for the UI bars
+
+	Texture* livesTexture = new Texture("../graphics/PULife.bmp");
+	textures.push_back(livesTexture);
+
+	livesBar = new UIBar();
+	livesBar->buildBar(livesTexture, 1, 1);
+
+	Texture* healthTexture = new Texture("../graphics/healthBar.bmp");
+	textures.push_back(healthTexture);
+
+	healthBar = new UIBar();
+	healthBar->buildBar(healthTexture, 1, 3);
 }
 
 Scoreboard::~Scoreboard()
 {
 	delete smallFont;
 	delete largeFont;
+
+	delete livesBar;
+	delete healthBar;
 
 	for (Texture* t : textures)
 	{
@@ -49,4 +67,7 @@ void Scoreboard::render() {
 	std::string currentScore(buffer);
 
 	largeFont->renderText(10, 20, currentScore);
+
+	livesBar->renderBar(10, 410, 3,0,4);
+	healthBar->renderBar(10, 450, 20, 2, 1);
 }

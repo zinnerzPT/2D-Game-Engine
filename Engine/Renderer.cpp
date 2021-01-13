@@ -3,7 +3,7 @@
 Renderer::Renderer(Window* window)
 {
 	renderer = SDL_CreateRenderer(window->getWindow(), -1, SDL_RENDERER_ACCELERATED);
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0, 0, 0xFF);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
 }
 
 void Renderer::clear()

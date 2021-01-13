@@ -2,6 +2,7 @@
 
 #include "Actor.h"
 #include "BitmapFont.h"
+#include "UIBar.h"
 
 class Scoreboard : public Actor
 {
@@ -15,5 +16,7 @@ public:
 private:
 	BitmapFont* smallFont;
 	BitmapFont* largeFont;
+	UIBar* livesBar;
+	UIBar* healthBar;
 };
 
