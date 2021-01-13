@@ -5,7 +5,8 @@
 BitmapFont::BitmapFont()
 {
 	//Initialize variables
-	bitmap = NULL;
+	bitmap = nullptr;
+	tilemap = nullptr;
 	newLine = 0;
 }
 

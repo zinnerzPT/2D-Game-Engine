@@ -13,7 +13,7 @@ public:
 	void init(std::string windowTitle, int windowWidth, int windowHeight);
 	void start();
 
-	void HandleEvents();
+	//void HandleEvents();
 
 	static class Level* getLevel() { return level; };
 	static Engine* getInstance();
@@ -21,8 +21,8 @@ public:
 	~Engine();
 private:
 	bool isRunning;
-	class SDLWrapper* sdl;
-	class Window* window;
+	class SDLWrapper* sdl = nullptr;
+	class Window* window = nullptr;
 	static class Level* level;
 
 	static Engine* instance;
