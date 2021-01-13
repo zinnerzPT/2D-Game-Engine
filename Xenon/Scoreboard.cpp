@@ -18,7 +18,17 @@ Scoreboard::Scoreboard(float x, float y) {
 
 	largeFont = new BitmapFont();
 	largeFont->buildFont(largeTexture, 12, 8);
+}
 
+Scoreboard::~Scoreboard()
+{
+	delete smallFont;
+	delete largeFont;
+
+	for (Texture* t : textures)
+	{
+		delete t;
+	}
 }
 
 void Scoreboard::update(float deltaTime) {
