@@ -71,7 +71,7 @@ void CompanionPowerUp::addHealth(float additionalHealth)
 	{
 		health = maxHealth;
 	}
-	std::cout << "Companion HP: " << health << std::endl;
+	//std::cout << "Companion HP: " << health << std::endl;
 }
 
 
@@ -87,7 +87,7 @@ void CompanionPowerUp::takeDamage(float damage)
 		spaceshipRef->removeCompanion(this);
 		Actor::destroy();
 	}
-	std::cout << "Companion HP: " << health << std::endl;
+	//std::cout << "Companion HP: " << health << std::endl;
 }
 
 void CompanionPowerUp::upgradeMissile()

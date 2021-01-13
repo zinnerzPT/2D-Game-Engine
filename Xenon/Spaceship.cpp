@@ -225,7 +225,7 @@ void Spaceship::addHealth(float additionalHealth)
 	{
 		health = maxHealth;
 	}
-	std::cout << "Spaceship HP: " << health << std::endl;
+	//std::cout << "Spaceship HP: " << health << std::endl;
 }
 
 
@@ -244,7 +244,7 @@ void Spaceship::takeDamage(float damage)
 		}
 		Actor::destroy();
 	}
-	std::cout << "Spaceship HP: " << health << std::endl;
+	//std::cout << "Spaceship HP: " << health << std::endl;
 }
 
 void Spaceship::upgradeMissile()
