@@ -15,6 +15,8 @@
 #include "ShieldPowerUp.h"
 #include "WeaponPowerUp.h"
 #include "CompanionPowerUp.h"
+#include "Drone.h"
+#include "Asteroid.h"
 
 int main(int argc, char* argv[])
 {
@@ -54,9 +56,21 @@ int main(int argc, char* argv[])
 	CompanionPowerUp* companionPU2 = new CompanionPowerUp(50, 300);
 	// Player
 	Spaceship* ship = new Spaceship(304, 400);
+
 	// Enemies
 	Loner* loner = new Loner(200, 180);
 	Rusher* rusher = new Rusher(400, -40);
+	Drone* drone = new Drone(250, -40);
+	Drone* drone2 = new Drone(250, -40, .6f);
+	Drone* drone3 = new Drone(250, -40, 1.2f);
+	Drone* drone4 = new Drone(250, -40, 1.8f);
+	Drone* drone5 = new Drone(250, -40, 2.4f);
+
+	// Asteroids
+	Asteroid* asteroid = new Asteroid(280, -100);
+	Asteroid* asteroid2 = new Asteroid(350, -100, AsteroidType::metal, AsteroidSize::medium);
+	Asteroid* asteroid3 = new Asteroid(450, -100, AsteroidType::stone, AsteroidSize::large);
+
 	// UI
 	Scoreboard* scoreboard = new Scoreboard(200, 200);
 
