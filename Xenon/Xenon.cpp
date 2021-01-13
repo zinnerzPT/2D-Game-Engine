@@ -5,6 +5,7 @@
 #include "Level.h"
 #include "Spaceship.h"
 #include "Background.h"
+#include "ScrollingBackground.h"
 #include "Loner.h"
 #include "Rusher.h"
 #include "Enemy.h"
@@ -24,10 +25,26 @@ int main(int argc, char* argv[])
 	// Background
 	Background* background = new Background("../graphics/galaxy2.bmp");
 	int offset = -512;
-	for (int i = 0; i < 9; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
-		Background* scrollingBackground = new Background("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416, offset);
+		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416 + 20, offset);
 		offset += 128;
+	}
+	offset = -512;
+	for (int i = 0; i < 8; ++i)
+	{
+		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 288, 1344, 64, 192, 0, 0, 64, 192, -1, offset);
+		offset += 128;
+	}
+	offset = -320;
+	{
+		ScrollingBackground* topLayerRight0 = new ScrollingBackground("../graphics/Blocks.bmp", 160, 352, 160, 32, 0, 0, 160, 32, 480, offset, false, false, 2.5f, 1024);
+		offset += 32;
+		ScrollingBackground* topLayerRight1 = new ScrollingBackground("../graphics/Blocks.bmp", 256, 96, 192, 64, 0, 0, 192, 64, 448, offset, false, false, 2.5f, 1024);
+		offset += 64;
+		ScrollingBackground* topLayerRight2 = new ScrollingBackground("../graphics/Blocks.bmp", 224, 160, 224, 160, 0, 0, 224, 160, 416, offset, false, false, 2.5f, 1024);
+		offset += 160;
+		ScrollingBackground* topLayerRight3 = new ScrollingBackground("../graphics/Blocks.bmp", 160, 320, 160, 32, 0, 0, 160, 32, 480, offset, false, false, 2.5f, 1024);
 	}
 	// Power ups
 	ShieldPowerUp* shieldPU = new ShieldPowerUp(50, 100);
