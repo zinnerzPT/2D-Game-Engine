@@ -23,8 +23,5 @@ private:
 	Texture* explosionTex = nullptr;
 	Tilemap* explosionTilemap = nullptr;
 	Animation* explosionAnim = nullptr;
-
-	Animation* animationMedium = nullptr;
-	Animation* animationHeavy = nullptr;
 };
 

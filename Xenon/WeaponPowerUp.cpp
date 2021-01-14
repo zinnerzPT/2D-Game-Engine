@@ -7,9 +7,11 @@ WeaponPowerUp::WeaponPowerUp(int x, int y)
 {
 	Texture* texture = new Texture("../graphics/PUWeapon.bmp");
 	textures.push_back(texture);
-	tilemap = new Tilemap(texture, 2, 4);
-	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7 }, true);
-	animation->play();
+	Tilemap* tilemap = new Tilemap(texture, 2, 4);
+	tilemaps.push_back(tilemap);
+	Animation* animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7 }, true);
+	animations.push_back(animation);
+	animations[0]->play();
 
 	// This power up uses category 5 and collides with category 1(player) and 6(companion)
 	rigidBody->setCollisionFilter(CATEGORY_5, CATEGORY_1 | CATEGORY_6);

@@ -12,6 +12,10 @@ private:
 	bool spawnPowerUp();
 
 	int randomNumber = 0;
+	int randomPosX = 0;
+	int randomPosY = 0;
+	// amount of drones to spawn in a pack
+	int dronePack = 5;
 
 	// Seconds to wait before spawning an enemy again
 	float enemyCooldown = 2.0f;

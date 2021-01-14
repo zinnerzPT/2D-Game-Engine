@@ -64,6 +64,5 @@ Animation::~Animation()
 {
 	isActive = false;
 	Engine::getLevel()->addAnimationToRemove(this);
-	delete animationTilemap;
 }
 

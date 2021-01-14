@@ -1,20 +1,27 @@
 #include "Loner.h"
 
-Loner::Loner(float x, float y)
+Loner::Loner(float x, float y, VelocityDirection velocityDirection /*= VelocityDirection::positive*/)
 {
 	Texture* texture = new Texture("../graphics/LonerA.bmp");
 	textures.push_back(texture);
 	flipHorizontal = true;
-	tilemap = new Tilemap(texture, 4, 4);
-	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
-	animation->play();
+	Tilemap* tilemap = new Tilemap(texture, 4, 4);
+	tilemaps.push_back(tilemap);
+	Animation* animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
+	animations.push_back(animation);
+	animations[0]->play();
 
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
 	rigidBody->createBody(position, halfSize);
 	// Initialize velocity
-	velocity[0] = 5.0f;
+	if (velocityDirection == VelocityDirection::negative)
+	{
+		lonerVelocity *= -1;
+		flipHorizontal = false;
+	}
+	velocity[0] = lonerVelocity;
 	rigidBody->setVelocity(velocity);
 
 	// Initialize attack damage

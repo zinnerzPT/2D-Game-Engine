@@ -48,6 +48,14 @@ void Level::addActorToRemove(Actor* actor)
 
 void Level::addAnimationToRemove(Animation* animation)
 {
+	// Check if the animation is already going to be removed
+	for (Animation* an : animationsToRemove)
+	{
+		if (an == animation)
+		{
+			return;
+		}
+	}
 	this->animationsToRemove.push_back(animation);
 }
 
@@ -123,9 +131,11 @@ void Level::updateAnimations()
 
 Level::~Level()
 {
-	for (Actor* a : actors) {
-		delete(a);
+	for (Actor* a : actors) 
+	{
+		addActorToRemove(a);
 	}
+	updateActors();
 	delete gravity;
 	delete world;
 }

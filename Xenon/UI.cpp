@@ -39,11 +39,6 @@ UI::~UI()
 
 	delete livesBar;
 	delete healthBar;
-
-	for (Texture* t : textures)
-	{
-		delete t;
-	}
 }
 
 void UI::update(float deltaTime) {

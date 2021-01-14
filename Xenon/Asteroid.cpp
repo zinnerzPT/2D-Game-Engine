@@ -4,6 +4,8 @@
 Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/, AsteroidSize size /*= AsteroidSize::small*/)
 {
 	Texture* texture = nullptr;
+	Tilemap* tilemap = nullptr;
+	Animation* animation = nullptr;
 
 	asteroidSize = size;
 	asteroidType = type;
@@ -23,7 +25,9 @@ Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/
 		}
 		textures.push_back(texture);
 		tilemap = new Tilemap(texture, 2, 8);
+		tilemaps.push_back(tilemap);
 		animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
+		animations.push_back(animation);
 		// Initialize corresponding damage
 		attackDamage = smallDamage;
 		// Initialize corresponding health
@@ -43,7 +47,9 @@ Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/
 		}
 		textures.push_back(texture);
 		tilemap = new Tilemap(texture, 3, 8);
+		tilemaps.push_back(tilemap);
 		animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 }, true);
+		animations.push_back(animation);
 		// Initialize corresponding damage
 		attackDamage = mediumDamage;
 		// Initialize corresponding health
@@ -63,14 +69,16 @@ Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/
 		}
 		textures.push_back(texture);
 		tilemap = new Tilemap(texture, 5, 5);
+		tilemaps.push_back(tilemap);
 		animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 }, true);
+		animations.push_back(animation);
 		// Initialize corresponding damage
 		attackDamage = largeDamage;
 		// Initialize corresponding health
 		health = largeHealth;
 		break;
 	}
-	animation->play();
+	animations[0]->play();
 
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };

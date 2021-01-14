@@ -23,8 +23,9 @@ protected:
 	float xpos = 0.0f;
 	float ypos = 0.0f;
 	std::vector<Texture*> textures;
-	Tilemap* tilemap = nullptr;
-	Animation* animation = nullptr;
+	std::vector<Tilemap*> tilemaps;
+	std::vector<Animation*> animations;
+
 	bool flipHorizontal = false;
 	bool flipVertical = false;
 };

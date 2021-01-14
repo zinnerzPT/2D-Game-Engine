@@ -5,6 +5,12 @@
 #include "Tilemap.h"
 #include "Animation.h"
 
+enum class VelocityDirection
+{
+	positive,
+	negative
+};
+
 class Enemy : 
 	public Actor,
 	public ContactSensor

@@ -17,7 +17,8 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	Texture* texture = new Texture("../graphics/Ship1.bmp");
 	textures.push_back(texture);
 
-	tilemap = new Tilemap(texture, 1, 7);
+	Tilemap* tilemap = new Tilemap(texture, 1, 7);
+	tilemaps.push_back(tilemap);
 	tilemap->ChangeFrame(3);
 
 	// Spaceship burners
@@ -25,21 +26,29 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	textures.push_back(burnerTexRight);
 	burnerTexRight->setTexOffset(32, 64);
 	burnerTilemapRight = new Tilemap(burnerTexRight, 1, 2);
+	tilemaps.push_back(burnerTilemapRight);
 	burnerAnimRight = new Animation(burnerTilemapRight, { 0,1 }, true);
+	animations.push_back(burnerAnimRight);
 	burnerAnimRight->play();
 
 	burnerTexLeft = new Texture("../graphics/Burner1.bmp");
 	textures.push_back(burnerTexLeft);
 	burnerTexLeft->setTexOffset(18, 64);
 	burnerTilemapLeft = new Tilemap(burnerTexLeft, 1, 2);
+	tilemaps.push_back(burnerTilemapLeft);
 	burnerAnimLeft = new Animation(burnerTilemapLeft, { 0,1 }, true);
+	animations.push_back(burnerAnimLeft);
 	burnerAnimLeft->play();
 
 	// Turning animations
 	moveRightAnim = new Animation(tilemap, { 3,4,5,6 }, false);
+	animations.push_back(moveRightAnim);
 	returnRightAnim = new Animation(tilemap, { 6,5,4,3 }, false);
+	animations.push_back(returnRightAnim);
 	moveLeftAnim = new Animation(tilemap, { 3,2,1,0 }, false);
+	animations.push_back(moveLeftAnim);
 	returnLeftAnim = new Animation(tilemap, { 0,1,2,3 }, false);
+	animations.push_back(returnLeftAnim);
 
 	// Create rigidbody
 	rigidBody->makeDynamic(1.0f);
@@ -180,12 +189,12 @@ void Spaceship::update(float deltaTime)
 		float offset[2]{ 0.0f, 0.0f };
 		if (companionToAttach == attachedCompanions[0])
 		{
-			offset[0] = 5.0f;
+			offset[0] = 3.5f;
 			offset[1] = -0.5f;
 		}
 		if (companionToAttach == attachedCompanions[1])
 		{
-			offset[0] = -5.0f;
+			offset[0] = -3.5f;
 			offset[1] = -0.5f;
 		}
 		float position[2]{ getPosition()[0] + offset[0], getPosition()[1] + offset[1] };

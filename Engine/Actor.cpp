@@ -23,5 +23,16 @@ void Actor::destroy()
 
 Actor::~Actor()
 {
-
+	for (Texture* t : textures)
+	{
+		delete t;
+	}
+	for (Tilemap* tm : tilemaps)
+	{
+		delete tm;
+	}
+	for (Animation* an : animations)
+	{
+		delete an;
+	}
 }

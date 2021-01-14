@@ -8,9 +8,11 @@ Drone::Drone(float x, float y, float offset)
 {
 	Texture* texture = new Texture("../graphics/drone.bmp");
 	textures.push_back(texture);
-	tilemap = new Tilemap(texture, 2, 8);
-	animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
-	animation->play();
+	Tilemap* tilemap = new Tilemap(texture, 2, 8);
+	tilemaps.push_back(tilemap);
+	Animation* animation = new Animation(tilemap, { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 }, true);
+	animations.push_back(animation);
+	animations[0]->play();
 
 	rigidBody->makeDynamic(1.0f);
 	float position[2]{ x / 16.0f, y / 16.0f };
