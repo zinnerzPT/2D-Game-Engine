@@ -66,13 +66,30 @@ void Spaceship::update(float deltaTime)
 	// Movement input
 	if (Input::getInstance()->getKey("Right") && xpos < 566)
 	{
+		movementKeys[2] = true;
+	}
+	else
+	{
+		movementKeys[2] = false;
+	}
+	if (Input::getInstance()->getKey("Left") && xpos > 10)
+	{
+		movementKeys[0] = true;
+	}
+	else
+	{
+		movementKeys[0] = false;
+	}
+
+	if (movementKeys[2])
+	{
 		moveRight(moveSpeed * deltaTime);
 	}
-	else if (Input::getInstance()->getKey("Left") && xpos > 10)
+	if (movementKeys[0])
 	{
 		moveRight(-moveSpeed * deltaTime);
 	}
-	else
+	if ((movementKeys[0] && movementKeys[2]) || (!movementKeys[0] && !movementKeys[2]))
 	{
 		// Reset velocity in x
 		velocity[0] = 0.0f;
@@ -81,13 +98,30 @@ void Spaceship::update(float deltaTime)
 
 	if (Input::getInstance()->getKey("Up") && ypos > 10)
 	{
+		movementKeys[1] = true;
+	}
+	else
+	{
+		movementKeys[1] = false;
+	}
+	if (Input::getInstance()->getKey("Down") && ypos < 406)
+	{
+		movementKeys[3] = true;
+	}
+	else
+	{
+		movementKeys[3] = false;
+	}
+
+	if (movementKeys[1])
+	{
 		moveUp(moveSpeed * deltaTime);
 	}
-	else if (Input::getInstance()->getKey("Down") && ypos < 406)
+	if (movementKeys[3])
 	{
 		moveUp(-moveSpeed * deltaTime);
 	}
-	else
+	if ((movementKeys[1] && movementKeys[3]) || (!movementKeys[1] && !movementKeys[3]))
 	{
 		// Reset velocity in y
 		velocity[1] = 0.0f;

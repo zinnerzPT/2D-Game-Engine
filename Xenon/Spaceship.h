@@ -38,6 +38,9 @@ private:
 	bool canFire = true;
 	bool needsCooldown = false;
 
+	// 0 for left, 1 for up, 2 for right and 3 for down
+	bool movementKeys[4] = { false, false, false, false };
+
 	bool isAlive = true;
 
 	float missileHalfSize[2];
