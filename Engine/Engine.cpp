@@ -14,12 +14,12 @@ Engine* Engine::instance = nullptr;
 Renderer* Engine::renderer = nullptr;
 Level* Engine::level = nullptr;
 
-void Engine::init(std::string windowTitle, int windowWidth, int windowHeight)
+void Engine::init(std::string windowTitle, int windowWidth, int windowHeight, Level* gameLevel)
 {
 	sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 	window = new Window(windowTitle, windowWidth, windowHeight);
 	renderer = new Renderer(window);
-	level = new Level();
+	level = gameLevel;
 }
 
 void Engine::start()

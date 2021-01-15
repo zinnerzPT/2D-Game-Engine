@@ -10,7 +10,7 @@ private:
 
 public:
 
-	void init(std::string windowTitle, int windowWidth, int windowHeight);
+	void init(std::string windowTitle, int windowWidth, int windowHeight, class Level* gameLevel);
 	void start();
 
 	//void HandleEvents();

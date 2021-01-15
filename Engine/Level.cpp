@@ -2,9 +2,9 @@
 
 #include "ContactListener.h"
 
-Level::Level()
+Level::Level(float gravityX, float gravityY)
 {
-	gravity = new b2Vec2(0.0f, 0.0f);
+	gravity = new b2Vec2(gravityX, gravityY);
 	world = new b2World(*gravity);
 
 	ContactListener* contactListener = new ContactListener();

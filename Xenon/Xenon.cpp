@@ -13,8 +13,9 @@
 int main(int argc, char* argv[])
 {
 	Engine* engine = Engine::getInstance();
+	Level* mainLevel = new Level(0.0f, 0.0f);
 
-	engine->init("Xenon Clone!", 640, 480);
+	engine->init("Xenon Clone!", 640, 480, mainLevel);
 
 	// Background
 	Background* background = new Background("../graphics/galaxy2.bmp");

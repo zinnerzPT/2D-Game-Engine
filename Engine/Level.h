@@ -7,7 +7,7 @@
 class Level
 {
 public:
-	Level();
+	Level(float gravityX, float gravityY);
 	void addActor(Actor* actor);
 	void addAnimation(Animation* animation);
 
