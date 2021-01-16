@@ -6,11 +6,8 @@
 #include "Pawn.h"
 #include "Level.h"
 #include <box2d/box2d.h>
-#include <thread>
 
 #include "Input.h"
-
-#define PHYSICS_TICKS_PER_SECOND 60.0f
 
 Engine* Engine::instance = nullptr;
 
@@ -27,20 +24,15 @@ void Engine::init(std::string windowTitle, int windowWidth, int windowHeight, Le
 
 void Engine::start()
 {
-	//const int FPS = 60;
-	//const float frameDelay = 1000.0f / FPS;
-	//int frameTime;
-
 	float frameTime = 0;
 	int prevTime = 0;
 	int currentTime = 0;
 	float deltaTime = 0;
 
+	int velocityIterations = 6;
+	int positionIterations = 2;
+
 	isRunning = true;
-
-	// Physics variables
-
-	physicsThread = std::thread{ &Engine::physicsUpdate, this };
 
 	// Game Loop
 	while (isRunning)
@@ -48,6 +40,9 @@ void Engine::start()
 		prevTime = currentTime;
 		currentTime = SDL_GetTicks();
 		deltaTime = (currentTime - prevTime) / 1000.0f;
+
+		//Update the physics
+		level->getWorld()->Step(deltaTime, velocityIterations, positionIterations);
 
 		/* Event handling */
 		isRunning = Input::getInstance()->handleInput();
@@ -79,27 +74,6 @@ void Engine::start()
 
 		//Update enabled/disabled status
 		level->updateBodies();
-
-		//Fixed framerate
-		//if (frameDelay > deltaTime) {
-		//	SDL_Delay(frameDelay - deltaTime);
-		//}
-	}
-
-	physicsThread.join();
-}
-
-void Engine::physicsUpdate()
-{
-	long timeStep = 1000.0f / PHYSICS_TICKS_PER_SECOND;
-	int velocityIterations = 6;
-	int positionIterations = 2;
-
-	while (isRunning) {
-		//Update the physics
-		level->getWorld()->Step(timeStep / 1000.0f, velocityIterations, positionIterations);
-		//std::cout << timeStep << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds{ timeStep });
 	}
 }
 
@@ -118,5 +92,3 @@ Engine::~Engine()
 	delete sdl;
 	delete level;
 }
-
-
