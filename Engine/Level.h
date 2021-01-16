@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <list>
 #include "Actor.h"
 #include "Animation.h"
 #include "UICanvas.h"
@@ -33,20 +33,20 @@ public:
 	~Level();
 
 private:
-	std::vector<Actor*> actors;
-	std::vector<Animation*> animations;
-	std::vector<UICanvas*> canvases;
+	std::list<Actor*> actors;
+	std::list<Animation*> animations;
+	std::list<UICanvas*> canvases;
 	struct b2Vec2* gravity;
 	class b2World* world;
 
-	class std::vector<b2Body*> bodiesToEnable;
-	class std::vector<b2Body*> bodiesToDisable;
+	class std::list<b2Body*> bodiesToEnable;
+	class std::list<b2Body*> bodiesToDisable;
 
-	std::vector<Actor*> actorsToAdd;
-	std::vector<Animation*> animationsToAdd;
-	std::vector<Actor*> actorsToRemove;
-	std::vector<Animation*> animationsToRemove;
-	std::vector<UICanvas*> canvasesToAdd;
-	std::vector<UICanvas*> canvasesToRemove;
+	std::list<Actor*> actorsToAdd;
+	std::list<Animation*> animationsToAdd;
+	std::list<Actor*> actorsToRemove;
+	std::list<Animation*> animationsToRemove;
+	std::list<UICanvas*> canvasesToAdd;
+	std::list<UICanvas*> canvasesToRemove;
 };
 
