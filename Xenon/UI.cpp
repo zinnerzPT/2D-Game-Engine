@@ -46,21 +46,23 @@ void UI::update(float deltaTime) {
 }
 
 void UI::render() {
+	GameManager* gameManager = GameManager::getInstance();
+
 	smallFont->renderText(10, 10, "Player One");
 
 	// convert scores to string with 10 digits
 	char buffer[256];
-	sprintf_s(buffer, "%010d", GameManager::getInstance()->getScore());
+	sprintf_s(buffer, "%010d", gameManager->getScore());
 	std::string currentScore(buffer);
 	largeFont->renderText(10, 20, currentScore);
 
-	sprintf_s(buffer, "%010d", GameManager::getInstance()->getHiScore());
+	sprintf_s(buffer, "%010d", gameManager->getHiScore());
 	std::string hiScore(buffer);
 
 	smallFont->renderText(300, 10, " Hi Score \n" + hiScore);
 
-	livesBar->renderBar(10, 410, GameManager::getInstance()->getLives(), 0, 4);
+	livesBar->renderBar(10, 410, gameManager->getLives(), 0, 4);
 
-	int healthColor = (GameManager::getInstance()->getHealth() / 30.0f) - 0.34f;
-	healthBar->renderBar(10, 450, GameManager::getInstance()->getHealth() / 5.0f, healthColor, 1);
+	int healthColor = (gameManager->getHealth() / 30.0f) - 0.34f;
+	healthBar->renderBar(10, 450, gameManager->getHealth() / 5.0f, healthColor, 1);
 }

@@ -21,6 +21,11 @@ void Level::addAnimation(Animation* animation)
 	this->animationsToAdd.push_back(animation);
 }
 
+void Level::addCanvas(UICanvas* canvas)
+{
+	this->canvasesToAdd.push_back(canvas);
+}
+
 // Box2D
 void Level::addBodyToEnable(class b2Body* b)
 {
@@ -59,11 +64,27 @@ void Level::addAnimationToRemove(Animation* animation)
 	this->animationsToRemove.push_back(animation);
 }
 
+void Level::addCanvasToRemove(UICanvas* canvas)
+{
+	// Check if the canvas is already going to be removed
+	for (UICanvas* c : canvasesToRemove)
+	{
+		if (c == canvas)
+		{
+			return;
+		}
+	}
+	this->canvasesToRemove.push_back(canvas);
+}
+
 void Level::update(float deltaTime)
 {
 	//update actors
 	for (Actor* a : actors) {
 		a->update(deltaTime);
+	}
+	for (UICanvas* c : canvases) {
+		c->update(deltaTime);
 	}
 }
 
@@ -71,6 +92,9 @@ void Level::render()
 {
 	for (Actor* a : actors) {
 		a->render();
+	}
+	for (UICanvas* c : canvases) {
+		c->render();
 	}
 }
 
@@ -127,6 +151,22 @@ void Level::updateAnimations()
 		this->animations.push_back(an);
 	}
 	animationsToAdd.clear();
+}
+
+void Level::updateCanvases()
+{
+	for (UICanvas* c : canvasesToRemove)
+	{
+		this->canvases.erase(std::remove(this->canvases.begin(), this->canvases.end(), c), this->canvases.end());
+		delete c;
+	}
+	canvasesToRemove.clear();
+
+	for (UICanvas* c : canvasesToAdd)
+	{
+		this->canvases.push_back(c);
+	}
+	canvasesToAdd.clear();
 }
 
 Level::~Level()

@@ -72,6 +72,9 @@ void Engine::start()
 		//Animations to add/remove
 		level->updateAnimations();
 
+		//UICanvases to add/remove
+		level->updateCanvases();
+
 		//Update enabled/disabled status
 		level->updateBodies();
 	}
