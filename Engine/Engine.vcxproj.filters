@@ -139,8 +139,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="shader.frag" />
     <None Include="shader.vert" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

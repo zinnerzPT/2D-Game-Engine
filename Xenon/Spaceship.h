@@ -5,7 +5,7 @@
 
 #include <thread>
 
-class Spaceship : 
+class Spaceship :
 	public Pawn
 {
 public:
@@ -51,8 +51,8 @@ private:
 
 	// Time it takes to fire again (in milliseconds)
 	int cooldown = 300;
-	
-	std::vector<class CompanionPowerUp*> attachedCompanions{nullptr, nullptr};
+
+	std::vector<class CompanionPowerUp*> attachedCompanions{ nullptr, nullptr };
 	class CompanionPowerUp* companionToAttach = nullptr;
 
 	Animation* moveRightAnim;
@@ -61,7 +61,7 @@ private:
 	Animation* returnRightAnim;
 	Animation* returnLeftAnim;
 
-	Texture* burnerTexRight = nullptr; 
+	Texture* burnerTexRight = nullptr;
 	Tilemap* burnerTilemapRight = nullptr;
 	Animation* burnerAnimRight = nullptr;
 

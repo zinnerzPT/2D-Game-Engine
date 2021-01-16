@@ -1,12 +1,15 @@
 #pragma once
 
 #include <string>
+#include <thread>
 
 class Engine
 {
 
 private:
 	Engine() {};
+
+	void physicsUpdate();
 
 public:
 
@@ -24,6 +27,8 @@ private:
 	class SDLWrapper* sdl = nullptr;
 	class Window* window = nullptr;
 	static class Level* level;
+
+	std::thread physicsThread;
 
 	static Engine* instance;
 

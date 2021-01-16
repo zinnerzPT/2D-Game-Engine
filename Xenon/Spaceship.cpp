@@ -59,7 +59,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	rigidBody->createBody(position, halfSize);
 
 	// Initialize spaceship movement speed
-	moveSpeed = 600.0f;
+	moveSpeed = 10.0f;
 
 	// Initialize values to use when creating a missile
 	missileHalfSize[0] = missileHalfSize[1] = 8.0f / 16.0f;
@@ -92,11 +92,13 @@ void Spaceship::update(float deltaTime)
 
 	if (movementKeys[2])
 	{
-		moveRight(moveSpeed * deltaTime);
+		//moveRight(moveSpeed * deltaTime);
+		moveRight(moveSpeed);
 	}
 	if (movementKeys[0])
 	{
-		moveRight(-moveSpeed * deltaTime);
+		//moveRight(-moveSpeed * deltaTime);
+		moveRight(-moveSpeed);
 	}
 	if ((movementKeys[0] && movementKeys[2]) || (!movementKeys[0] && !movementKeys[2]))
 	{
@@ -124,11 +126,13 @@ void Spaceship::update(float deltaTime)
 
 	if (movementKeys[1])
 	{
-		moveUp(moveSpeed * deltaTime);
+		//moveUp(moveSpeed * deltaTime);
+		moveUp(moveSpeed);
 	}
 	if (movementKeys[3])
 	{
-		moveUp(-moveSpeed * deltaTime);
+		//moveUp(-moveSpeed * deltaTime);
+		moveUp(-moveSpeed);
 	}
 	if ((movementKeys[1] && movementKeys[3]) || (!movementKeys[1] && !movementKeys[3]))
 	{
@@ -145,11 +149,13 @@ void Spaceship::update(float deltaTime)
 
 		if (leftAxisX > 0.3f || leftAxisX < -0.3f)
 		{
-			moveRight(moveSpeed * deltaTime * leftAxisX);
+			//moveRight(moveSpeed * deltaTime * leftAxisX);
+			moveRight(moveSpeed * leftAxisX);
 		}
 		if (leftAxisY > 0.3f || leftAxisY < -0.3f)
 		{
-			moveUp(moveSpeed * deltaTime * -leftAxisY);
+			//moveUp(moveSpeed * deltaTime * -leftAxisY);
+			moveUp(moveSpeed * -leftAxisY);
 		}
 	}
 
