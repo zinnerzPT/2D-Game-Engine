@@ -78,6 +78,30 @@ Key returnKey{ "Return", SDLK_RETURN };
 Key backspace{ "Backspace", SDLK_BACKSPACE };
 
 // Function Keys
+Key f1{ "F1", SDLK_F1 };
+Key f2{ "F2", SDLK_F2 };
+Key f3{ "F3", SDLK_F3 };
+Key f4{ "F4", SDLK_F4 };
+Key f5{ "F5", SDLK_F5 };
+Key f6{ "F6", SDLK_F6 };
+Key f7{ "F7", SDLK_F7 };
+Key f8{ "F8", SDLK_F8 };
+Key f9{ "F9", SDLK_F9 };
+Key f10{ "F10", SDLK_F10 };
+Key f11{ "F11", SDLK_F11 };
+Key f12{ "F12", SDLK_F12 };
+Key f13{ "F13", SDLK_F13 };
+Key f14{ "F14", SDLK_F14 };
+Key f15{ "F15", SDLK_F15 };
+Key f16{ "F16", SDLK_F16 };
+Key f17{ "F17", SDLK_F17 };
+Key f18{ "F18", SDLK_F18 };
+Key f19{ "F19", SDLK_F19 };
+Key f20{ "F20", SDLK_F20 };
+Key f21{ "F21", SDLK_F21 };
+Key f22{ "F22", SDLK_F22 };
+Key f23{ "F23", SDLK_F23 };
+Key f24{ "F24", SDLK_F24 };
 
 std::vector<Key*> keys = {
 	// Letters
@@ -90,7 +114,10 @@ std::vector<Key*> keys = {
 	&arrowUp, &arrowDown, &arrowLeft, &arrowRight,
 
 	// Other Keys
-	&leftShift, &rightShift, &leftCtrl, &rightCtrl, &leftAlt, &rightAlt, &space, &tab, &capsLock, &returnKey, &backspace
+	&leftShift, &rightShift, &leftCtrl, &rightCtrl, &leftAlt, &rightAlt, &space, &tab, &capsLock, &returnKey, &backspace,
+
+	// Function keys
+	&f1, &f2, &f3, &f4, &f5, &f6, &f7, &f8, &f9, &f10, &f11, &f12, &f13, &f14, &f15, &f16, &f17, &f18, &f19, &f20, &f21, &f22, &f23, &f24
 };
 #pragma endregion
 
