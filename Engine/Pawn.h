@@ -19,6 +19,6 @@ public:
 protected:
 	float moveSpeed;
 	float velocity[2]{ 0.0f, 0.0f };
-	class GameController* controller;
+	//class GameController* controller;
 };
 

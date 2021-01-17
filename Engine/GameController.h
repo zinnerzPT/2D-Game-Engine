@@ -1,18 +1,39 @@
 #pragma once
+#include <string>
 
 class GameController
 {
 public:
-	GameController();
+	GameController(int id);
 
-	inline bool getIsDetected() { return isDetected; };
-	float getXAxis();
-	float getYAxis();
-	bool getButtonA();
+	float getLeftXAxis();
+	float getLeftYAxis();
+
+	float getRightXAxis();
+	float getRightYAxis();
+
+	float getLeftTriggerAxis();
+	float getRightTriggerAxis();
+
+	//bool getButtonA();
+
+	// Return true if the button is pressed
+	bool getButton(std::string buttonName);
+
+	// Return true if the button was pressed this frame
+	bool getButtonDown(std::string buttonName);
+
+	// Return true if the button was released this frame
+	bool getButtonUp(std::string buttonName);
+
+	void handleButtonDown(uint8_t button);
+	void handleButtonUp(uint8_t button);
+
+	inline int getId() { return id; };
 
 	~GameController();
 
 private:
-	bool isDetected = false;
+	int id;
 };
 

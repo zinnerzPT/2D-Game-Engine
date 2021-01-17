@@ -1,7 +1,7 @@
 #include "Spaceship.h"
 #include "Input.h"
 #include "Animation.h"
-#include "GameController.h"
+//#include "GameController.h"
 #include "PowerUp.h"
 #include "CompanionPowerUp.h"
 #include "GameManager.h"
@@ -148,10 +148,10 @@ void Spaceship::update(float deltaTime)
 	}
 
 	// Game controller movement
-	if (controller->getIsDetected())
+	if (Input::getInstance()->getController(0))
 	{
-		float leftAxisX = controller->getXAxis();
-		float leftAxisY = controller->getYAxis();
+		float leftAxisX = Input::getInstance()->getController(0)->getLeftXAxis();
+		float leftAxisY = Input::getInstance()->getController(0)->getLeftYAxis();
 
 		if (leftAxisX > 0.3f || leftAxisX < -0.3f)
 		{
@@ -163,7 +163,13 @@ void Spaceship::update(float deltaTime)
 			//moveUp(moveSpeed * deltaTime * -leftAxisY);
 			moveUp(moveSpeed * -leftAxisY);
 		}
+
+		if (Input::getInstance()->getController(0)->getButton("A"))
+		{
+			fire();
+		}
 	}
+
 
 	// Animation
 	if (velocity[0] > 0.0f)
@@ -187,13 +193,6 @@ void Spaceship::update(float deltaTime)
 		fire();
 	}
 
-	if (controller->getIsDetected())
-	{
-		if (controller->getButtonA())
-		{
-			fire();
-		}
-	}
 
 	// Update companions
 	if (companionToAttach)

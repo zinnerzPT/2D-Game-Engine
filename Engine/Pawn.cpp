@@ -6,7 +6,7 @@ Pawn::Pawn(float x, float y) {
 	xpos = x;
 	ypos = y;
 	moveSpeed = 100.0f;
-	controller = new GameController();
+	//controller = new GameController();
 }
 
 void Pawn::update(float deltaTime)

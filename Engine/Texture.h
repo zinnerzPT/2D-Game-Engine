@@ -8,7 +8,7 @@ class Texture
 public:
 	Texture(std::string filePath);
 
-	struct SDL_Texture* GetTexture() { return texture; }
+	inline struct SDL_Texture* GetTexture() { return texture; }
 
 	Rect* getSrcRect();
 	Rect* getDstRect();

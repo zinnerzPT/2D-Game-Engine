@@ -9,7 +9,7 @@ public:
 	Window(std::string title, int windowWidth, int windowHeight);
 
 	SDL_Surface* getSurface();
-	SDL_Window* getWindow() { return window; }
+	inline SDL_Window* getWindow() { return window; }
 
 	void updateSurface();
 

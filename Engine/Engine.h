@@ -13,7 +13,7 @@ public:
 	void init(std::string windowTitle, int windowWidth, int windowHeight, class Level* gameLevel);
 	void start();
 
-	static class Level* getLevel() { return level; };
+	inline static class Level* getLevel() { return level; };
 	static Engine* getInstance();
 
 	~Engine();

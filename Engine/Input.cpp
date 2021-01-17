@@ -125,6 +125,30 @@ std::vector<Key*> keys = {
 std::vector<Key*> keysUp;
 std::vector<Key*> keysDown;
 
+Input::Input() {
+
+	// Initialize controllers
+	for (int i = 0; i < SDL_NumJoysticks(); ++i)
+	{
+		if (SDL_IsGameController(i))
+		{
+			addController(i);
+			//std::cout << "Index '" << i << "' is a compatible controller, named '" << SDL_GameControllerNameForIndex(i) << "'" << std::endl;
+		}
+		else
+		{
+			//std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
+		}
+	}
+}
+
+Input::~Input() {
+	for (GameController* c : controllers) {
+		this->controllers.erase(std::remove(this->controllers.begin(), this->controllers.end(), c), this->controllers.end());
+		delete c;
+	}
+}
+
 Input* Input::getInstance()
 {
 	if (instance == nullptr) {
@@ -135,7 +159,7 @@ Input* Input::getInstance()
 
 bool Input::handleInput() {
 	// releases the key released on the previous frame
-	for (Key *k : keysUp) {
+	for (Key* k : keysUp) {
 		k->isKeyUp = false;
 		//std::cout << k.keyName << " cleared." << std::endl;
 	}
@@ -165,6 +189,22 @@ bool Input::handleInput() {
 			handleKeyUp(ev.key.keysym, ev.key.repeat);
 			break;
 
+		case SDL_CONTROLLERDEVICEADDED:
+			addController(ev.cdevice.which);
+			break;
+
+		case SDL_CONTROLLERDEVICEREMOVED:
+			removeController(ev.cdevice.which);
+			break;
+
+		case SDL_CONTROLLERBUTTONDOWN:
+			getControllerWithId(ev.cbutton.which)->handleButtonDown(ev.cbutton.button);				
+			break;
+
+		case SDL_CONTROLLERBUTTONUP:
+			getControllerWithId(ev.cbutton.which)->handleButtonUp(ev.cbutton.button);
+			break;
+
 		default:
 			//std::cout << "something happened but I don't know what" << std::endl;
 			break;
@@ -192,7 +232,6 @@ void Input::handleKeyDown(SDL_Keysym keyDown, int repeat)
 
 void Input::handleKeyUp(SDL_Keysym keyUp, int repeat)
 {
-
 	for (Key* key : keys)
 	{
 		if (key->keycode == keyUp.sym)
@@ -201,6 +240,22 @@ void Input::handleKeyUp(SDL_Keysym keyUp, int repeat)
 			key->isKeyUp = true;
 			keysUp.push_back(key);
 			//std::cout << key->keyName << " released." << std::endl;
+			return;
+		}
+	}
+}
+
+void Input::addController(int id)
+{
+	controllers.push_back(new GameController(id));
+}
+
+void Input::removeController(int id)
+{
+	for (GameController* c : controllers) {
+		if (c->getId() == id) {
+			this->controllers.erase(std::remove(this->controllers.begin(), this->controllers.end(), c), this->controllers.end());
+			delete c;
 			return;
 		}
 	}
@@ -229,4 +284,20 @@ bool Input::getKeyUp(std::string keyName) {
 			return k->isKeyUp;
 	}
 	return false;
+}
+
+GameController* Input::getController(int i) {
+	if (controllers.size() > 0)
+		return controllers[i];
+	return NULL;
+}
+
+GameController* Input::getControllerWithId(int id) {
+	if (controllers.size() > 0) {
+		for (GameController* c : controllers) {
+			if (c->getId() == id)
+				return c;
+		}
+	}
+	return NULL;
 }
