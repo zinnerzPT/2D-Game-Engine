@@ -1,27 +1,14 @@
 #pragma once
-class GameManager
+
+#include "Actor.h"
+
+class GameManager : public Actor
 {
 private:
-
 	GameManager() {};
 
 public:
-
-	static GameManager* getInstance();
-
-	~GameManager();
-
-private:
-
-	static GameManager* instance;
-	int score = 0;
-	int hiScore = 5000;
-
-	int playerLives = 4;
-
-	class Spaceship* ship;
-
-public:
+	void update(float deltaTime) override;
 
 	void addScore(int points);
 	int getScore() { return score; };
@@ -34,31 +21,25 @@ public:
 	void loseLife(int i = 1);
 	void addLife(int i = 1);
 
-	/*
-public:
+	~GameManager();
 
-	void init(std::string windowTitle, int windowWidth, int windowHeight);
-	void start();
+	static GameManager* getInstance();
 
-	//void HandleEvents();
+	static void clearInstance();
 
-	static class Level* getLevel() { return level; };
 private:
-	bool isRunning;
-	class SDLWrapper* sdl = nullptr;
-	class Window* window = nullptr;
-	static class Level* level;
+	int score = 0;
+	int hiScore = 5000;
+
+	int playerLives = 4;
+
+	class Spaceship* ship;
+
+	bool canRespawn;
+	float timeSinceDeath = 0;
+
+	static GameManager* instance;
 
 public:
-	static class Renderer* renderer;
 
-	*/
 };
-
-
-
-/*
-
-
-
-*/

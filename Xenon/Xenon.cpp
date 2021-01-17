@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
 	}
 
 	// Player
-	GameManager::getInstance()->spawnPlayer(304, 400);
+	GameManager* gameManager = GameManager::getInstance();
+	gameManager->spawnPlayer(304, 400);
 
 	// Spawner to spawn enemies and power ups
 	new Spawner();
@@ -53,7 +54,6 @@ int main(int argc, char* argv[])
 
 	engine->start();
 
-	delete GameManager::getInstance();
 	delete engine;
 	return 0;
 }

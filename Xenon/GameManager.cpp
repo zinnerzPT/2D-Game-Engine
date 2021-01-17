@@ -1,7 +1,14 @@
 #include "GameManager.h"
 #include "Spaceship.h"
 
+#define DEATH_COOLDOWN 2.0f
+
 GameManager* GameManager::instance = nullptr;
+
+GameManager::~GameManager()
+{
+	instance = nullptr;	
+}
 
 GameManager* GameManager::getInstance()
 {
@@ -11,8 +18,16 @@ GameManager* GameManager::getInstance()
 	return instance;
 }
 
-GameManager::~GameManager()
+void GameManager::update(float deltaTime)
 {
+	if (canRespawn) {
+		if (timeSinceDeath > DEATH_COOLDOWN) {
+			spawnPlayer(304, 400);
+		}
+		else {
+			timeSinceDeath += deltaTime;
+		}
+	}
 }
 
 void GameManager::addScore(int points)
@@ -26,6 +41,8 @@ void GameManager::addScore(int points)
 void GameManager::spawnPlayer(int x, int y)
 {
 	ship = new Spaceship(x, y);
+	canRespawn = false;
+	timeSinceDeath = 0.0f;
 }
 
 float GameManager::getHealth()
@@ -37,7 +54,7 @@ void GameManager::loseLife(int i)
 {
 	--playerLives;
 	if (playerLives >= 0) {
-		spawnPlayer(304, 400);
+		canRespawn = true;
 	}
 }
 
