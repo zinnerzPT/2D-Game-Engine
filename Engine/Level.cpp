@@ -114,7 +114,9 @@ void Level::animate()
 
 struct Sound* Level::loadSoundFile(const char* filepath)
 {
-	return alWrapper->loadSoundFromFile(filepath);
+	Sound* newSound = alWrapper->loadSoundFromFile(filepath);
+	sounds.push_back(newSound);
+	return newSound;
 }
 
 void Level::playSound(struct Sound* sound, float volume /*=1.0f*/)
@@ -195,7 +197,11 @@ Level::~Level()
 	updateActors();
 
 	delete world;
-
+	for (Sound* s : sounds)
+	{
+		alWrapper->destroySound(s);
+		delete s;
+	}
 	alWrapper->destroyAudioContext(context);
 	alWrapper->closeAudioDevice(device);
 }

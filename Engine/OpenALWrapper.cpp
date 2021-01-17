@@ -106,8 +106,14 @@ void OpenALWrapper::playSound(Sound* soundToPlay, float volume/*= 1.0f*/)
 
 void OpenALWrapper::destroySound(Sound* soundToDestroy)
 {
-	alec(alDeleteSources(1, &soundToDestroy->soundSource));
-	alec(alDeleteBuffers(1, &soundToDestroy->buffer));
+	if (soundToDestroy->soundSource != -1)
+	{
+		alec(alDeleteSources(1, &soundToDestroy->soundSource));
+	}
+	if (soundToDestroy->buffer != -1)
+	{
+		alec(alDeleteBuffers(1, &soundToDestroy->buffer));
+	}
 }
 
 void OpenALWrapper::closeAudioDevice(AudioDevice* deviceToClose)
