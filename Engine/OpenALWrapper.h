@@ -27,7 +27,7 @@ public:
 	void createAudioListener();
 
 	Sound* loadSoundFromFile(const char* filePath);
-	void playSound(Sound* soundToPlay);
+	void playSound(Sound* soundToPlay, float volume = 1.0f);
 
 	void destroySound(Sound* soundToDestroy);
 	void closeAudioDevice(AudioDevice* deviceToClose);

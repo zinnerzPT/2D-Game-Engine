@@ -88,14 +88,14 @@ Sound* OpenALWrapper::loadSoundFromFile(const char* filePath)
 	return loadedSound;
 }
 
-void OpenALWrapper::playSound(Sound* soundToPlay)
+void OpenALWrapper::playSound(Sound* soundToPlay, float volume/*= 1.0f*/)
 {
 	if (soundToPlay->soundSource == -1)
 	{
 		// Create a sound source for the sound to play
 		alec(alGenSources(1, &soundToPlay->soundSource));
 		alec(alSourcef(soundToPlay->soundSource, AL_PITCH, 1.f));
-		alec(alSourcef(soundToPlay->soundSource, AL_GAIN, 1.f));
+		alec(alSourcef(soundToPlay->soundSource, AL_GAIN, volume));
 		alec(alSourcei(soundToPlay->soundSource, AL_LOOPING, AL_FALSE));
 		alec(alSourcei(soundToPlay->soundSource, AL_BUFFER, soundToPlay->buffer));
 	}

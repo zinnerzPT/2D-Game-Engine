@@ -255,7 +255,7 @@ void Spaceship::fire()
 		float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
 		// Missile uses category 3 and collides with category 2(enemy)
 		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
-		Engine::getLevel()->playSound(fireSound);
+		Engine::getLevel()->playSound(fireSound, 0.5f);
 		// Fire additional missile for each companion
 		for (CompanionPowerUp* companion : attachedCompanions)
 		{

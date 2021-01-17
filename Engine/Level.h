@@ -24,7 +24,7 @@ public:
 	void render();
 	void animate();
 	struct Sound* loadSoundFile(const char* filepath);
-	void playSound(struct Sound* sound);
+	void playSound(struct Sound* sound, float volume = 1.0f);
 
 	void updateBodies();
 	void updateActors();
