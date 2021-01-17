@@ -117,9 +117,9 @@ struct Sound* Level::loadSoundFile(const char* filepath)
 	return alWrapper->loadSoundFromFile(filepath);
 }
 
-void Level::playSound(struct Sound* sound)
+void Level::playSound(struct Sound* sound, float volume /*=1.0f*/)
 {
-	alWrapper->playSound(sound);
+	alWrapper->playSound(sound, 0.1f);
 }
 
 void Level::updateBodies()
