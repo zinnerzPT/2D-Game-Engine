@@ -6,6 +6,9 @@
 #include "CompanionPowerUp.h"
 #include "GameManager.h"
 
+#include "Engine.h"
+#include "Level.h"
+
 #include <chrono>
 
 // DEBUG PURPOSES ONLY
@@ -68,6 +71,9 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 
 	// Start thread that manages firing cooldown
 	cooldownThread = std::thread{ &Spaceship::cooldownCheck, this };
+
+	// Load fire sound from file
+	fireSound = Engine::getLevel()->loadSoundFile("../sounds/laser_fire.wav");
 }
 
 void Spaceship::update(float deltaTime)
@@ -249,7 +255,7 @@ void Spaceship::fire()
 		float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
 		// Missile uses category 3 and collides with category 2(enemy)
 		new Missile(missilePosition, missileHalfSize, 1.0f, missileVelocity, CATEGORY_3, CATEGORY_2, missileType);
-
+		Engine::getLevel()->playSound(fireSound);
 		// Fire additional missile for each companion
 		for (CompanionPowerUp* companion : attachedCompanions)
 		{

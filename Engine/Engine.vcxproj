@@ -29,12 +29,14 @@
     <ClInclude Include="InitError.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="OpenALWrapper.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SDLWrapper.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="UIBar.h" />
@@ -52,6 +54,7 @@
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="OpenALWrapper.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rect.cpp" />

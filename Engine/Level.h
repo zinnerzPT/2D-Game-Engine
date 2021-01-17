@@ -23,6 +23,8 @@ public:
 	void update(float deltaTime);
 	void render();
 	void animate();
+	struct Sound* loadSoundFile(const char* filepath);
+	void playSound(struct Sound* sound);
 
 	void updateBodies();
 	void updateActors();
@@ -36,7 +38,6 @@ private:
 	std::list<Actor*> actors;
 	std::list<Animation*> animations;
 	std::list<UICanvas*> canvases;
-	struct b2Vec2* gravity;
 	class b2World* world;
 
 	class std::list<b2Body*> bodiesToEnable;
@@ -48,5 +49,11 @@ private:
 	std::list<Animation*> animationsToRemove;
 	std::list<UICanvas*> canvasesToAdd;
 	std::list<UICanvas*> canvasesToRemove;
+
+	struct AudioDevice* device;
+	struct AudioContext* context;
+	class OpenALWrapper* alWrapper;
+
+	struct std::vector<Sound*> sounds;
 };
 

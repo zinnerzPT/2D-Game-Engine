@@ -2,6 +2,7 @@
 
 #include "Pawn.h"
 #include "Missile.h"
+#include "Sound.h"
 
 #include <thread>
 
@@ -71,5 +72,7 @@ private:
 
 	std::thread cooldownThread;
 	MissileType missileType = MissileType::light;
+
+	Sound* fireSound = nullptr;
 };
 

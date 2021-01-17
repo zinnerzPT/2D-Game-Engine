@@ -1,14 +1,21 @@
 #include "Level.h"
-
 #include "ContactListener.h"
+
+#include "OpenALWrapper.h"
 
 Level::Level(float gravityX, float gravityY)
 {
-	gravity = new b2Vec2(gravityX, gravityY);
-	world = new b2World(*gravity);
-
+	// Create a world to run the physics
+	b2Vec2 gravity = b2Vec2(gravityX, gravityY);
+	world = new b2World(gravity);
 	ContactListener* contactListener = new ContactListener();
 	world->SetContactListener(contactListener);
+
+	// Initialize audio
+	alWrapper = OpenALWrapper::getInstance();
+	device = alWrapper->openDefaultAudioDevice();
+	context = alWrapper->createAudioContext(device);
+	alWrapper->createAudioListener();
 }
 
 void Level::addActor(Actor* actor)
@@ -105,6 +112,16 @@ void Level::animate()
 	}
 }
 
+struct Sound* Level::loadSoundFile(const char* filepath)
+{
+	return alWrapper->loadSoundFromFile(filepath);
+}
+
+void Level::playSound(struct Sound* sound)
+{
+	alWrapper->playSound(sound);
+}
+
 void Level::updateBodies()
 {
 	// Enable bodies
@@ -176,6 +193,9 @@ Level::~Level()
 		addActorToRemove(a);
 	}
 	updateActors();
-	delete gravity;
+
 	delete world;
+
+	alWrapper->destroyAudioContext(context);
+	alWrapper->closeAudioDevice(device);
 }
