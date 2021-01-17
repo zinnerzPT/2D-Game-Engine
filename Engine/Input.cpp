@@ -169,6 +169,10 @@ bool Input::handleInput() {
 		//std::cout << k.keyName << " cleared." << std::endl;
 	}
 
+	for (GameController* c : controllers) {
+		c->releaseButtons();
+	}
+
 	keysUp.clear();
 
 	SDL_Event ev;

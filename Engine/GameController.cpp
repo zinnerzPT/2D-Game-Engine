@@ -64,6 +64,46 @@ GameController::GameController(int id)
 	controller = SDL_GameControllerOpen(id);
 }
 
+void GameController::handleButtonDown(uint8_t button)
+{
+	for (Button* b : buttons)
+	{
+		if ((uint8_t)b->buttonCode == button)
+		{
+			b->isButtonDown = true;
+			buttonsDown.push_back(b);
+
+			b->isButton = true;
+			return;
+		}
+	}
+}
+
+void GameController::handleButtonUp(uint8_t button)
+{
+	for (Button* b : buttons)
+	{
+		if ((uint8_t)b->buttonCode == button)
+		{
+			b->isButton = false;
+			b->isButtonUp = true;
+			buttonsUp.push_back(b);
+			return;
+		}
+	}
+}
+
+// Handles button presses on previous frames
+void GameController::releaseButtons() {
+	// releases the button released on the previous frame
+	for (Button* b : buttonsUp) {
+		b->isButtonUp = false;
+	}
+
+	for (Button* b : buttonsDown) {
+		b->isButtonDown = false;
+	}
+}
 
 // Game controller Axis
 float GameController::getLeftXAxis()
@@ -121,105 +161,7 @@ bool GameController::getButtonUp(std::string buttonName) {
 }
 
 
-void GameController::handleButtonDown(uint8_t button)
-{
-	for (Button* b : buttons)
-	{
-		if ((uint8_t)b->buttonCode == button)
-		{
-			b->isButtonDown = true;
-			buttonsDown.push_back(b);
 
-			b->isButton = true;
-			return;
-		}
-	}
-}
-
-void GameController::handleButtonUp(uint8_t button)
-{
-	for (Button* b : buttons)
-	{
-		if ((uint8_t)b->buttonCode == button)
-		{
-			b->isButton = false;
-			b->isButtonUp = true;
-			buttonsUp.push_back(b);
-			return;
-		}
-	}
-}
-
-// Game Controller
-/*bool GameController::getButtonA()
-{
-	return SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_A);
-}
-*/
-/*bool GameController::getButtonA()
-{
-	return SDL_CONTROLLER_BUTTON_A;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_B;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_X;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_Y;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_BACK;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_GUIDE;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_START;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_LEFTSTICK;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_RIGHTSTICK;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_LEFTSHOULDER;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_RIGHTSHOULDER;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_DPAD_UP;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_DPAD_DOWN;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_DPAD_LEFT;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_DPAD_RIGHT;
-}
-bool GameController::getButtonA()
-{
-	SDL_CONTROLLER_BUTTON_MAX;
-}*/
 
 GameController::~GameController()
 {

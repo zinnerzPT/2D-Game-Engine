@@ -28,6 +28,8 @@ public:
 
 	void handleButtonDown(uint8_t button);
 	void handleButtonUp(uint8_t button);
+	
+	void releaseButtons();
 
 	inline int getId() { return id; };
 
