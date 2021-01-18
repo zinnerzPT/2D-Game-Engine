@@ -1,125 +1,388 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Actor">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="6.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAEAgAAAAAAAAIAAgAAAAgAAAAAAAAAUAAA=</HashCode>
+      <HashCode>AACQAAAAAEEAgAAEAAAAAMIAgAAAAAAAAAAAAAAUAAA=</HashCode>
       <FileName>Actor.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="animation" />
+      <Field Name="tilemap" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Animation">
-    <Position X="3.5" Y="9.75" Width="1.5" />
+    <Position X="6.25" Y="3.5" Width="1.5" />
+    <AssociationLine Name="animationTilemap" Type="Tilemap" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="6.75" />
+        <Point X="4.75" Y="6.75" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AABAAEAAgAAAAAAAgAAACAAAAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <HashCode>AABAAEBCgAAAAAAAgAAACBAAAACgACAAAAAAIAAEAAE=</HashCode>
       <FileName>Animation.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="actorToDestroy" />
       <Field Name="animationTilemap" />
     </ShowAsAssociation>
   </Class>
+  <Class Name="BitmapFont">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <AssociationLine Name="bitmap" Type="Texture" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="2.062" />
+        <Point X="1.656" Y="2.062" />
+        <Point X="1.656" Y="2.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="tilemap" Type="Tilemap" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="3.062" />
+        <Point X="4.438" Y="3.062" />
+        <Point X="4.438" Y="5.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAgQEAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BitmapFont.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="bitmap" />
+      <Field Name="tilemap" />
+    </ShowAsAssociation>
+  </Class>
   <Class Name="ContactListener">
-    <Position X="2.75" Y="8" Width="1.5" />
+    <Position X="10.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ContactListener.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContactSensor">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="8" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAgA=</HashCode>
       <FileName>ContactSensor.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="rigidBody" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Engine">
-    <Position X="5.75" Y="1" Width="1.5" />
+    <Position X="3" Y="19.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAABgAAEQAAAAAAEAAAIIAAAAAAAAgAg=</HashCode>
+      <HashCode>AAAAAAAAAAQAAABgAAEAAAAAAAFAAAYIBAAAAAAAgAg=</HashCode>
       <FileName>Engine.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="sdl" />
-      <Field Name="window" />
       <Field Name="level" />
       <Field Name="renderer" />
+      <Field Name="sdl" />
+      <Field Name="window" />
     </ShowAsAssociation>
   </Class>
   <Class Name="GameController">
-    <Position X="8" Y="8.25" Width="1.5" />
+    <Position X="10.25" Y="18.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAEAAAAAAAAEAAAAEAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AoBABAAAABAAEAAAAAAAoAAEIAQAAAAAAAAIAIAAAgA=</HashCode>
       <FileName>GameController.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InitError">
-    <Position X="8" Y="10.75" Width="1.5" />
+    <Position X="0.5" Y="24.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAgA=</HashCode>
       <FileName>InitError.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Level">
-    <Position X="5" Y="5" Width="1.5" />
+  <Class Name="Input">
+    <Position X="8.5" Y="18.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAEEgAAAQAAAAAAIAAAAAAAAAEEAEBAAAAAAAUAAA=</HashCode>
+      <HashCode>AIAAIQABIAAAAAAABAAAgACAEABBAAQAAAAACABAAAA=</HashCode>
+      <FileName>Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Level">
+    <Position X="5.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAiSEUACAAQgkAEAAIAAABAABCAMlBEBAAISAACUAAg=</HashCode>
       <FileName>Level.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="alWrapper" />
+      <Field Name="context" />
+      <Field Name="device" />
+      <Field Name="world" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OpenALWrapper">
+    <Position X="2.25" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAABAAAAABAgAAAAAAAAAAAAAAFoAAQAAAAAAAAIAAA=</HashCode>
+      <FileName>OpenALWrapper.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pawn">
-    <Position X="2.75" Y="4" Width="1.5" />
+    <Position X="6.25" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABEAAAgAkAAAAAAAAAAAAAAAAAAAAAAEAEAAA=</HashCode>
+      <HashCode>AAAAAAABEAAAgAgAAAAAAAAAAAAAAABAAAAAAEAEAAA=</HashCode>
       <FileName>Pawn.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projectile">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Position X="8" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAIAA=</HashCode>
       <FileName>Projectile.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Rect">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACCAAAAAQAhoAAAAAAA=</HashCode>
+      <FileName>Rect.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sdl_Rect" />
+    </ShowAsAssociation>
+  </Class>
   <Class Name="Renderer">
-    <Position X="6.75" Y="5" Width="1.5" />
+    <Position X="0.5" Y="21.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAgAAAAAAAAAAAAQAAQAAAAAAAAAAIAAACAAAAAgAA=</HashCode>
       <FileName>Renderer.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="renderer" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="RigidBody">
-    <Position X="5.75" Y="9.25" Width="1.5" />
+    <Position X="8" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQIAAAAgAQBEABAAgAAAAAAQgAAABAAAAAEAAgCAE=</HashCode>
+      <HashCode>AAAQIAAAAgAQBEABAAgAAAACAQgAAABABAAAkAAgCAk=</HashCode>
       <FileName>RigidBody.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="body" />
+      <Field Name="bodyDef" />
+      <Field Name="fixture" />
+      <Field Name="fixtureDef" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="SDLWrapper">
-    <Position X="8" Y="0.5" Width="1.5" />
+    <Position X="3" Y="22.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SDLWrapper.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Texture">
-    <Position X="0.5" Y="5.5" Width="1.5" />
+  <Class Name="Sound">
+    <Position X="0.5" Y="27" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAACAEAAgAAAAAAAAAAEAAAAAgAEAAIMAAAAQAA=</HashCode>
-      <FileName>Texture.h</FileName>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Sound.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Texture">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <AssociationLine Name="dstRect" Type="Rect" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.812" Y="5.786" />
+        <Point X="0.812" Y="6.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAABgCAEAAgAAAAAAAAAAEAAAQAgAEAAIMAAAAQAA=</HashCode>
+      <FileName>Texture.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="dstRect" />
+      <Field Name="srcRect" />
+      <Field Name="texture" />
+    </ShowAsAssociation>
+  </Class>
   <Class Name="Tilemap">
-    <Position X="0.5" Y="9.75" Width="1.5" />
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <AssociationLine Name="texture" Type="SDL_Texture" FixedToPoint="true">
+      <Path>
+        <Point X="3.875" Y="5.75" />
+        <Point X="3.875" Y="4.812" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAQgYAAABAAAADEAAAAAAAgAoAACAAAAAAAAAE=</HashCode>
       <FileName>Tilemap.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="currentFrame" />
+      <Field Name="texture" />
+      <Field Name="tileSize" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UIBar">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <AssociationLine Name="tilemap" Type="Tilemap" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="1.988" />
+        <Point X="5" Y="6.062" />
+        <Point X="4.75" Y="6.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAIgAAAAAAAgAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIBar.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="texture" />
+      <Field Name="tilemap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UICanvas">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAACAQUAAA=</HashCode>
+      <FileName>UICanvas.h</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="Window">
-    <Position X="8.25" Y="2.5" Width="1.5" />
+    <Position X="0.5" Y="18.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAEAAAAAAAAAAAQAAAAAIAAAACAAEAAA=</HashCode>
       <FileName>Window.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="window" />
+    </ShowAsAssociation>
   </Class>
+  <Class Name="b2World" Collapsed="true">
+    <Position X="3" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QSDBDACMQAIVMEpSQQbBmFgqACgqQUAQpAQCACghAKM=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_world.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="b2Body" Collapsed="true">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YSACMQ4YAuSADgDBFxNVgcAWcgIBAVsQEg0BABRQMIM=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_body.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="b2Fixture" Collapsed="true">
+    <Position X="10.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQADRAAgEAEwAAUoQQwQAQAGBEEEMwJCABAAABhAI=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_fixture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="b2ContactListener" Collapsed="true">
+    <Position X="10.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAABAAAAgAAAgAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_world_callbacks.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Button">
+    <Position X="10.25" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAQAAQAAQAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>GameController.cpp</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="buttonCode" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="Key">
+    <Position X="8.5" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAQABAAAAAAAABAAABAAAAAAAA=</HashCode>
+      <FileName>Input.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AudioDevice">
+    <Position X="5.75" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpenALWrapper.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="device" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="AudioContext">
+    <Position X="4" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpenALWrapper.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="context" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="SDL_Rect" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAhgAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\SDL2\SDL_rect.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="b2BodyDef" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAAAAAwAgAAAAAGAMAAAAAARAQAAABAAQABAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_body.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="b2FixtureDef" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAACAAAAgAAAAAEAEAAAAQEAAQAAAAAAAAAABAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\box2d\b2_fixture.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="SDL_Window" Collapsed="true">
+    <Position X="0.5" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\SDL2\SDL_video.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="SDL_Texture" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\SDL2\SDL_render.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="SDL_Renderer" Collapsed="true">
+    <Position X="0.5" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\SDL2\SDL_render.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="SDL_GameControllerButton" Collapsed="true">
+    <Position X="10.25" Y="25.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\SDL2\SDL_gamecontroller.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ALCdevice" Collapsed="true">
+    <Position X="5.75" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\OpenAL\alc.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ALCcontext" Collapsed="true">
+    <Position X="4" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\zinne\source\repos\AGPT_Proj1\external\include\OpenAL\alc.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

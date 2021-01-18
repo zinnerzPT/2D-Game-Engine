@@ -1,46 +1,166 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Asteroid">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAABCAEQgAgAAAIAACLBAAAAAAAUAAA=</HashCode>
+      <FileName>Asteroid.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="asteroidSize" />
+      <Field Name="asteroidType" />
+    </ShowAsAssociation>
+  </Class>
   <Class Name="Background">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="9.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAA=</HashCode>
       <FileName>Background.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Enemy">
-    <Position X="1.5" Y="0.5" Width="1.5" />
+  <Class Name="CompanionPowerUp">
+    <Position X="4" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAAIAAgAAAAAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>CAABIAAKAAAABAAAAAAAAAAGAAAUAADAIAAAAAAEBAg=</HashCode>
+      <FileName>CompanionPowerUp.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="missileType" />
+      <Field Name="spaceshipRef" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Drone">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAQAAAAAAIBAAAAAAAAUAAA=</HashCode>
+      <FileName>Drone.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgCAAAAAAAAAAAAAEAAAAAAAAADAAAAAAAAEAAg=</HashCode>
       <FileName>Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Loner">
-    <Position X="2.5" Y="3.25" Width="1.5" />
+  <Class Name="EnemyProjectile">
+    <Position X="0.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAQAQCAAAAAAAAAAAAAAAAIAAAIBQAAAAAAAEAAA=</HashCode>
+      <FileName>EnemyProjectile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="9.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAIAAAAAAAAAAAQoAkAAAAFAAASAoCABAABcAAA=</HashCode>
+      <FileName>GameManager.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ship" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Loner">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAABIAAAAAAAAAAAAAAABAAADAAAQAEIAEAAA=</HashCode>
       <FileName>Loner.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Missile">
-    <Position X="6.25" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="16.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAAAAMAAgAAAAABAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAQAAgAAAAAAAAASAAEgAAIAAAIBAAEAAAAAEAAA=</HashCode>
       <FileName>Missile.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rusher">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+  <Class Name="PowerUp">
+    <Position X="2.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAQAEAAA=</HashCode>
+      <HashCode>AAAAAgABAAAAAAAAAAAAAAAAAAAQAABAAAAAAAAEAAA=</HashCode>
+      <FileName>PowerUp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rusher">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAIAAAAABAAAAAAQAEAAA=</HashCode>
       <FileName>Rusher.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spaceship">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+  <Class Name="UI">
+    <Position X="9.5" Y="16" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAEAAA=</HashCode>
-      <FileName>Spaceship.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAIBAAAEAAAAAAAAAAUEAA=</HashCode>
+      <FileName>UI.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ScrollingBackground">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACCAAAAAAAAAAAAAAAAQAAAAAQIIAAAAAAAAEAAA=</HashCode>
+      <FileName>ScrollingBackground.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShieldPowerUp">
+    <Position X="2.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAAAAAAAAAAABAAAAAAAAAAQAABAAAAAAAAEAAA=</HashCode>
+      <FileName>ShieldPowerUp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaceship">
+    <Position X="7.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XGJBIAUIoAAAEQABgAAAAAEAASQwARrAJEEABIEEBQg=</HashCode>
+      <FileName>Spaceship.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="companionToAttach" />
+      <Field Name="missileType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Spawner">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAABAYCAAQAEAAIACABEADQAAgNAAAAAAAAAAIkAiE=</HashCode>
+      <FileName>Spawner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponPowerUp">
+    <Position X="0.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIQAABAAgAAAAAEAAA=</HashCode>
+      <FileName>WeaponPowerUp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AsteroidType">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Asteroid.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AsteroidSize">
+    <Position X="5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Asteroid.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VelocityDirection">
+    <Position X="5.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enemy.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MissileType">
+    <Position X="4" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Missile.h</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
