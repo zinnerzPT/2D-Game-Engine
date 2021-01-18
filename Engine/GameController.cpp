@@ -2,9 +2,6 @@
 #include <SDL2/SDL_gamecontroller.h>
 #include <vector>
 
-//FOR DEBUG PURPOSES ONLY
-#include <iostream>
-
 #define MAX_AXIS 32767.0f
 
 struct Button {
@@ -159,9 +156,6 @@ bool GameController::getButtonUp(std::string buttonName) {
 	}
 	return false;
 }
-
-
-
 
 GameController::~GameController()
 {

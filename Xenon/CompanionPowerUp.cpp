@@ -1,9 +1,6 @@
 #include "CompanionPowerUp.h"
 #include "Spaceship.h"
 
-// DEBUG PURPOSES ONLY
-#include <iostream>
-
 CompanionPowerUp::CompanionPowerUp(int x, int y)
 {
 	Texture* texture = new Texture("../graphics/clone.bmp");

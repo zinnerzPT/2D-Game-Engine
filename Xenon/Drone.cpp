@@ -2,8 +2,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include <iostream>
-
 Drone::Drone(float x, float y, float offset)
 {
 	Texture* texture = new Texture("../graphics/drone.bmp");

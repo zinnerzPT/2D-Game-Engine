@@ -15,8 +15,6 @@ public:
 	float getLeftTriggerAxis();
 	float getRightTriggerAxis();
 
-	//bool getButtonA();
-
 	// Return true if the button is pressed
 	bool getButton(std::string buttonName);
 

@@ -11,9 +11,6 @@
 
 #include <chrono>
 
-// DEBUG PURPOSES ONLY
-#include <iostream>
-
 Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 {
 	// Spaceship tilemap
@@ -153,12 +150,12 @@ void Spaceship::update(float deltaTime)
 		float leftAxisX = Input::getInstance()->getController(0)->getLeftXAxis();
 		float leftAxisY = Input::getInstance()->getController(0)->getLeftYAxis();
 
-		if (leftAxisX > 0.3f || leftAxisX < -0.3f)
+		if ((leftAxisX > 0.3f && xpos < 566) || (leftAxisX < -0.3f && xpos > 10))
 		{
 			//moveRight(moveSpeed * deltaTime * leftAxisX);
 			moveRight(moveSpeed * leftAxisX);
 		}
-		if (leftAxisY > 0.3f || leftAxisY < -0.3f)
+		if ((leftAxisY > 0.3f && ypos < 406) || (leftAxisY < -0.3f && ypos > 10 ))
 		{
 			//moveUp(moveSpeed * deltaTime * -leftAxisY);
 			moveUp(moveSpeed * -leftAxisY);

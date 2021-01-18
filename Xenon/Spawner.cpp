@@ -11,9 +11,6 @@
 
 #include <time.h>
 
-//DEBUG PURPOSES ONLY
-#include <iostream>
-
 Spawner::Spawner()
 {
 	srand(time(NULL));
@@ -81,14 +78,13 @@ bool Spawner::spawnEnemies()
 		{
 			lonerCooldownLeft = lonerCooldown;
 			randomNumber = rand() % 2;
+			randomPosY = (rand() % 200) + 80;
 			switch (randomNumber)
 			{
 			case 0:
-				randomPosY = (rand() % 160) + 80;
 				new Loner(-70, randomPosY, VelocityDirection::positive);
 				break;
 			case 1:
-				randomPosY = (rand() % 160) + 80;
 				new Loner(710, randomPosY, VelocityDirection::negative);
 				break;
 			}
@@ -99,27 +95,19 @@ bool Spawner::spawnEnemies()
 		if (droneCooldownLeft <= 0)
 		{
 			droneCooldownLeft = droneCooldown;
-			randomNumber = rand() % 2;
-			switch (randomNumber)
-			{
-			case 0:
-				randomPosX = 200;
-				break;
-			case 1:
-				randomPosX = 440;
-				break;
-			}
+			randomNumber = rand() % 240 + 200;
 			// delay before the drone starts moving
 			float delay = 0;
 			for (int i = 0; i < dronePack; ++i)
 			{
-				new Drone(randomPosX, -40, delay);
+				new Drone(randomNumber, -40, delay);
 				delay += 0.6f;
 			}
 			return true;
 		}
 		break;
 	case 3:
+		break;
 		if (asteroidCooldownLeft <= 0)
 		{
 			asteroidCooldownLeft = asteroidCooldown;
