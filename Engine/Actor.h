@@ -15,6 +15,7 @@ public:
 
 	virtual void update(float deltaTime) = 0;
 	virtual void render();
+	void draw(class SceneViewer* v = nullptr);
 	void destroy();
 
 	virtual ~Actor();

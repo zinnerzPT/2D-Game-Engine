@@ -105,6 +105,14 @@ void Level::render()
 	}
 }
 
+void Level::draw(class SceneViewer* v)
+{
+	for (Actor* a : actors) {
+		a->draw(v);
+	}
+}
+
+
 void Level::animate()
 {
 	for (Animation* an : animations) {
@@ -205,3 +213,4 @@ Level::~Level()
 	alWrapper->destroyAudioContext(context);
 	alWrapper->closeAudioDevice(device);
 }
+

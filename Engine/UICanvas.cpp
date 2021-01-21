@@ -12,6 +12,7 @@ void UICanvas::render()
 {
 	for (Texture* t : textures)
 	{
+		// SDL render
 		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect());
 	}
 }

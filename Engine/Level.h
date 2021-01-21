@@ -55,5 +55,7 @@ private:
 	class OpenALWrapper* alWrapper;
 
 	struct std::vector<Sound*> sounds;
+public:
+	void draw(class SceneViewer* v);
 };
 

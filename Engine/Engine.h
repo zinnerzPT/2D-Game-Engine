@@ -22,6 +22,7 @@ private:
 	class SDLWrapper* sdl = nullptr;
 	class Window* window = nullptr;
 	static class Level* level;
+	class SceneViewer* viewer = nullptr;
 
 	static Engine* instance;
 
