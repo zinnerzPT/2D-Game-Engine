@@ -1,5 +1,6 @@
 #include "Texture.h"
 
+#include <glad/glad.h>
 #include <SDL2/SDL.h>
 
 #include "InitError.h"
@@ -30,6 +31,53 @@ Texture::Texture(std::string filePath)
 	dstRect = new Rect();
 	dstRect->w = w;
 	dstRect->h = h;
+
+	float vertices[4][5] =
+	{
+		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f},
+		{ 1.0f, 0.0f, 0.0f, 1.0f, 1.0f},
+		{ 0.0f, 1.0f, 0.0f, 0.0f, 0.0f},
+		{ 1.0f, 1.0f, 0.0f, 1.0f, 0.0f}
+	};
+
+	/* Allocate and assign a Vertex Array Object to our handle */
+	glGenVertexArrays(1, &vao);
+	/* Bind our Vertex Array Object as the current used object */
+	glBindVertexArray(vao);
+
+	/* Allocate and assign Vertex Buffer Objects to our handle */
+	glGenBuffers(1, &vbo);
+
+	/* vertices */
+	/* Bind our first VBO as being the active buffer and storing vertex attributes (coordinates) */
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// Position
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glEnableVertexAttribArray(0);
+
+	// TexCoord
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	// Load image from specified path
+	SDL_Surface* image = SDL_LoadBMP(filePath.c_str());
+	if (image != nullptr)
+	{
+		this->width = image->w;
+		this->height = image->h;
+		glGenTextures(1, &this->textureID);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		// set the texture wrapping/filtering options (on the currently bound texture object)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->w, image->h, 0, GL_BGR,
+			GL_UNSIGNED_BYTE, image->pixels);
+	}
+	SDL_FreeSurface(image);
 }
 
 Rect* Texture::getSrcRect()
@@ -95,6 +143,38 @@ void Texture::setTexOffset(int x, int y)
 void Texture::query(int* w, int* h)
 {
 	SDL_QueryTexture(texture, NULL, NULL, w, h);
+}
+
+void Texture::setRowsAndColumns(int rows, int columns)
+{
+	float vertices[4][5] =
+	{
+		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f / rows},
+		{ 1.0f, 0.0f, 0.0f, 1.0f / columns, 1.0f / rows},
+		{ 0.0f, 1.0f, 0.0f, 0.0f, 0.0f},
+		{ 1.0f, 1.0f, 0.0f, 1.0f / columns, 0.0f}
+	};
+
+	/* Allocate and assign a Vertex Array Object to our handle */
+	glGenVertexArrays(1, &vao);
+	/* Bind our Vertex Array Object as the current used object */
+	glBindVertexArray(vao);
+
+	/* Allocate and assign Vertex Buffer Objects to our handle */
+	glGenBuffers(1, &vbo);
+
+	/* vertices */
+	/* Bind our first VBO as being the active buffer and storing vertex attributes (coordinates) */
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// Position
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glEnableVertexAttribArray(0);
+
+	// TexCoord
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 }
 
 Texture::~Texture()
