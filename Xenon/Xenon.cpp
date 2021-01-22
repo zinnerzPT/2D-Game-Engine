@@ -47,10 +47,10 @@ int main(int argc, char* argv[])
 	gameManager->spawnPlayer(304, 400);
 
 	// Spawner to spawn enemies and power ups
-	new Spawner();
+	//new Spawner();
 
 	// UI
-	UI* ui = new UI(200, 200);
+	//UI* ui = new UI(200, 200);
 
 	engine->start();
 

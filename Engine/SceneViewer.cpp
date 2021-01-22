@@ -32,7 +32,6 @@ static char* filetobuf(char* file) {
 
 SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windowHeight)
 {
-
 	// SDL Config
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -55,10 +54,7 @@ SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windo
 
 	// Prepare matrices
 	// Model Matrix
-	//glm::mat4 model = glm::mat4(1.0f);
-	//model = glm::rotate(model, glm::radians(30), glm::vec3(0.0f,1.0f,0.0f));
 	this->modelMatrixID = glGetUniformLocation(shaderProgram, "model");
-	//glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, value_ptr(model)); //done by model matrix
 
 	// View Matrix
 	this->viewMatrix = glm::mat4(1.0f);
@@ -69,7 +65,7 @@ SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windo
 	glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, value_ptr(viewMatrix));
 
 	// Projection Matrix
-	this->projectionMatrix = glm::ortho(0.0f , windowWidth, 0.0f, windowHeight, 0.1f, 100.0f);
+	this->projectionMatrix = glm::ortho(0.0f, windowWidth, 0.0f, windowHeight, 0.1f, 100.0f);
 	this->projectionMatrixID = glGetUniformLocation(shaderProgram, "projection");
 	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, value_ptr(projectionMatrix));
 
@@ -102,15 +98,10 @@ void SceneViewer::setModelMatrix(glm::mat4 matrix)
 
 }
 
-void SceneViewer::setTexture(GLuint texture, int offsetX /*= 0*/, int offsetY /*= 0*/)
+void SceneViewer::setTexture(GLuint texture, float offsetX /*= 0.0f*/, float offsetY /*= 0.0f*/)
 {
-	if (offsetX == 0 && offsetY == 0) {
-		glUniform2fv(textOffset, 1, value_ptr(glm::vec2(0.0f)));
-	}
-	else {
-		glUniform2fv(textOffset, 1, value_ptr(glm::vec2(offsetX, offsetY)));
-	}
-
+	glUniform2fv(textOffset, 1, value_ptr(glm::vec2(offsetX, offsetY)));
+	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i(this->texture1ID, 0);

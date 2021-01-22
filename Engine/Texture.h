@@ -26,9 +26,9 @@ public:
 	inline uint32_t getVAO() { return vao; }
 	void setRowsAndColumns(int rows, int columns);
 	void queryWidthHeight(int* w, int* h);
-	inline int getOffsetX() { return offsetX; }
-	inline int getOffsetY() { return offsetY; }
-	void setOffset(int x, int y);
+	inline float getOffsetX() { return offsetX; }
+	inline float getOffsetY() { return offsetY; }
+	void setOffset(float x, float y);
 
 	~Texture();
 
@@ -40,8 +40,8 @@ private:
 	int texOffsetX = 0;
 	int texOffsetY = 0;
 
-	int offsetX = 0;
-	int offsetY = 0;
+	float offsetX = 0.0f;
+	float offsetY = 0.0f;
 
 	int width = 1;
 	int height = 1;

@@ -34,7 +34,7 @@ public:
 	~SceneViewer();
 
 	void setModelMatrix(glm::mat4 matrix);
-	void setTexture(GLuint texture, int offsetX = 0, int offsetY = 0);
+	void setTexture(GLuint texture, float offsetX /*= 0.0f*/, float offsetY /*= 0.0f*/);
 
 	void clear();
 	void swapBuffers();

@@ -198,7 +198,7 @@ void Level::updateCanvases()
 
 Level::~Level()
 {
-	for (Actor* a : actors) 
+	for (Actor* a : actors)
 	{
 		addActorToRemove(a);
 	}

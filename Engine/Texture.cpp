@@ -147,12 +147,12 @@ void Texture::query(int* w, int* h)
 
 void Texture::setRowsAndColumns(int rows, int columns)
 {
-	float vertices[4][5] =
+	float vertices[4][4] =
 	{
-		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f / rows},
-		{ width / columns, 0.0f, 0.0f, 1.0f / columns, 1.0f / rows},
-		{ 0.0f, height / rows, 0.0f, 0.0f, 0.0f},
-		{ width /columns, height / rows, 0.0f, 1.0f / columns, 0.0f}
+		{ 0.0f, 0.0f, 0.0f, 1.0f / rows},
+		{ width / columns, 0.0f, 1.0f / columns, 1.0f / rows},
+		{ 0.0f, height / rows, 0.0f, 0.0f},
+		{ width / columns, height / rows, 1.0f / columns, 0.0f}
 	};
 
 	/* Allocate and assign a Vertex Array Object to our handle */
@@ -169,11 +169,11 @@ void Texture::setRowsAndColumns(int rows, int columns)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// Position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
 	glEnableVertexAttribArray(0);
 
 	// TexCoord
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 }
 
@@ -183,7 +183,7 @@ void Texture::queryWidthHeight(int* w, int* h)
 	*h = this->height;
 }
 
-void Texture::setOffset(int x, int y)
+void Texture::setOffset(float x, float y)
 {
 	this->offsetX = x;
 	this->offsetY = y;

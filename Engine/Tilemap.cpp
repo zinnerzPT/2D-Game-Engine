@@ -41,7 +41,7 @@ void Tilemap::ChangeFrame(int frameNumber)
 		texture->setSrcRect(currentFrame);
 
 		//OPENGL
-		texture->setOffset(tileWidth * ((frameNumber) % columns), tileHeight * ((frameNumber) / columns));
+		texture->setOffset(((frameNumber) % columns) / (float)columns, ((frameNumber) / columns) / (float)rows);
 
 		// std::cout << "X: " << currentFrame.x << " Y: " << currentFrame.y << std::endl;
 	}
