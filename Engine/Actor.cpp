@@ -32,9 +32,9 @@ void Actor::draw(class SceneViewer* v /*= nullptr*/)
 {
 	for (Texture* t : textures)
 	{
-		glm::vec2 offset = glm::vec2((SIDE_STEPS) / (SIDE_STEPS * 2.0f + 1), 0.0f);
+		//glm::vec2 offset = glm::vec2((SIDE_STEPS) / (SIDE_STEPS * 2.0f + 1), 0.0f);
 		glBindVertexArray(t->getVAO());
-		v->setTexture(t->getTextureID(), &offset); //&glm::vec2((direction + SIDE_STEPS) / (SIDE_STEPS * 2.0f + 1), 0.0f));
+		v->setTexture(t->getTextureID(), t->getOffsetX(), t->getOffsetY()); //&glm::vec2((direction + SIDE_STEPS) / (SIDE_STEPS * 2.0f + 1), 0.0f));
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	}
 }

@@ -30,11 +30,11 @@ class SceneViewer
 	void genProgram();
 
 public:
-	SceneViewer(std::string windowTitle, int windowWidth, int windowHeight);
+	SceneViewer(std::string windowTitle, float windowWidth, float windowHeight);
 	~SceneViewer();
 
 	void setModelMatrix(glm::mat4 matrix);
-	void setTexture(GLuint texture, glm::vec2* textureOffset = nullptr);
+	void setTexture(GLuint texture, int offsetX = 0, int offsetY = 0);
 
 	void clear();
 	void swapBuffers();

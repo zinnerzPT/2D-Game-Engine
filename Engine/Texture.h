@@ -25,6 +25,10 @@ public:
 	inline uint32_t getTextureID() { return textureID; }
 	inline uint32_t getVAO() { return vao; }
 	void setRowsAndColumns(int rows, int columns);
+	void queryWidthHeight(int* w, int* h);
+	inline int getOffsetX() { return offsetX; }
+	inline int getOffsetY() { return offsetY; }
+	void setOffset(int x, int y);
 
 	~Texture();
 
@@ -36,8 +40,11 @@ private:
 	int texOffsetX = 0;
 	int texOffsetY = 0;
 
-	int width = 0;
-	int height = 0;
+	int offsetX = 0;
+	int offsetY = 0;
+
+	int width = 1;
+	int height = 1;
 
 	uint32_t textureID = -1;
 	uint32_t vao = -1;

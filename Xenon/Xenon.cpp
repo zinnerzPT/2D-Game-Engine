@@ -18,10 +18,10 @@ int main(int argc, char* argv[])
 	engine->init("Xenon Clone!", 640, 480, mainLevel);
 
 	// Background
-	Background* background = new Background("../graphics/galaxy2.bmp");
+	//Background* background = new Background("../graphics/galaxy2.bmp");
 
 	// Scrolling backgrounds
-	int offset = -512;
+	/*int offset = -512;
 	for (int i = 0; i < 8; ++i) {
 		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416 + 20, offset);
 		offset += 128;
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 		ScrollingBackground* topLayerRight2 = new ScrollingBackground("../graphics/Blocks.bmp", 224, 160, 224, 160, 0, 0, 224, 160, 416, offset, false, false, 2.5f, 1024);
 		offset += 160;
 		ScrollingBackground* topLayerRight3 = new ScrollingBackground("../graphics/Blocks.bmp", 160, 320, 160, 32, 0, 0, 160, 32, 480, offset, false, false, 2.5f, 1024);
-	}
+	}*/
 
 	// Player
 	GameManager* gameManager = GameManager::getInstance();

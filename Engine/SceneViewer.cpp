@@ -30,7 +30,7 @@ static char* filetobuf(char* file) {
 	return buf; /* Return the buffer */
 }
 
-SceneViewer::SceneViewer(std::string windowTitle, int windowWidth, int windowHeight)
+SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windowHeight)
 {
 
 	// SDL Config
@@ -69,7 +69,7 @@ SceneViewer::SceneViewer(std::string windowTitle, int windowWidth, int windowHei
 	glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, value_ptr(viewMatrix));
 
 	// Projection Matrix
-	this->projectionMatrix = glm::ortho(-400.0f / PIXEL_SCALE, 400.0f / PIXEL_SCALE, 0.0f, 600.0f / PIXEL_SCALE, 0.1f, 100.0f);
+	this->projectionMatrix = glm::ortho(0.0f , windowWidth, 0.0f, windowHeight, 0.1f, 100.0f);
 	this->projectionMatrixID = glGetUniformLocation(shaderProgram, "projection");
 	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, value_ptr(projectionMatrix));
 
@@ -102,13 +102,13 @@ void SceneViewer::setModelMatrix(glm::mat4 matrix)
 
 }
 
-void SceneViewer::setTexture(GLuint texture, glm::vec2* textureOffset) {
-
-	if (textureOffset == nullptr) {
+void SceneViewer::setTexture(GLuint texture, int offsetX /*= 0*/, int offsetY /*= 0*/)
+{
+	if (offsetX == 0 && offsetY == 0) {
 		glUniform2fv(textOffset, 1, value_ptr(glm::vec2(0.0f)));
 	}
 	else {
-		glUniform2fv(textOffset, 1, value_ptr(*textureOffset));
+		glUniform2fv(textOffset, 1, value_ptr(glm::vec2(offsetX, offsetY)));
 	}
 
 	glActiveTexture(GL_TEXTURE0);

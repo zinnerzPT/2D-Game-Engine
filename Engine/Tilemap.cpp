@@ -5,6 +5,11 @@
 Tilemap::Tilemap(Texture* tex, int r, int c)
 {
 	texture = tex;
+
+	texture->setRowsAndColumns(r, c);
+	//texture->queryWidthHeight(&textureWidth, &textureHeight);
+
+
 	texture->query(&textureWidth, &textureHeight);
 
 	rows = r;
@@ -34,6 +39,9 @@ void Tilemap::ChangeFrame(int frameNumber)
 		currentFrame.x = tileWidth * ((frameNumber) % columns);
 		currentFrame.y = tileHeight * ((frameNumber) / columns);
 		texture->setSrcRect(currentFrame);
+
+		//OPENGL
+		texture->setOffset(tileWidth * ((frameNumber) % columns), tileHeight * ((frameNumber) / columns));
 
 		// std::cout << "X: " << currentFrame.x << " Y: " << currentFrame.y << std::endl;
 	}

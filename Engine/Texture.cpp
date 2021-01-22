@@ -32,12 +32,30 @@ Texture::Texture(std::string filePath)
 	dstRect->w = w;
 	dstRect->h = h;
 
+	// Load image from specified path
+	SDL_Surface* image = SDL_LoadBMP(filePath.c_str());
+	if (image != nullptr)
+	{
+		this->width = image->w;
+		this->height = image->h;
+		glGenTextures(1, &this->textureID);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		// set the texture wrapping/filtering options (on the currently bound texture object)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->w, image->h, 0, GL_BGR,
+			GL_UNSIGNED_BYTE, image->pixels);
+	}
+	SDL_FreeSurface(image);
+
 	float vertices[4][5] =
 	{
 		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-		{ 1.0f, 0.0f, 0.0f, 1.0f, 1.0f},
-		{ 0.0f, 1.0f, 0.0f, 0.0f, 0.0f},
-		{ 1.0f, 1.0f, 0.0f, 1.0f, 0.0f}
+		{ width, 0.0f, 0.0f, 1.0f, 1.0f},
+		{ 0.0f, height, 0.0f, 0.0f, 0.0f},
+		{ width, height, 0.0f, 1.0f, 0.0f}
 	};
 
 	/* Allocate and assign a Vertex Array Object to our handle */
@@ -60,24 +78,6 @@ Texture::Texture(std::string filePath)
 	// TexCoord
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-
-	// Load image from specified path
-	SDL_Surface* image = SDL_LoadBMP(filePath.c_str());
-	if (image != nullptr)
-	{
-		this->width = image->w;
-		this->height = image->h;
-		glGenTextures(1, &this->textureID);
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		// set the texture wrapping/filtering options (on the currently bound texture object)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->w, image->h, 0, GL_BGR,
-			GL_UNSIGNED_BYTE, image->pixels);
-	}
-	SDL_FreeSurface(image);
 }
 
 Rect* Texture::getSrcRect()
@@ -150,9 +150,9 @@ void Texture::setRowsAndColumns(int rows, int columns)
 	float vertices[4][5] =
 	{
 		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f / rows},
-		{ 1.0f, 0.0f, 0.0f, 1.0f / columns, 1.0f / rows},
-		{ 0.0f, 1.0f, 0.0f, 0.0f, 0.0f},
-		{ 1.0f, 1.0f, 0.0f, 1.0f / columns, 0.0f}
+		{ width / columns, 0.0f, 0.0f, 1.0f / columns, 1.0f / rows},
+		{ 0.0f, height / rows, 0.0f, 0.0f, 0.0f},
+		{ width /columns, height / rows, 0.0f, 1.0f / columns, 0.0f}
 	};
 
 	/* Allocate and assign a Vertex Array Object to our handle */
@@ -175,6 +175,18 @@ void Texture::setRowsAndColumns(int rows, int columns)
 	// TexCoord
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+}
+
+void Texture::queryWidthHeight(int* w, int* h)
+{
+	*w = this->width;
+	*h = this->height;
+}
+
+void Texture::setOffset(int x, int y)
+{
+	this->offsetX = x;
+	this->offsetY = y;
 }
 
 Texture::~Texture()
