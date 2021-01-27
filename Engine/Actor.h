@@ -11,7 +11,7 @@ class Animation;
 class Actor
 {
 public:
-	Actor();
+	Actor(int x = 0, int y = 0);
 
 	virtual void update(float deltaTime) = 0;
 	virtual void render();
@@ -19,6 +19,8 @@ public:
 	void destroy();
 
 	virtual ~Actor();
+
+	inline class Transform* getTransform() { return transform; }
 
 protected:
 	float xpos = 0.0f;
@@ -29,4 +31,6 @@ protected:
 
 	bool flipHorizontal = false;
 	bool flipVertical = false;
+
+	class Transform* transform;
 };

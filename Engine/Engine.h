@@ -14,6 +14,7 @@ public:
 	void start();
 
 	inline static class Level* getLevel() { return level; };
+	inline class SceneViewer* getSceneViewer() { return viewer; };
 	static Engine* getInstance();
 
 	~Engine();
@@ -22,7 +23,7 @@ private:
 	class SDLWrapper* sdl = nullptr;
 	class Window* window = nullptr;
 	static class Level* level;
-	class SceneViewer* viewer = nullptr;
+	class SceneViewer* viewer;
 
 	static Engine* instance;
 

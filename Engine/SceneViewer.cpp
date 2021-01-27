@@ -32,6 +32,9 @@ static char* filetobuf(char* file) {
 
 SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windowHeight)
 {
+	width = windowWidth;
+	height = windowHeight;
+
 	// SDL Config
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);

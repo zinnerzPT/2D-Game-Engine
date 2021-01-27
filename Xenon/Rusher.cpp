@@ -1,6 +1,6 @@
 #include "Rusher.h"
 
-Rusher::Rusher(float x, float y, VelocityDirection velocityDirection /*= VelocityDirection::positive*/)
+Rusher::Rusher(float x, float y, VelocityDirection velocityDirection /*= VelocityDirection::positive*/) :Enemy(x, y)
 {
 	Texture* texture = new Texture("../graphics/rusher.bmp");
 	textures.push_back(texture);

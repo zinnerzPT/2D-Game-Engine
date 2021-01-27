@@ -4,14 +4,18 @@
 #include "Renderer.h"
 #include "SceneViewer.h"
 #include <glm/glm.hpp>
+#include "Transform.h"
 
-Actor::Actor()
+Actor::Actor(int x,int y)
 {
 	Engine::getLevel()->addActor(this);
+	transform = new Transform();
+	transform->Translate(x, y);
 }
 
 void Actor::render()
 {
+	transform->setPosition(xpos, ypos);
 	for (Texture* t : textures)
 	{
 		//SDL way
@@ -23,9 +27,7 @@ void Actor::draw(class SceneViewer* v /*= nullptr*/)
 {
 	for (Texture* t : textures)
 	{
-		glBindVertexArray(t->getVAO());
-		v->setTexture(t->getTextureID(), t->getOffsetX(), t->getOffsetY());
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		t->draw(v);
 	}
 }
 

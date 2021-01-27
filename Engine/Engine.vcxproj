@@ -40,6 +40,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="UIBar.h" />
     <ClInclude Include="UICanvas.h" />
     <ClInclude Include="Window.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UIBar.cpp" />
     <ClCompile Include="UICanvas.cpp" />
     <ClCompile Include="Window.cpp" />

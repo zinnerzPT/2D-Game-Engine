@@ -2,6 +2,9 @@
 #include "ContactListener.h"
 
 #include "OpenALWrapper.h"
+#include "Transform.h"
+#include <glm/ext.hpp>
+#include "SceneViewer.h"
 
 Level::Level(float gravityX, float gravityY)
 {
@@ -108,6 +111,7 @@ void Level::render()
 void Level::draw(class SceneViewer* v)
 {
 	for (Actor* a : actors) {
+		v->setModelMatrix(a->getTransform()->glmTransform);
 		a->draw(v);
 	}
 }

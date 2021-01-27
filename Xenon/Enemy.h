@@ -16,7 +16,7 @@ class Enemy :
 	public ContactSensor
 {
 public:
-	Enemy();
+	Enemy(float x, float y);
 	virtual void update(float deltaTime) override;
 	virtual void onContact(ContactSensor* otherSensor = nullptr) override;
 	virtual void takeDamage(float damage);

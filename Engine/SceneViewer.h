@@ -40,4 +40,6 @@ public:
 	void swapBuffers();
 
 	Window* getWindow() { return window; };
+
+	inline int getHeight() { return height; }
 };

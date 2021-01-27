@@ -2,7 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-Drone::Drone(float x, float y, float offset)
+Drone::Drone(float x, float y, float offset) :Enemy(x, y)
 {
 	Texture* texture = new Texture("../graphics/drone.bmp");
 	textures.push_back(texture);

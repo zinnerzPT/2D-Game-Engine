@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	engine->init("Xenon Clone!", 640, 480, mainLevel);
 
 	// Background
-	//Background* background = new Background("../graphics/galaxy2.bmp");
+	Background* background = new Background("../graphics/galaxy2.bmp");
 
 	// Scrolling backgrounds
 	/*int offset = -512;
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 	gameManager->spawnPlayer(304, 400);
 
 	// Spawner to spawn enemies and power ups
-	//new Spawner();
+	new Spawner();
 
 	// UI
 	//UI* ui = new UI(200, 200);

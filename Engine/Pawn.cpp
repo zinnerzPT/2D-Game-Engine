@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include "GameController.h"
 
-Pawn::Pawn(float x, float y) {
+Pawn::Pawn(float x, float y) :Actor(x,y){
 	xpos = x;
 	ypos = y;
 	moveSpeed = 100.0f;

@@ -1,7 +1,7 @@
 #include "Asteroid.h"
 #include "GameManager.h"
 
-Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/, AsteroidSize size /*= AsteroidSize::small*/)
+Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/, AsteroidSize size /*= AsteroidSize::small*/) :Enemy(x,y)
 {
 	Texture* texture = nullptr;
 	Tilemap* tilemap = nullptr;

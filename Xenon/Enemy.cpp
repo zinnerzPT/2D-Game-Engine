@@ -3,7 +3,7 @@
 #include "CompanionPowerUp.h"
 #include "GameManager.h"
 
-Enemy::Enemy()
+Enemy::Enemy(float x, float y) :Actor(x,y)
 {
 	// Enemy uses category 2 and collides with categories 1(player), 3(missile) and 6(companion)
 	rigidBody->setCollisionFilter(CATEGORY_2, CATEGORY_1 | CATEGORY_3 | CATEGORY_6);

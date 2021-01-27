@@ -6,6 +6,7 @@
 #include "InitError.h"
 #include "Renderer.h"
 #include "Engine.h"
+#include "SceneViewer.h"
 
 Texture::Texture(std::string filePath)
 {
@@ -194,4 +195,11 @@ Texture::~Texture()
 	delete srcRect;
 	delete dstRect;
 	SDL_DestroyTexture(texture);
+}
+
+void Texture::draw(class SceneViewer* v)
+{
+	glBindVertexArray(vao);
+	v->setTexture(textureID, offsetX, offsetY);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

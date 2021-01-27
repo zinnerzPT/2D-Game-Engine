@@ -1,6 +1,6 @@
 #include "Loner.h"
 
-Loner::Loner(float x, float y, VelocityDirection velocityDirection /*= VelocityDirection::positive*/)
+Loner::Loner(float x, float y, VelocityDirection velocityDirection /*= VelocityDirection::positive*/) :Enemy(x, y)
 {
 	Texture* texture = new Texture("../graphics/LonerA.bmp");
 	textures.push_back(texture);
