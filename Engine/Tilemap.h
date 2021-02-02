@@ -19,9 +19,6 @@ private:
 	int tileWidth = 0;
 	int tileHeight = 0;
 
-	Rect currentFrame;
-	Rect tileSize;
-
 	Texture* texture;
 };
 

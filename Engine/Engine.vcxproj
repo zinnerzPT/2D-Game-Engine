@@ -32,8 +32,6 @@
     <ClInclude Include="OpenALWrapper.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Projectile.h" />
-    <ClInclude Include="Rect.h" />
-    <ClInclude Include="Renderer.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SceneViewer.h" />
     <ClInclude Include="SDLWrapper.h" />
@@ -60,8 +58,6 @@
     <ClCompile Include="OpenALWrapper.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="Rect.cpp" />
-    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SceneViewer.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />

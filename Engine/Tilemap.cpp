@@ -18,14 +18,14 @@ Tilemap::Tilemap(Texture* tex, int r, int c)
 	tileWidth = textureWidth / columns;
 	tileHeight = textureHeight / rows;
 
-	currentFrame.w = tileWidth;
-	currentFrame.h = tileHeight;
+	//currentFrame.w = tileWidth;
+	//currentFrame.h = tileHeight;
 
-	tileSize.w = tileWidth;
-	tileSize.h = tileHeight;
+	//tileSize.w = tileWidth;
+	//tileSize.h = tileHeight;
 
-	texture->setSrcRect(currentFrame);
-	texture->setDstRect(tileSize);
+	//texture->setSrcRect(currentFrame);
+	//texture->setDstRect(tileSize);
 }
 
 void Tilemap::ChangeFrame(int frameNumber)
@@ -36,9 +36,9 @@ void Tilemap::ChangeFrame(int frameNumber)
 	}
 	else
 	{
-		currentFrame.x = tileWidth * ((frameNumber) % columns);
-		currentFrame.y = tileHeight * ((frameNumber) / columns);
-		texture->setSrcRect(currentFrame);
+		//currentFrame.x = tileWidth * ((frameNumber) % columns);
+		//currentFrame.y = tileHeight * ((frameNumber) / columns);
+		//texture->setSrcRect(currentFrame);
 
 		//OPENGL
 		texture->setOffset(((frameNumber) % columns) / (float)columns, ((frameNumber) / columns) / (float)rows);

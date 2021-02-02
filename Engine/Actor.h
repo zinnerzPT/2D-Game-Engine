@@ -14,7 +14,9 @@ public:
 	Actor(int x = 0, int y = 0);
 
 	virtual void update(float deltaTime) = 0;
-	virtual void render();
+
+	//virtual void render(); // Old SDL way
+
 	void draw(class SceneViewer* v = nullptr);
 	void destroy();
 

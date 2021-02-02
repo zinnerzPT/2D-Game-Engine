@@ -1,7 +1,6 @@
 #include "Actor.h"
 #include "Engine.h"
 #include "Level.h"
-#include "Renderer.h"
 #include "SceneViewer.h"
 #include <glm/glm.hpp>
 #include "Transform.h"
@@ -13,7 +12,8 @@ Actor::Actor(int x,int y)
 	transform->Translate(x, y);
 }
 
-void Actor::render()
+// Old SDL way
+/*void Actor::render()
 {
 	transform->setPosition(xpos, ypos);
 	for (Texture* t : textures)
@@ -21,10 +21,11 @@ void Actor::render()
 		//SDL way
 		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect(), flipHorizontal, flipVertical);
 	}
-}
+}*/
 
 void Actor::draw(class SceneViewer* v /*= nullptr*/)
 {
+	transform->setPosition(xpos, ypos);
 	for (Texture* t : textures)
 	{
 		t->draw(v);

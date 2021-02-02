@@ -1,6 +1,5 @@
 #include "UIBar.h"
 #include "Engine.h"
-#include "Renderer.h"
 
 UIBar::UIBar()
 {
@@ -29,10 +28,10 @@ void UIBar::renderBar(int x, int y, int length, int frame, int padding)
 		// Draw the bar
 		for (int i = 0; i < length; ++i) {
 
-			texture->setDstRect(curX, curY, texture->getDstRect()->w, texture->getDstRect()->h);
+			//texture->setDstRect(curX, curY, texture->getDstRect()->w, texture->getDstRect()->h);
 			
 			//SDL
-			Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
+			//Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
 
 			//Move over the width of one character + 1 for padding
 			curX += tilemap->getTileWidth() + padding;

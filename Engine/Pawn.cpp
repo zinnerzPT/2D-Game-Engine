@@ -18,7 +18,7 @@ void Pawn::update(float deltaTime)
 		position = rigidBody->getPosition();
 		xpos = position[0] = position[0] * 16.0f - tilemaps[0]->getTileWidth() / 2;
 		ypos = position[1] = position[1] * 16.0f - tilemaps[0]->getTileHeight() / 2;
-		t->setDstRect(position[0], position[1], t->getSrcRect()->w, t->getSrcRect()->h);
+		//t->setDstRect(position[0], position[1], t->getSrcRect()->w, t->getSrcRect()->h);
 	}
 }
 

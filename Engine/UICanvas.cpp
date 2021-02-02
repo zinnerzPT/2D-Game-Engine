@@ -1,7 +1,6 @@
 #include "UICanvas.h"
 #include "Engine.h"
 #include "Level.h"
-#include "Renderer.h"
 
 UICanvas::UICanvas()
 {
@@ -13,7 +12,7 @@ void UICanvas::render()
 	for (Texture* t : textures)
 	{
 		// SDL render
-		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect());
+		//Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect());
 	}
 }
 

@@ -6,8 +6,8 @@ ScrollingBackground::ScrollingBackground(std::string filepath, int sx, int sy, i
 	Texture* texture = new Texture(filepath);
 	if (sx)
 	{
-		texture->setSrcRect(sx, sy, sw, sh);
-		texture->setDstRect(dx, dy, dw, dh);
+		//texture->setSrcRect(sx, sy, sw, sh);
+		//texture->setDstRect(dx, dy, dw, dh);
 	}
 	textures.push_back(texture);
 
@@ -34,7 +34,7 @@ void ScrollingBackground::update(float deltaTime)
 				offset = 0;
 			}
 			offset++;
-			textures[0]->setTexOffset(additionalOffsetX, offset + additionalOffsetY);
+			//textures[0]->setTexOffset(additionalOffsetX, offset + additionalOffsetY);
 		}
 	}
 }

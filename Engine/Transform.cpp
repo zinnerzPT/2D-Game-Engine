@@ -25,5 +25,5 @@ void Transform::Translate(float x, float y)
 
 void Transform::setPosition(float x, float y) {
 	glmTransform = glm::mat4(1.0f);
-	Translate(x, engine->getSceneViewer()->getHeight() - y);
+	Translate(x, y);
 }

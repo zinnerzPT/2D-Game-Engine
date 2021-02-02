@@ -1,8 +1,6 @@
 #include "Engine.h"
 
 #include "SDLWrapper.h"
-#include "Window.h"
-#include "Renderer.h"
 #include "Pawn.h"
 #include "Level.h"
 #include "SceneViewer.h"
@@ -12,7 +10,6 @@
 
 Engine* Engine::instance = nullptr;
 
-Renderer* Engine::renderer = nullptr;
 Level* Engine::level = nullptr;
 
 void Engine::init(std::string windowTitle, int windowWidth, int windowHeight, Level* gameLevel)
@@ -21,9 +18,10 @@ void Engine::init(std::string windowTitle, int windowWidth, int windowHeight, Le
 	// OpenGL initialization
 	viewer = new SceneViewer(windowTitle, windowWidth, windowHeight);
 
-	// SDL
-	window = new Window(windowTitle, windowWidth, windowHeight);
-	renderer = new Renderer(window);
+	// Old SDL way
+	//window = new Window(windowTitle, windowWidth, windowHeight);
+	//renderer = new Renderer(window);
+
 	level = gameLevel;
 }
 
@@ -56,7 +54,7 @@ void Engine::start()
 		level->update(deltaTime);
 
 		// Old SDL way
-		renderer->clear();
+		//renderer->clear();
 		//Render level
 
 		viewer->clear();
@@ -69,8 +67,8 @@ void Engine::start()
 		}
 
 		// Old SDL way
-		level->render();
-		renderer->present();
+		//level->render();
+		//renderer->present();
 
 		level->draw(viewer);
 		viewer->swapBuffers();
@@ -99,8 +97,6 @@ Engine* Engine::getInstance()
 
 Engine::~Engine()
 {
-	delete renderer;
-	delete window;
 	delete viewer;
 	delete sdl;
 	delete level;

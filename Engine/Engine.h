@@ -21,14 +21,9 @@ public:
 private:
 	bool isRunning;
 	class SDLWrapper* sdl = nullptr;
-	class Window* window = nullptr;
 	static class Level* level;
 	class SceneViewer* viewer;
 
 	static Engine* instance;
-
-public:
-	static class Renderer* renderer;
-
 };
 

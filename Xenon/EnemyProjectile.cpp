@@ -32,8 +32,8 @@ void EnemyProjectile::update(float deltaTime)
 	position = rigidBody->getPosition();
 	position[0] = position[0] * 16.0f - tilemaps[0]->getTileWidth() / 2;
 	position[1] = position[1] * 16.0f - tilemaps[0]->getTileHeight() / 2;
-	textures[0]->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
-	explosionTex->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
+	//textures[0]->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
+	//explosionTex->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
 	// destroy it if goes out of bounds
 	if (position[1] < -10 || position[1] > 490)
 	{

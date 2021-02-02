@@ -45,9 +45,6 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ContactListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -61,9 +58,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
@@ -122,9 +116,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ContactListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,9 +129,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">

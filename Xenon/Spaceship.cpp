@@ -24,7 +24,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	// Spaceship burners
 	burnerTexRight = new Texture("../graphics/Burner1.bmp");
 	textures.push_back(burnerTexRight);
-	burnerTexRight->setTexOffset(32, 64);
+	//burnerTexRight->setTexOffset(32, 64);
 	burnerTilemapRight = new Tilemap(burnerTexRight, 1, 2);
 	tilemaps.push_back(burnerTilemapRight);
 	burnerAnimRight = new Animation(burnerTilemapRight, { 0,1 }, true);
@@ -33,7 +33,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 
 	burnerTexLeft = new Texture("../graphics/Burner1.bmp");
 	textures.push_back(burnerTexLeft);
-	burnerTexLeft->setTexOffset(18, 64);
+	//burnerTexLeft->setTexOffset(18, 64);
 	burnerTilemapLeft = new Tilemap(burnerTexLeft, 1, 2);
 	tilemaps.push_back(burnerTilemapLeft);
 	burnerAnimLeft = new Animation(burnerTilemapLeft, { 0,1 }, true);
