@@ -110,7 +110,7 @@ void Spaceship::update(float deltaTime)
 		rigidBody->setVelocity(velocity);
 	}
 
-	if (Input::getInstance()->getKey("Up") && ypos > 10)
+	if (Input::getInstance()->getKey("Up") && ypos < 406)
 	{
 		movementKeys[1] = true;
 	}
@@ -118,7 +118,7 @@ void Spaceship::update(float deltaTime)
 	{
 		movementKeys[1] = false;
 	}
-	if (Input::getInstance()->getKey("Down") && ypos < 406)
+	if (Input::getInstance()->getKey("Down") && ypos > 10 )
 	{
 		movementKeys[3] = true;
 	}

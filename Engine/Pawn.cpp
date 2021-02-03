@@ -33,7 +33,7 @@ void Pawn::moveRight(float x)
 
 void Pawn::moveUp(float y)
 {
-	velocity[1] = -y;
+	velocity[1] = y;
 	if (rigidBody)
 	{
 		rigidBody->setVelocity(velocity);
