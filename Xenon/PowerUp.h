@@ -7,13 +7,13 @@ class PowerUp :
 	public ContactSensor
 {
 public:
-	PowerUp();
+	PowerUp(int x, int y);
 	virtual void update(float deltaTime) override;
 	virtual void onContact(ContactSensor* otherSensor = nullptr) override = 0;
 	virtual void applyPower(ContactSensor* sensor = nullptr) = 0;
 	virtual ~PowerUp();
 
 protected:
-	float velocity[2]{ 0.0f, 2.0f };
+	float velocity[2]{ 0.0f, -2.0f };
 };
 

@@ -85,7 +85,7 @@ Asteroid::Asteroid(float x, float y, AsteroidType type /*= AsteroidType::stone*/
 	float halfSize[2]{ (tilemap->getTileWidth() / 16.0f) / 2.0f, (tilemap->getTileHeight() / 16.0f) / 2.0f };
 	rigidBody->createBody(position, halfSize);
 	// Initialize velocity
-	velocity[1] = 4.0f;
+	velocity[1] = -4.0f;
 	rigidBody->setVelocity(velocity);
 }
 

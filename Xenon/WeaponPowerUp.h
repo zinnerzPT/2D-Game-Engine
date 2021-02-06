@@ -9,7 +9,5 @@ public:
 	void onContact(ContactSensor* otherSensor = nullptr) override;
 	void applyPower(ContactSensor* sensor = nullptr) override;
 	~WeaponPowerUp();
-private:
-	float velocity[2]{ 0.0f, 2.0f };
 };
 

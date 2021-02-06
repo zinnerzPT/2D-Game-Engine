@@ -3,7 +3,7 @@
 #include "Spaceship.h"
 #include "CompanionPowerUp.h"
 
-ShieldPowerUp::ShieldPowerUp(int x, int y)
+ShieldPowerUp::ShieldPowerUp(int x, int y) : PowerUp(x, y)
 {
 	Texture* texture = new Texture("../graphics/PUShield.bmp");
 	textures.push_back(texture);

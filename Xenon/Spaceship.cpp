@@ -64,7 +64,7 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 	// Initialize values to use when creating a missile
 	missileHalfSize[0] = missileHalfSize[1] = 8.0f / 16.0f;
 	missileVelocity[0] = 0.0f;
-	missileVelocity[1] = -40.0f;
+	missileVelocity[1] = 40.0f;
 
 	// Start thread that manages firing cooldown
 	cooldownThread = std::thread{ &Spaceship::cooldownCheck, this };

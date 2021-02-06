@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 
 	// Player
 	GameManager* gameManager = GameManager::getInstance();
-	gameManager->spawnPlayer(304, 400);
+	gameManager->spawnPlayer(304, 80);
 
 	// Spawner to spawn enemies and power ups
 	new Spawner();

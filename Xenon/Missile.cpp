@@ -3,7 +3,8 @@
 #include "Enemy.h"
 
 Missile::Missile(float position[2], float halfSize[2], float density, float linearVelocity[2], uint16_t categoryBits, uint16_t maskBits, MissileType type)
-	: Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
+	: Actor(position[0] * 16, position[1] * 16),
+	Projectile(position, halfSize, density, linearVelocity, categoryBits, maskBits)
 {
 	Texture* texture = new Texture("../graphics/missile.bmp");
 	textures.push_back(texture);
@@ -45,7 +46,9 @@ void Missile::update(float deltaTime)
 	float* position;
 	position = rigidBody->getPosition();
 	position[0] = position[0] * 16.0f - tilemaps[0]->getTileWidth() / 2;
+	xpos = position[0];
 	position[1] = position[1] * 16.0f - tilemaps[0]->getTileHeight() / 2;
+	ypos = position[1];
 	//textures[0]->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
 	//explosionTex->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
 	if (position[1] < -10)

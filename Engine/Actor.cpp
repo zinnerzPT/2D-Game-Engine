@@ -5,11 +5,16 @@
 #include <glm/glm.hpp>
 #include "Transform.h"
 
+// FOR DEBUG PURPOSES ONLY
+#include <iostream>
+
 Actor::Actor(int x,int y)
 {
 	Engine::getLevel()->addActor(this);
 	transform = new Transform();
 	transform->Translate(x, y);
+
+	//std::cout << "actor | x: " << x << " | y: "<< y << std::endl;
 }
 
 // Old SDL way

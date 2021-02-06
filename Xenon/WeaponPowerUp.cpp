@@ -3,7 +3,7 @@
 #include "Spaceship.h"
 #include "CompanionPowerUp.h"
 
-WeaponPowerUp::WeaponPowerUp(int x, int y)
+WeaponPowerUp::WeaponPowerUp(int x, int y) : PowerUp(x, y)
 {
 	Texture* texture = new Texture("../graphics/PUWeapon.bmp");
 	textures.push_back(texture);

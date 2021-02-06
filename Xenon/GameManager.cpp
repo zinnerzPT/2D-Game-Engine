@@ -22,7 +22,7 @@ void GameManager::update(float deltaTime)
 {
 	if (canRespawn) {
 		if (timeSinceDeath > DEATH_COOLDOWN) {
-			spawnPlayer(304, 400);
+			spawnPlayer(304, 80);
 		}
 		else {
 			timeSinceDeath += deltaTime;

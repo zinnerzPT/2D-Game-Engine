@@ -63,11 +63,11 @@ bool Spawner::spawnEnemies()
 			{
 			case 0:
 				randomPosX = (rand() % 320) + 160;
-				new Rusher(randomPosX, -40, VelocityDirection::positive);
+				new Rusher(randomPosX, 520, VelocityDirection::negative);
 				break;
 			case 1:
 				randomPosX = (rand() % 320) + 160;
-				new Rusher(randomPosX, 520, VelocityDirection::negative);
+				new Rusher(randomPosX, -40, VelocityDirection::positive);
 				break;
 			}
 			return true;
@@ -78,7 +78,7 @@ bool Spawner::spawnEnemies()
 		{
 			lonerCooldownLeft = lonerCooldown;
 			randomNumber = rand() % 2;
-			randomPosY = (rand() % 200) + 80;
+			randomPosY = (rand() % 200) + 200;
 			switch (randomNumber)
 			{
 			case 0:
@@ -100,7 +100,7 @@ bool Spawner::spawnEnemies()
 			float delay = 0;
 			for (int i = 0; i < dronePack; ++i)
 			{
-				new Drone(randomNumber, -40, delay);
+				new Drone(randomNumber, 520, delay);
 				delay += 0.6f;
 			}
 			return true;
@@ -111,11 +111,11 @@ bool Spawner::spawnEnemies()
 		if (asteroidCooldownLeft <= 0)
 		{
 			asteroidCooldownLeft = asteroidCooldown;
-			new Asteroid(80, -150, AsteroidType::stone, AsteroidSize::medium);
-			new Asteroid(560, -150, AsteroidType::stone, AsteroidSize::medium);
-			new Asteroid(160, -100, AsteroidType::metal, AsteroidSize::medium);
-			new Asteroid(480, -100, AsteroidType::metal, AsteroidSize::medium);
-			new Asteroid(320, -200, AsteroidType::stone, AsteroidSize::large);
+			new Asteroid(80, 630, AsteroidType::stone, AsteroidSize::medium);
+			new Asteroid(560, 630, AsteroidType::stone, AsteroidSize::medium);
+			new Asteroid(160, 580, AsteroidType::metal, AsteroidSize::medium);
+			new Asteroid(480, 580, AsteroidType::metal, AsteroidSize::medium);
+			new Asteroid(320, 680, AsteroidType::stone, AsteroidSize::large);
 			return true;
 		}
 		break;
@@ -134,7 +134,7 @@ bool Spawner::spawnPowerUp()
 		if (shieldCooldownLeft <= 0)
 		{
 			shieldCooldownLeft = shieldCooldown;
-			new ShieldPowerUp(randomPosX, -50);
+			new ShieldPowerUp(randomPosX, 530);
 			return true;
 		}
 		break;
@@ -142,7 +142,7 @@ bool Spawner::spawnPowerUp()
 		if (weaponCooldownLeft <= 0)
 		{
 			weaponCooldownLeft = weaponCooldown;
-			new WeaponPowerUp(randomPosX, -50);
+			new WeaponPowerUp(randomPosX, 530);
 			return true;
 		}
 		break;
@@ -150,7 +150,7 @@ bool Spawner::spawnPowerUp()
 		if (companionCooldownLeft <= 0)
 		{
 			companionCooldownLeft = companionCooldown;
-			new CompanionPowerUp(randomPosX, -50);
+			new CompanionPowerUp(randomPosX, 530);
 			return true;
 		}
 		break;

@@ -22,7 +22,6 @@ public:
 	~CompanionPowerUp();
 
 private:
-	float velocity[2]{ 0.0f, 2.0f };
 	float health = 60.0f;
 	float maxHealth = 60.0f;
 	MissileType missileType = MissileType::light;

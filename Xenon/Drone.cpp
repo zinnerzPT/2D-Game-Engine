@@ -20,7 +20,7 @@ Drone::Drone(float x, float y, float offset) :Enemy(x, y)
 	this->moveDelay = offset;
 	
 	// Initialize velocity on  the y axis
-	velocity[1] = 5.0f;
+	velocity[1] = -5.0f;
 	// Initialize attack damage
 	attackDamage = 15.0f;
 	// Initialize health

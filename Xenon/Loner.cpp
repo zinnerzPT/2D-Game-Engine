@@ -30,7 +30,7 @@ Loner::Loner(float x, float y, VelocityDirection velocityDirection /*= VelocityD
 	// Initialize values to use when creating a projectile
 	projectileHalfSize[0] = projectileHalfSize[1] = 8.0f / 16.0f;
 	projectileVelocity[0] = 0.0f;
-	projectileVelocity[1] = 10.0f;
+	projectileVelocity[1] = -10.0f;
 }
 
 void Loner::update(float deltaTime)
@@ -60,7 +60,7 @@ Loner::~Loner()
 void Loner::attack()
 {
 	//Fire missiles
-	float missilePosition[2]{ (xpos + 32) / 16.0f, (ypos + 64) / 16.0f };
+	float missilePosition[2]{ (xpos + 32) / 16.0f, ypos / 16.0f };
 	// EnemyProjectile uses category 4 and collides with categories 1(player) and 6(companion)
 	new EnemyProjectile(missilePosition, projectileHalfSize, 1.0f, projectileVelocity, CATEGORY_4, CATEGORY_1 | CATEGORY_6, attackDamage);
 }

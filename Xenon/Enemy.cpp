@@ -3,7 +3,7 @@
 #include "CompanionPowerUp.h"
 #include "GameManager.h"
 
-Enemy::Enemy(float x, float y) :Actor(x,y)
+Enemy::Enemy(float x, float y) : Actor(x, y)
 {
 	// Enemy uses category 2 and collides with categories 1(player), 3(missile) and 6(companion)
 	rigidBody->setCollisionFilter(CATEGORY_2, CATEGORY_1 | CATEGORY_3 | CATEGORY_6);
@@ -20,7 +20,7 @@ void Enemy::update(float deltaTime)
 	//textures[0]->setDstRect(position[0], position[1], tilemaps[0]->getTileWidth(), tilemaps[0]->getTileHeight());
 
 	// check if the enemy's position is outside of the game boundaries
-	if (position[1] > 560 || position [1] < -300 || position[0] > 720 || position[0] < -80)
+	if (position[1] > 780 || position [1] < -80 || position[0] > 720 || position[0] < -80)
 	{
 		Actor::destroy();
 	}
