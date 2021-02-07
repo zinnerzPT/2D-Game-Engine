@@ -111,7 +111,7 @@ void Level::update(float deltaTime)
 void Level::draw(class SceneViewer* v)
 {
 	for (Actor* a : actors) {
-		v->setModelMatrix(a->getTransform()->glmTransform);
+		v->setModelMatrix(a->getTransform()->getGlmTransform());
 		a->draw(v);
 	}
 	for (UICanvas* c : canvases) {

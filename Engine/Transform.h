@@ -10,9 +10,10 @@ public:
 
 	void Translate(float x, float y);
 	void setPosition(float x, float y);
+
+	inline glm::mat4 getGlmTransform() { return glmTransform; };
+private:
 	glm::mat4 glmTransform;
 
-private:
-	
 };
 
