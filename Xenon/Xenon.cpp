@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	engine->init("Xenon Clone!", 640, 480, mainLevel);
 
 	// Background
-	//Background* background = new Background("../graphics/galaxy2.bmp");
+	Background* background = new Background("../graphics/galaxy2.bmp");
 
 	// Scrolling backgrounds
 	/*int offset = -512;
