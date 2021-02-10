@@ -13,6 +13,8 @@ class Actor
 public:
 	Actor(int x = 0, int y = 0);
 
+	inline void setLayer(int l) { this->layer = l; }
+
 	virtual void update(float deltaTime) = 0;
 
 	//virtual void render(); // Old SDL way
@@ -25,6 +27,8 @@ public:
 	inline class Transform* getTransform() { return transform; }
 
 protected:
+	int layer = 0;
+
 	float xpos = 0.0f;
 	float ypos = 0.0f;
 	std::vector<Texture*> textures;

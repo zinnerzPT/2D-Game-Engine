@@ -20,11 +20,11 @@ void UIBar::buildBar(Texture* barBitmap, int rows, int cols)
 	tilemap = new Tilemap(barBitmap, rows, cols);
 }
 
-void UIBar::drawBar(int x, int y, int length, SceneViewer* v, int frame, int padding)
+void UIBar::drawBar(int x, int y, int length, SceneViewer* v, int frame /* = 0*/, int padding /* = 0*/, int layer /* = 0*/)
 {
 	if (texture != NULL) {
 		// Sprite offsets
-		pos->setPosition(x, y);
+		pos->setPosition(x, y, layer);
 		int curX = x, curY = y;
 
 		tilemap->ChangeFrame(frame);

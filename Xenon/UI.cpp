@@ -30,6 +30,9 @@ UI::UI() {
 
 	healthBar = new UIBar();
 	healthBar->buildBar(healthTexture, 1, 3);
+
+	// Set the rendering layer
+	this->setLayer(5);
 }
 
 UI::~UI()

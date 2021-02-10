@@ -12,7 +12,7 @@ Actor::Actor(int x,int y)
 {
 	Engine::getLevel()->addActor(this);
 	transform = new Transform();
-	transform->Translate(x, y);
+	transform->Translate(x, y, layer);
 
 	//std::cout << "actor | x: " << x << " | y: "<< y << std::endl;
 }
@@ -30,7 +30,7 @@ Actor::Actor(int x,int y)
 
 void Actor::draw(class SceneViewer* v /*= nullptr*/)
 {
-	transform->setPosition(xpos, ypos);
+	transform->setPosition(xpos, ypos, layer);
 	for (Texture* t : textures)
 	{
 		if (t->getPosOffsetX() || t->getPosOffsetY())

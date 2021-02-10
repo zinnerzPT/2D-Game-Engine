@@ -39,6 +39,9 @@ Missile::Missile(float position[2], float halfSize[2], float density, float line
 	tilemaps.push_back(explosionTilemap);
 	explosionAnim = new Animation(explosionTilemap, { 0,1,2,3,4,5,6,7,8,9 }, false);
 	animations.push_back(explosionAnim);
+
+	// Set the rendering layer
+	this->setLayer(3);
 }
 
 void Missile::update(float deltaTime)

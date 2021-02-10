@@ -71,6 +71,9 @@ Spaceship::Spaceship(float x, float y) :Pawn(x, y)
 
 	// Load fire sound from file
 	fireSound = Engine::getLevel()->loadSoundFile("../sounds/laser_fire.wav");
+
+	// Set the rendering layer
+	this->setLayer(4);
 }
 
 void Spaceship::update(float deltaTime)

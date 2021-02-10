@@ -25,12 +25,12 @@ void BitmapFont::buildFont(Texture* fontBitmap, int rows, int cols)
 	newLine = -(tilemap->getTileHeight() + 1);
 }
 
-void BitmapFont::drawText(int x, int y, std::string text, SceneViewer* v)
+void BitmapFont::drawText(int x, int y, std::string text, SceneViewer* v, int layer)
 {
 	// If the bitmap has been built
 	if (bitmap != NULL) {
 		// Character offsets
-		pos->setPosition(x, y);
+		pos->setPosition(x, y, layer);
 		int curX = x, curY = y;
 
 		// Go through the text

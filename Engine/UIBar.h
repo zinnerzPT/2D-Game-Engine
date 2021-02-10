@@ -12,7 +12,7 @@ public:
 	// Generate the bar from sprites
 	void buildBar(Texture* barBitmap, int rows, int cols);
 
-	void drawBar(int x, int y, int length, class SceneViewer* v, int frame = 0, int padding = 0);
+	void drawBar(int x, int y, int length, class SceneViewer* v, int frame = 0, int padding = 0, int layer = 0);
 
 
 private:

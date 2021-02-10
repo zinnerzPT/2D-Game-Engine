@@ -40,10 +40,10 @@ UICanvas::~UICanvas()
 
 void UICanvas::drawText(std::string text, BitmapFont* font, int x, int y)
 {
-	font->drawText(x, y, text, Engine::getInstance()->getSceneViewer());
+	font->drawText(x, y, text, Engine::getInstance()->getSceneViewer(), layer);
 }
 
 void UICanvas::drawBar(int length, UIBar* bar, int x, int y, int frame, int padding)
 {
-	bar->drawBar(x, y, length, Engine::getInstance()->getSceneViewer(), frame, padding);
+	bar->drawBar(x, y, length, Engine::getInstance()->getSceneViewer(), frame, padding, layer);
 }

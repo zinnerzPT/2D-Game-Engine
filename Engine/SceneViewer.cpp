@@ -80,8 +80,8 @@ SceneViewer::SceneViewer(std::string windowTitle, float windowWidth, float windo
 	this->textOffset = glGetUniformLocation(shaderProgram, "textOffset");
 
 	/* Enable Z depth testing so objects closest to the viewpoint are in front */
-	//glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LESS);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 
 	// Enable blending
 	glEnable(GL_BLEND);

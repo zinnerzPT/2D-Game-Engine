@@ -3,6 +3,9 @@
 PowerUp::PowerUp(int x, int y) : Actor(x, y)
 {
 	rigidBody->makeDynamic(1.0f);
+
+	// Set the rendering layer
+	this->setLayer(1);
 }
 
 void PowerUp::update(float deltaTime)

@@ -25,6 +25,9 @@ EnemyProjectile::EnemyProjectile(float position[2], float halfSize[2], float den
 
 	// Set damage
 	projectileDamage = damage;
+
+	// Set the rendering layer
+	this->setLayer(3);
 }
 
 void EnemyProjectile::update(float deltaTime)

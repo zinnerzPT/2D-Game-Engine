@@ -13,6 +13,8 @@ class UICanvas
 public: 
 	UICanvas();
 
+	inline void setLayer(int l) { this->layer = l; }
+
 	virtual void update(float deltaTime) = 0;
 	virtual void draw(class SceneViewer* v = nullptr);
 	void destroy();
@@ -24,10 +26,13 @@ protected:
 	void drawText(std::string text, BitmapFont* font, int x, int y);
 	void drawBar(int length, UIBar* bar, int x, int y, int frame = 0, int padding = 0);
 protected:
+	int layer = 0;
+
 	std::vector<Texture*> textures;
 	std::vector<Tilemap*> tilemaps;
 
 	class Transform* transform;
+
 
 
 };

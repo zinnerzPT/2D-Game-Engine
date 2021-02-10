@@ -17,13 +17,14 @@ Transform::~Transform()
 
 }
 
-void Transform::Translate(float x, float y)
+void Transform::Translate(float x, float y, float z /*= 0*/)
 {
-	glm::mat4 trans = translate(glm::mat4(1.0f), glm::vec3(x, y, 0.0f));
+	glm::mat4 trans = translate(glm::mat4(1.0f), glm::vec3(x, y, z));
 	glmTransform = trans * glmTransform;
 }
 
-void Transform::setPosition(float x, float y) {
+void Transform::setPosition(float x, float y, float z)
+{
 	glmTransform = glm::mat4(1.0f);
-	Translate(x, y);
+	Translate(x, y, z);
 }

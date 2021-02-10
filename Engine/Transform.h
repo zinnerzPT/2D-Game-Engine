@@ -8,8 +8,8 @@ public:
 	Transform();
 	~Transform();
 
-	void Translate(float x, float y);
-	void setPosition(float x, float y);
+	void Translate(float x, float y, float z = 0);
+	void setPosition(float x, float y, float z);
 
 	inline glm::mat4 getGlmTransform() { return glmTransform; };
 private:
