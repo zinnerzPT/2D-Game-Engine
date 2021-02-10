@@ -1,39 +1,41 @@
 #include "UIBar.h"
 #include "Engine.h"
+#include "SceneViewer.h"
+#include "Transform.h"
+
+static Transform* pos;
 
 UIBar::UIBar()
 {
 	//Initialize variables
 	texture = nullptr;
 	tilemap = nullptr;
+	if (pos == nullptr)
+		pos = new Transform;
 }
 
 void UIBar::buildBar(Texture* barBitmap, int rows, int cols)
 {
 	texture = barBitmap;
 	tilemap = new Tilemap(barBitmap, rows, cols);
-
-	// Set new line to slightly taller than a character
-	//newLine = tilemap->getTileHeight() + 1;
 }
 
-void UIBar::renderBar(int x, int y, int length, int frame, int padding)
+void UIBar::drawBar(int x, int y, int length, SceneViewer* v, int frame, int padding)
 {
 	if (texture != NULL) {
 		// Sprite offsets
+		pos->setPosition(x, y);
 		int curX = x, curY = y;
 
 		tilemap->ChangeFrame(frame);
 
 		// Draw the bar
 		for (int i = 0; i < length; ++i) {
+			v->setModelMatrix(pos->getGlmTransform());
+			texture->draw(v);
 
-			//texture->setDstRect(curX, curY, texture->getDstRect()->w, texture->getDstRect()->h);
-			
-			//SDL
-			//Engine::renderer->copy(texture, texture->getSrcRect(), texture->getDstRect());
-
-			//Move over the width of one character + 1 for padding
+			//Move over the width of one character + padding
+			pos->Translate(tilemap->getTileWidth() + padding, 0.0f);
 			curX += tilemap->getTileWidth() + padding;
 		}
 	}
