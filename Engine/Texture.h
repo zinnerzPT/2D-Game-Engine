@@ -9,7 +9,8 @@ public:
 
 	inline struct SDL_Texture* GetTexture() { return texture; }
 
-	void setTexOffset(int x, int y);
+	inline float getPosOffsetX() { return posOffsetX; }
+	inline float getPosOffsetY() { return posOffsetY; }
 
 	/* Queries the width and height of the texture. */
 	void query(int* w, int* h);
@@ -24,19 +25,20 @@ public:
 	void queryWidthHeight(int* w, int* h);
 
 	void setOffset(float x, float y);
+	void setPosOffset(float x, float y);
 
 	~Texture();
 
-	void draw(class SceneViewer* v);
+	void draw(class SceneViewer* v, class Transform* t = nullptr);
 
 private:
 	struct SDL_Texture* texture = nullptr;
 
-	int texOffsetX = 0;
-	int texOffsetY = 0;
-
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;
+
+	float posOffsetX = 0.0f;
+	float posOffsetY = 0.0f;
 
 	int width = 1;
 	int height = 1;

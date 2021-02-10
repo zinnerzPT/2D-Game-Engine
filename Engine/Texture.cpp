@@ -6,6 +6,7 @@
 #include "InitError.h"
 #include "Engine.h"
 #include "SceneViewer.h"
+#include "Transform.h"
 
 Texture::Texture(std::string filePath)
 {
@@ -71,20 +72,10 @@ Texture::Texture(std::string filePath)
 	glEnableVertexAttribArray(1);
 }
 
-void Texture::setTexOffset(int x, int y)
+void Texture::setPosOffset(float x, float y)
 {
-	// remove the offset from the dstRect
-	//dstRect->x -= texOffsetX;
-	//dstRect->y -= texOffsetY;
-
-	texOffsetX = x;
-	texOffsetY = y;
-
-	// add it back
-	//dstRect->x += texOffsetX;
-	//dstRect->y += texOffsetY;
-
-	// this will make sure the offset is always applied
+	this->posOffsetX = x;
+	this->posOffsetY = y;
 }
 
 void Texture::query(int* w, int* h)
@@ -142,8 +133,16 @@ Texture::~Texture()
 	SDL_DestroyTexture(texture);
 }
 
-void Texture::draw(class SceneViewer* v)
+void Texture::draw(SceneViewer* v, Transform* transform /* = nullptr*/)
 {
+	if (transform) 
+	{
+		glm::mat4 offset = translate(glm::mat4(1.0f), glm::vec3(posOffsetX, posOffsetY, 0.0f));
+		glm::mat4 tempTransform = offset * transform->getGlmTransform();
+
+		v->setModelMatrix(tempTransform);
+	}
+
 	glBindVertexArray(vao);
 	v->setTexture(textureID, offsetX, offsetY);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -33,7 +33,14 @@ void Actor::draw(class SceneViewer* v /*= nullptr*/)
 	transform->setPosition(xpos, ypos);
 	for (Texture* t : textures)
 	{
-		t->draw(v);
+		if (t->getPosOffsetX() || t->getPosOffsetY())
+		{
+			t->draw(v, transform);
+		}
+		else
+		{
+			t->draw(v);
+		}
 	}
 }
 
