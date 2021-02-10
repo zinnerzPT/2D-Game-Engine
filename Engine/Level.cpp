@@ -115,8 +115,8 @@ void Level::draw(class SceneViewer* v)
 		a->draw(v);
 	}
 	for (UICanvas* c : canvases) {
-		//v->setModelMatrix(c->getTransform()->glmTransform);
-		//c->draw(v);
+		//v->setModelMatrix(c->getTransform()->getGlmTransform());
+		c->draw(v);
 	}
 }
 

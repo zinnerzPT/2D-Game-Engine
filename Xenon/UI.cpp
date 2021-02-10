@@ -3,7 +3,7 @@
 #include "GameManager.h"
 #include <string>
 
-UI::UI(float x, float y) {
+UI::UI() {
 	// Create fonts for the scoreboard
 	Texture* smallTexture = new Texture("../graphics/font8x8.bmp");
 	textures.push_back(smallTexture);
@@ -12,7 +12,7 @@ UI::UI(float x, float y) {
 	textures.push_back(largeTexture);
 
 	smallFont = new BitmapFont();
-	smallFont->buildFont(smallTexture, 15, 8);
+	smallFont->buildFont(smallTexture, 16, 8);
 
 	largeFont = new BitmapFont();
 	largeFont->buildFont(largeTexture, 12, 8);
@@ -45,24 +45,27 @@ void UI::update(float deltaTime) {
 
 }
 
-void UI::render() {
+void UI::draw(SceneViewer* v) {
 	GameManager* gameManager = GameManager::getInstance();
 
-	smallFont->renderText(10, 10, "Player One");
+	//drawText("1\n2\n3", smallFont, 100, 100);
+
+	drawText("Player One", smallFont, 10, 470);
+	//
 
 	// convert scores to string with 10 digits
 	char buffer[256];
 	sprintf_s(buffer, "%010d", gameManager->getScore());
 	std::string currentScore(buffer);
-	largeFont->renderText(10, 20, currentScore);
+	//largeFont->renderText(100, 200, currentScore);
 
 	sprintf_s(buffer, "%010d", gameManager->getHiScore());
 	std::string hiScore(buffer);
 
-	smallFont->renderText(300, 10, " Hi Score \n" + hiScore);
+	//smallFont->renderText(300, 10, " Hi Score \n" + hiScore);
 
-	livesBar->renderBar(10, 410, gameManager->getLives(), 0, 4);
+	//livesBar->renderBar(10, 410, gameManager->getLives(), 0, 4);
 
 	int healthColor = (gameManager->getHealth() / 30.0f) - 0.34f;
-	healthBar->renderBar(10, 450, gameManager->getHealth() / 5.0f, healthColor, 1);
+	//healthBar->renderBar(10, 450, gameManager->getHealth() / 5.0f, healthColor, 1);
 }

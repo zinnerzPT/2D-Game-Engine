@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 64, 1408, 224, 128, 0, 0, 224, 128, 416 + 20, offset);
 		offset += 128;
 	}
-	offset = -512;
+	/*offset = -512;
 	for (int i = 0; i < 8; ++i) {
 		ScrollingBackground* scrollingBackground = new ScrollingBackground("../graphics/Blocks.bmp", 288, 1344, 64, 192, 0, 0, 64, 192, -1, offset);
 		offset += 128;
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 	new Spawner();
 
 	// UI
-	//UI* ui = new UI(200, 200);
+	UI* ui = new UI();
 
 	engine->start();
 

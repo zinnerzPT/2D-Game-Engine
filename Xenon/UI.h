@@ -7,12 +7,11 @@
 class UI : public UICanvas
 {
 public:
-	UI(float x, float y);
+	UI();
 	~UI();
 	void update(float deltaTime);
 
-	void render() override;
-
+	void draw(class SceneViewer* v) override;
 private:
 	BitmapFont* smallFont;
 	BitmapFont* largeFont;
