@@ -11,20 +11,6 @@
 Texture::Texture(std::string filePath)
 {
 	// Load image from specified path
-	/*SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
-	if (surface == NULL)
-		throw InitError();
-	else
-	{
-		SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 255, 0, 255));
-		texture = Engine::renderer->createTextureFromSurface(surface);
-		if (texture == NULL)
-			throw InitError();
-	}
-
-	SDL_FreeSurface(surface);*/
-
-	// Load image from specified path
 	SDL_Surface* image = SDL_LoadBMP(filePath.c_str());
 	if (image != nullptr)
 	{
@@ -42,12 +28,12 @@ Texture::Texture(std::string filePath)
 	}
 	SDL_FreeSurface(image);
 
-	float vertices[4][5] =
+	float vertices[4][4] =
 	{
-		{ 0.0f, 0.0f, 0.0f, 0.0f, 1.0f},
-		{ width, 0.0f, 0.0f, 1.0f, 1.0f},
-		{ 0.0f, height, 0.0f, 0.0f, 0.0f},
-		{ width, height, 0.0f, 1.0f, 0.0f}
+		{ 0.0f, 0.0f, 0.0f, 1.0f},
+		{ width, 0.0f, 1.0f, 1.0f},
+		{ 0.0f, height, 0.0f, 0.0f},
+		{ width, height, 1.0f, 0.0f}
 	};
 
 	/* Allocate and assign a Vertex Array Object to our handle */
@@ -64,11 +50,11 @@ Texture::Texture(std::string filePath)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// Position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
 	glEnableVertexAttribArray(0);
 
 	// TexCoord
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 }
 
@@ -135,7 +121,7 @@ Texture::~Texture()
 
 void Texture::draw(SceneViewer* v, Transform* transform /* = nullptr*/)
 {
-	if (transform) 
+	if (transform)
 	{
 		glm::mat4 offset = translate(glm::mat4(1.0f), glm::vec3(posOffsetX, posOffsetY, 0.0f));
 		glm::mat4 tempTransform = offset * transform->getGlmTransform();
@@ -146,4 +132,46 @@ void Texture::draw(SceneViewer* v, Transform* transform /* = nullptr*/)
 	glBindVertexArray(vao);
 	v->setTexture(textureID, offsetX, offsetY);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void Texture::setVertices(float sx, float sy, float sw, float sh)
+{
+	int w, h;
+	queryWidthHeight(&w, &h);
+
+	float leftX = sx / width;
+	float topY = sy / height;
+	float rightX = (sx + sw) / width;
+	float bottomY = (sy + sh) / height;
+	w = sw;
+	h = sh;
+
+	float vertices[4][4] =
+	{
+		{ 0.0f, 0.0f, leftX, topY},
+		{ w, 0.0f, rightX, topY},
+		{ 0.0f, h, leftX, bottomY},
+		{ w, h, rightX, bottomY}
+	};
+
+	/* Allocate and assign a Vertex Array Object to our handle */
+	glGenVertexArrays(1, &vao);
+	/* Bind our Vertex Array Object as the current used object */
+	glBindVertexArray(vao);
+
+	/* Allocate and assign Vertex Buffer Objects to our handle */
+	glGenBuffers(1, &vbo);
+
+	/* vertices */
+	/* Bind our first VBO as being the active buffer and storing vertex attributes (coordinates) */
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// Position
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+	glEnableVertexAttribArray(0);
+
+	// TexCoord
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 }

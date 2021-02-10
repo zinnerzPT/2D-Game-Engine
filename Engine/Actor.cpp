@@ -10,23 +10,14 @@
 
 Actor::Actor(int x,int y)
 {
+	if (x && y) {
+		xpos = x;
+		ypos = y;
+	}
 	Engine::getLevel()->addActor(this);
 	transform = new Transform();
 	transform->Translate(x, y, layer);
-
-	//std::cout << "actor | x: " << x << " | y: "<< y << std::endl;
 }
-
-// Old SDL way
-/*void Actor::render()
-{
-	transform->setPosition(xpos, ypos);
-	for (Texture* t : textures)
-	{
-		//SDL way
-		Engine::renderer->copy(t, t->getSrcRect(), t->getDstRect(), flipHorizontal, flipVertical);
-	}
-}*/
 
 void Actor::draw(class SceneViewer* v /*= nullptr*/)
 {

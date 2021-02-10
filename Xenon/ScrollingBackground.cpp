@@ -1,40 +1,33 @@
 #include "ScrollingBackground.h"
 
-
-ScrollingBackground::ScrollingBackground(std::string filepath, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int offsetX, int offsetY, bool hFlip, bool vFlip, float speed, int resetOffset)
+ScrollingBackground::ScrollingBackground(std::string filepath, int topLeftX, int topLeftY, int width, int height, int x, int y, float speed, int layer, int yReset) :Actor(x, y)
 {
 	Texture* texture = new Texture(filepath);
-	if (sx)
-	{
-		//texture->setSrcRect(sx, sy, sw, sh);
-		//texture->setDstRect(dx, dy, dw, dh);
-	}
+
 	textures.push_back(texture);
 
-	additionalOffsetX = offsetX;
-	additionalOffsetY = offsetY;
-	flipHorizontal = hFlip;
-	flipVertical = vFlip;
 	scrollSpeed = speed;
-	this->resetOffset = resetOffset;
-}
+	xpos = x;
+	ypos = y;
+	h = height;
+	this->yReset = yReset;
 
+	this->setLayer(layer);
+	texture->setVertices(topLeftX, topLeftY, width, height);
+}
 
 void ScrollingBackground::update(float deltaTime)
 {
-	if (additionalOffsetX || additionalOffsetY)
-	{
-		frameTime += deltaTime;
-		if (frameTime >= 0.05f / scrollSpeed)
-		{
-			frameTime = 0.0f;
 
-			if (offset == resetOffset)
-			{
-				offset = 0;
-			}
-			offset++;
-			//textures[0]->setTexOffset(additionalOffsetX, offset + additionalOffsetY);
+	frameTime += deltaTime;
+	if (frameTime >= 0.05f / scrollSpeed)
+	{
+		frameTime = 0.0f;
+
+		if (ypos <= -(h + yReset))
+		{
+			ypos = 512;
 		}
+		ypos--;
 	}
 }

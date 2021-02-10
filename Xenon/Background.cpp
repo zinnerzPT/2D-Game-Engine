@@ -6,7 +6,7 @@ Background::Background(std::string filepath)
 	textures.push_back(texture);
 
 	// Set the rendering layer
-	this->setLayer(0);
+	this->setLayer(-10);
 }
 
 

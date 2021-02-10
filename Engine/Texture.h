@@ -41,4 +41,6 @@ private:
 	uint32_t vao = -1;
 	uint32_t vbo = -1;
 	//glm::vec2 textureOffset;
+public:
+	void setVertices(float sx, float sy, float sw, float sh);
 };
