@@ -62,7 +62,7 @@ void UI::draw(SceneViewer* v) {
 	drawText(" Hi Score \n" + hiScore, smallFont, 280, 464);
 
 	// Lives
-	drawBar(gameManager->getLives(), livesBar, 8, 32,0,4);
+	drawBar(gameManager->getLives(), livesBar, 8, 32, 0, 4);
 
 	// Health bar
 	int healthColor = (gameManager->getHealth() / 30.0f) - 0.34f;
