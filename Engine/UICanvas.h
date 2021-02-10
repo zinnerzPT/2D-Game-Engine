@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "BitmapFont.h"
+#include "UIBar.h"
 
 class UICanvas
 {
@@ -20,8 +21,8 @@ public:
 
 	inline class Transform* getTransform() { return transform; }
 protected:
-	void drawText(std::string text, BitmapFont* font, float x, float y);
-
+	void drawText(std::string text, BitmapFont* font, int x, int y);
+	void drawBar(int length, UIBar* bar, int x, int y, int frame = 0, int padding = 0);
 protected:
 	std::vector<Texture*> textures;
 	std::vector<Tilemap*> tilemaps;

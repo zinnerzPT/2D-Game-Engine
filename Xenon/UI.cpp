@@ -49,23 +49,24 @@ void UI::draw(SceneViewer* v) {
 	GameManager* gameManager = GameManager::getInstance();
 
 	//drawText("1\n2\n3", smallFont, 100, 100);
-
-	drawText("Player One", smallFont, 10, 470);
-	//
+	drawText("Player One", smallFont, 10, 460);
 
 	// convert scores to string with 10 digits
 	char buffer[256];
 	sprintf_s(buffer, "%010d", gameManager->getScore());
 	std::string currentScore(buffer);
-	//largeFont->renderText(100, 200, currentScore);
+	drawText(currentScore, largeFont, 10, 442);
 
 	sprintf_s(buffer, "%010d", gameManager->getHiScore());
 	std::string hiScore(buffer);
 
 	//smallFont->renderText(300, 10, " Hi Score \n" + hiScore);
+	drawText(" Hi Score \n" + hiScore, smallFont, 280, 460);
 
+	//drawBar(gameManager->getLives(), livesBar, 10, 100);
 	//livesBar->renderBar(10, 410, gameManager->getLives(), 0, 4);
 
 	int healthColor = (gameManager->getHealth() / 30.0f) - 0.34f;
+	drawBar(gameManager->getHealth() / 5.0f, healthBar, 10, 10, healthColor, 1);
 	//healthBar->renderBar(10, 450, gameManager->getHealth() / 5.0f, healthColor, 1);
 }

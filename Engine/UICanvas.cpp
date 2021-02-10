@@ -38,7 +38,12 @@ UICanvas::~UICanvas()
 	}
 }
 
-void UICanvas::drawText(std::string text, BitmapFont* font, float x, float y)
+void UICanvas::drawText(std::string text, BitmapFont* font, int x, int y)
 {
 	font->drawText(x, y, text, Engine::getInstance()->getSceneViewer());
+}
+
+void UICanvas::drawBar(int length, UIBar* bar, int x, int y, int frame, int padding)
+{
+	bar->drawBar(x, y, length, Engine::getInstance()->getSceneViewer(), frame, padding);
 }

@@ -12,7 +12,7 @@ public:
 	// Generate the font
 	void buildFont(Texture* fontBitmap, int rows, int cols);
 
-	void drawText(float x, float y, std::string text, class SceneViewer* v);
+	void drawText(int x, int y, std::string text, class SceneViewer* v);
 
 private:
 	// The font texture
