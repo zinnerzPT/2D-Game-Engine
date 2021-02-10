@@ -107,7 +107,6 @@ bool Spawner::spawnEnemies()
 		}
 		break;
 	case 3:
-		break;
 		if (asteroidCooldownLeft <= 0)
 		{
 			asteroidCooldownLeft = asteroidCooldown;
